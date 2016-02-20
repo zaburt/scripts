@@ -1,0 +1,232 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#
+# Simple script to get details for words in English and Turkish, or translate from
+# one to another
+#
+# Copyright (C) 2012, Onur Küçük <onur@delipenguen.net>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+
+import os
+import sys
+import re
+import locale
+
+from optparse import OptionParser
+
+import urllib2
+from HTMLParser import HTMLParser
+
+
+baseurl = "http://www.seslisozluk.net/%s-nedir-ne-demek/"
+usageInfo = u"%prog [seçenekler] [Türkçe/İngilizce kelime]"
+
+
+class MyHTMLParser(HTMLParser):
+    def __init__(self):
+        HTMLParser.__init__(self)
+        self.lang = 'tr'
+
+        self.in_main_wrapper = False
+        self.main_wrapper_depth = 0
+        self.in_data_wrapper = False
+        self.data_wrapper_depth = 0
+
+        self.in_list = False
+        self.in_header = False
+        self.in_header_wrapper = False
+        self.in_suggestion = False
+        self.append_to_previous = 0
+        self.highlighted = False
+
+        self.found_data = False
+        self.found_header = False
+        self.found_suggestion_header = False
+        self.data = {'tr':['Türkçe', []],
+                     'en': ['İngilizce', []],
+                     'images': ['Görseller', []],
+                     'didumean': ['Sonuç bulunamadı, aradığınız kelime bunlardan biri mi ?', []]}
+
+    def handle_starttag(self, tag, attrs):
+        if tag == 'div':
+            for name, value in attrs:
+                if name == 'class' and 'panel' in value and 'panel-default' in value:
+                    self.in_main_wrapper = True
+                elif name == 'class' and 'panel-body' in value and 'sozluk' in value:
+                    self.in_data_wrapper = True
+                elif name == 'class' and 'panel-heading' in value and 'sesli-red-bg' in value:
+                    self.in_header_wrapper = True
+
+            if self.in_main_wrapper:
+                self.main_wrapper_depth += 1
+
+            if self.in_data_wrapper:
+                self.data_wrapper_depth += 1
+
+        elif tag == 'b':
+            for name, value in attrs:
+                if name == 'class' and 'panel-title' in value:
+                    self.in_header = True
+                    if self.in_main_wrapper and self.in_header_wrapper:
+                        self.found_header = True
+        elif tag == 'h3':
+            for name, value in attrs:
+                if name == 'class' and 'panel-title' in value:
+                    self.in_header = True
+                    if self.in_main_wrapper and self.in_header_wrapper:
+                        self.found_suggestion_header = True
+
+        elif tag == 'li':
+            self.in_list = True
+
+            if self.in_main_wrapper and self.in_data_wrapper:
+                self.found_data = True
+
+        elif tag in ['code', 'i']:
+            self.highlighted = True
+        elif tag == 'a':
+            if self.found_data:
+                # syntax changed somehow, added links to current page
+                # self.append_to_previous = 2
+                self.append_to_previous = 1
+
+    def handle_endtag(self, tag):
+        if tag == 'div':
+            if self.in_main_wrapper:
+                self.main_wrapper_depth -= 1
+                if self.main_wrapper_depth == 0:
+                    self.in_main_wrapper = False
+                    self.in_suggestion = False
+
+            if self.in_data_wrapper:
+                self.data_wrapper_depth -= 1
+                if self.data_wrapper_depth == 0:
+                    self.in_data_wrapper = False
+
+            self.in_header_wrapper = False
+        elif tag == 'h3':
+            self.in_header = False
+            self.found_header = False
+        elif tag == 'li':
+            self.in_list = False
+            self.found_data = False
+        elif tag in ['code', 'i']:
+            self.highlighted = False
+
+    def handle_data(self, data):
+        if self.found_header:
+            data_type = data.strip()
+
+            if data_type == u'Görseller':
+                self.data['images'][1].append(data)
+            elif ' - ' in data_type:
+                detected_lang = data_type.split(' - ')[1]
+
+                if detected_lang == u'Türkçe':
+                    self.lang = 'tr'
+                elif detected_lang == u'İngilizce':
+                    self.lang = 'en'
+
+        if data.strip() != "":
+            clean_data = data.strip().replace("\n", '')
+
+            if self.in_suggestion:
+                self.data['didumean'][1].append(clean_data)
+            elif self.found_data:
+                if self.highlighted:
+                    self.data[self.lang][1][-1] += "\x1b[1;37m %s" % clean_data
+                else:
+                    if self.append_to_previous:
+                        self.data[self.lang][1][-1] += clean_data
+                        self.append_to_previous -= 1
+                    else:
+                        self.data[self.lang][1].append(clean_data)
+
+        if self.found_suggestion_header:
+            if data.strip() == 'Bunu mu demek istediniz?':
+                self.in_suggestion = True
+
+def loadUrl(_url):
+    try:
+        return urllib2.urlopen(_url).read()
+    except urllib2.URLError:
+        print "\x1b[1;31m Adrese erişilemedi:\x1b[0m %s" % _url
+        sys.exit(1)
+
+def printColorize(data):
+    print " \x1b[1;32m* \x1b[1;37m\x1b[0m%s" % data
+
+def printResult(data, lang):
+    offblast = 0
+    print "\x1b[0;36m\n\t~~~ %s ~~~\n\x1b[0m" % data[lang][0]
+
+    for k in data[lang][1]:
+        if cfg['count'] != 0 and offblast == cfg['count']:
+            break
+
+        printColorize(k)
+        offblast += 1
+
+def findWord(word):
+    resp = loadUrl(baseurl % word)
+    rawData = resp.decode('utf-8')
+
+    p = MyHTMLParser()
+    p.feed(rawData)
+
+    if len(p.data['didumean'][1]):
+        printResult(p.data, 'didumean')
+
+    else:
+        for lang in ['tr', 'en']:
+            if cfg[lang] and len(p.data[lang][1]):
+                printResult(p.data, lang)
+
+    print
+    p.close()
+
+
+if __name__ == "__main__":
+    locale.setlocale(locale.LC_ALL, '')
+
+    parser = OptionParser(usage = usageInfo)
+    parser.add_option("-t", "--tr", action="store_false", dest="en", default=True,
+            help=u"Türkçe çıktı [öntanımlı: açık]")
+    parser.add_option("-e", "--en", action="store_false", dest="tr", default=True,
+            help=u"İngilizce çıktı [öntanımlı: açık]")
+    # images are base64 so we do nothing for now
+    #parser.add_option("-i", "--images", action="store_true", dest="images", default=False,
+    #        help="Görselleri göster [öntanımlı: kapalı]")
+    parser.add_option("-s", "--sonuc", action="store", dest="count", default=10,
+            help=u"Kaç sonuç gösterilsin [öntanımlı: 10 sınırsız:0 ]")
+
+    (opts, args) = parser.parse_args()
+    if not opts.en and not opts.tr:
+        opts.en = opts.tr = True
+
+    cfg = {'tr': opts.tr,
+           'en': opts.en,
+           # 'images': opts.images,
+           'count': int(opts.count)
+           }
+
+    if len(args) != 1:
+        parser.print_help()
+    else:
+        findWord(args[0].replace(" ", "-"))
+
+
