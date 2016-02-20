@@ -1,0 +1,40 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2012, Onur Küçük <onur at delipenguen.net>
+#
+#
+# this is just a reference in case it is needed. file does not handle tar.bz2
+# so I added an ugly workaround, but it should be fixed in file magic
+
+
+import sys
+import os
+
+import magic
+import bz2
+
+
+def printmagic(fname):
+    try:
+        filedata = file(fname, "r").read(900000)
+        namemagic =  magic.file(fname)
+        contentmagic = magic.buffer(filedata)
+
+        if contentmagic == "application/x-bzip2":
+            tmp = bz2.decompress(filedata)
+            if "application/x-tar" in magic.buffer(tmp):
+                contentmagic = "application/x-tar-bz2"
+
+        print "%-35s %s" % (fname, contentmagic)
+    except IOError:
+        print "cannot read %s" % fname
+
+
+magic = magic.open(magic.MAGIC_MIME | magic.MAGIC_CONTINUE)
+magic.load()
+
+if len(sys.argv) > 1:
+    for f in sys.argv[1:]:
+        printmagic(f)
+
