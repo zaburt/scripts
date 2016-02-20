@@ -1,0 +1,13 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2012, Onur Küçük <onur at delipenguen.net>
+#
+
+def color(c, t = "0"):
+    return "\x1b[%s;%sm %s\x1b[0m" % (t, c, c)
+
+# print "   normal  \x1b[1;28mbold\x1b[0m"
+print "    normal \x1b[1mlight\x1b[0m"
+for i in range(30, 48):
+    print "%s = %s   %s" % (i, color(i, "0"), color(i, "1"))
