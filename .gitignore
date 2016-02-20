@@ -1,0 +1,10 @@
+# editor backup files, file browser cache etc.
+\#*
+*~
+.#*
+.DS_Store
+*.swp
+.directory
+.project
+**.orig
+
