@@ -39,6 +39,8 @@ def fetch_all_keys
 end
 
 def list_all_keys
+  fetch_all_keys
+
   headings = %w(ID Expires Bytes Cache\ Key)
   row_format = %Q(|%8s | %28s | %12s | %s)
   row_format_heading = %Q( %-8s | %-28s | %-12s | %s)
@@ -51,8 +53,16 @@ def list_all_keys
   puts
 end
 
-fetch_all_keys
+def get_value(cache_key)
+  content = @target_connection.cmd('String' => "get #{cache_key}", 'Match' => /^END/) {|c| c}
+  # @target_connection.cmd("String" => "get #{cache_key}", "Match" => /^END/) { |c| puts c }
+  # content = content.ascii_only? ? content : 'Not ASCII'
+  # pp content.inspect
+  puts content
+end
+
 list_all_keys
+# get_value(ARGV[2])
 
 @target_connection.close
 
