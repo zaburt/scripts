@@ -23,35 +23,36 @@ def fetch_all_keys
     items
   end
 
-  longest_key_len = 0
+  # longest_key_len = 0
   @slabs.each do |slab|
     @target_connection.cmd('String' => "stats cachedump #{slab['id']} #{slab['items']}", 'Match' => /^END/) do |c|
       # pp c
       matches = c.scan(/^ITEM (.+?) \[(\d+) b; (\d+) s\]$/).each do |key_data|
         cache_key, bytes, expires_time = key_data
         @slab_rows << [slab['id'], Time.at(expires_time.to_i), bytes, cache_key]
-        longest_key_len = [longest_key_len,cache_key.length].max
+        # longest_key_len = [longest_key_len,cache_key.length].max
       end
     end
   end
 
-  longest_key_len
+  # longest_key_len
 end
 
-def list_all_keys(longest_key_len = 200)
+def list_all_keys
   headings = %w(ID Expires Bytes Cache\ Key)
-  row_format = %Q(|%8s | %28s | %12s | %-#{longest_key_len}s |)
-  row_format_heading = %Q( %-8s   %-28s   %-12s   %-#{longest_key_len}s)
+  row_format = %Q(|%8s | %28s | %12s | %s)
+  row_format_heading = %Q( %-8s | %-28s | %-12s | %s)
 
   puts
   puts row_format_heading % headings
-  puts '-' * (60 + longest_key_len)
+  # puts '-' * (60 + longest_key_len)
+  puts '-' * 100
   @slab_rows.each{|row| puts row_format % row}
   puts
 end
 
-longest_key_len = fetch_all_keys
-list_all_keys(longest_key_len)
+fetch_all_keys
+list_all_keys
 
 @target_connection.close
 
