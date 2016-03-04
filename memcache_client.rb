@@ -3,38 +3,56 @@
 #
 
 require 'net/telnet'
+require 'pp'
 
 target_host = ARGV[0] || 'localhost'
 target_port = ARGV[1] || 11211
-cache_dump_limit = ARGV[2] || 100
-slab_ids = []
+@slab_rows = []
+@slabs = []
 
-target_connection = Net::Telnet::new(
+@target_connection = Net::Telnet::new(
   'Host' => target_host,
   'Port' => target_port,
   'Timeout' => 3
 )
 
-target_connection.cmd('String' => 'stats items', 'Match' => /^END/) do |c|
-  matches = c.scan(/STAT items:(\d+):/)
-  slab_ids = matches.flatten.uniq
-end
+def fetch_all_keys
+  matches = @target_connection.cmd('String' => 'stats items', 'Match' => /^END/).scan(/STAT items:(\d+):number (\d+)/)
+  @slabs = matches.inject([]) do |items, item|
+    items << Hash[*['id','items'].zip(item).flatten]
+    items
+  end
 
-
-puts
-puts "Expires At\t\t\t\tCache Key"
-puts '-'* 80
-
-slab_ids.each do |slab_id|
-  target_connection.cmd('String' => "stats cachedump #{slab_id} #{cache_dump_limit}", 'Match' => /^END/) do |c|
-    matches = c.scan(/^ITEM (.+?) \[(\d+) b; (\d+) s\]$/).each do |key_data|
-      cache_key, bytes, expires_time = key_data
-      humanized_expires_time = Time.at(expires_time.to_i).to_s
-      puts "[#{humanized_expires_time}]\t#{cache_key}"
+  longest_key_len = 0
+  @slabs.each do |slab|
+    @target_connection.cmd('String' => "stats cachedump #{slab['id']} #{slab['items']}", 'Match' => /^END/) do |c|
+      # pp c
+      matches = c.scan(/^ITEM (.+?) \[(\d+) b; (\d+) s\]$/).each do |key_data|
+        cache_key, bytes, expires_time = key_data
+        @slab_rows << [slab['id'], Time.at(expires_time.to_i), bytes, cache_key]
+        longest_key_len = [longest_key_len,cache_key.length].max
+      end
     end
   end
+
+  longest_key_len
 end
 
-puts
-target_connection.close
+def list_all_keys(longest_key_len = 200)
+  headings = %w(ID Expires Bytes Cache\ Key)
+  row_format = %Q(|%8s | %28s | %12s | %-#{longest_key_len}s |)
+  row_format_heading = %Q( %-8s   %-28s   %-12s   %-#{longest_key_len}s)
+
+  puts
+  puts row_format_heading % headings
+  puts '-' * (60 + longest_key_len)
+  @slab_rows.each{|row| puts row_format % row}
+  puts
+end
+
+longest_key_len = fetch_all_keys
+list_all_keys(longest_key_len)
+
+@target_connection.close
+
 
