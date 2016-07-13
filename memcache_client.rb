@@ -110,7 +110,9 @@ def end_connection
 end
 
 def command(cmd, matcher = MATCHER_END)
+  start_connection
   resp = @memcache_connection.cmd('String' => cmd, 'Match' => matcher)
+  end_connection
 
   if @options[:verbose]
     puts "\nRUNNING: #{cmd}"
@@ -176,7 +178,7 @@ def flush_keys
   server_response
 end
 
-def get_keys
+def get_values
   server_response = {}
 
   @key_list.each do |cache_key|
@@ -268,14 +270,16 @@ def run
     @key_list.each{|k| puts k}
   end
 
-  start_connection
-
   case @options[:action]
   when :list_keys
     fetch_cache_keys
     print_cache_keys
   when :get
-    get_value(@options[:key])
+    get_values.each do |k, v|
+      puts "\n ************ #{k} **************** \n"
+      pp v
+      puts
+    end
   when :flush
     flush_keys
   when :flush_all
@@ -301,8 +305,6 @@ def run
   when :stats_slabs
     print_server_stats_hash(server_stats_slabs_hash)
   end
-
-  end_connection
 end
 
 puts "Options: #{@options.inspect}" if @options[:verbose]
