@@ -20,14 +20,11 @@ CMD_DELETE = 'delete %s'
 CMD_GET = 'get %s'
 
 MATCHER_CACHE_KEY = /^ITEM (.+?) \[(\d+) b; (\d+) s\]$/
-MATCHER_DELETE = /^DELETED|NOT_FOUND/
-MATCHER_END = /^END/
-MATCHER_FLUSH = /^TOUCHED|NOT_FOUND/
-MATCHER_GET = /^END|NOT_FOUND/
 MATCHER_SLAB_ITEM = /STAT items:(\d+):number (\d+)/
 MATCHER_STATS = /STAT ([^ ]*) (.*)/
 MATCHER_STATS_SLABS = /STAT (\d+):([^ ]*) (.*)/
 MATCHER_STATS_ITEMS = /STAT items:(\d+):([^ ]*) (.*)/
+MATCHER_END = /^DELETED|^NOT_FOUND|^TOUCHED|^END|^CLIENT_ERROR|^ERROR/
 
 PRINT_HEADINGS = %w(ID Expires Bytes Cache\ Key)
 PRINT_ROW_FORMAT = %Q(|%8s | %28s | %12s | %s)
@@ -110,14 +107,13 @@ def end_connection
 end
 
 def command(cmd, matcher = MATCHER_END)
+  puts "\nRUNNING: #{cmd}" if @options[:verbose]
+
   start_connection
-  resp = @memcache_connection.cmd('String' => cmd, 'Match' => matcher)
+  resp = @memcache_connection.cmd('String' => cmd, 'Match' => matcher) rescue ''
   end_connection
 
-  if @options[:verbose]
-    puts "\nRUNNING: #{cmd}"
-    pp resp
-  end
+  pp resp if @options[:verbose]
 
   resp
 end
@@ -160,7 +156,7 @@ def delete_keys
   server_response = {}
 
   @key_list.each do |cache_key|
-    resp = command(CMD_DELETE % cache_key, MATCHER_DELETE)
+    resp = command(CMD_DELETE % cache_key, MATCHER_END)
     server_response[cache_key] = resp.strip
   end
 
@@ -171,7 +167,7 @@ def flush_keys
   server_response = {}
 
   @key_list.each do |cache_key|
-    resp = command(CMD_FLUSH % cache_key, MATCHER_FLUSH)
+    resp = command(CMD_FLUSH % cache_key, MATCHER_END)
     server_response[cache_key] = resp.strip
   end
 
@@ -182,7 +178,7 @@ def get_values
   server_response = {}
 
   @key_list.each do |cache_key|
-    resp = command(CMD_GET % cache_key, MATCHER_GET)
+    resp = command(CMD_GET % cache_key, MATCHER_END)
     server_response[cache_key] = resp.strip
   end
 
