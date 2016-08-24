@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if test -z "$1"
+then
+  echo 'please give a process name to match'
+  exit 1
+fi
+
+ps -eo rss,pid,euser,args:1000 --sort %mem | grep -v grep |grep -v show_memusage | grep -i $@ | awk '{printf $1/1024 "MB"; $1=""; print }'
+
+
