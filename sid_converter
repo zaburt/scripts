@@ -1,0 +1,165 @@
+#!/usr/bin/python
+#
+# Converts Windows Domain SID (Secure ID) between Base64 and String representation
+#
+
+import os
+import sys
+import base64
+import struct
+import string
+
+from optparse import OptionParser
+
+TYPE_STRING = 0
+TYPE_BINARY = 1
+TYPE_BASE64 = 2
+
+
+class SidConverter:
+  def __init__(self, data, sidtype=TYPE_STRING):
+    self.source_data = data
+    self.source_type = sidtype
+    self.sid = None
+    self.parse_source()
+
+  def parse_source(self):
+    if self.source_type == TYPE_STRING:
+      self.sid = self.source_data
+    elif self.source_type == TYPE_BINARY:
+      self.sid = self.strsid(self.source_data)
+    elif self.source_type == TYPE_BASE64:
+      self.sid = self.base64_to_str(self.source_data)
+
+  def __str__(self):
+    return self.sid
+
+  def __repr__(self):
+    return repr(self.sid)
+
+  def str(self):
+    return str(self)
+
+  def binary(self):
+    return self.sid_to_byte(self.sid)
+
+  def base64(self):
+    return self.sid_to_base64(self.sid)
+
+  def long_to_byte(self, integer, little_endian=True, size=4):
+    if little_endian:
+      return struct.pack('<q', integer)[0:size]
+    else:
+      return struct.pack('>q', integer)[8-size:]
+
+  def byte_to_long(self, byte, little_endian=True):
+    if len(byte) > 8:
+      raise Exception('input byte length is too long')
+    else:
+      if little_endian:
+        k = string.ljust(byte, 8, '\x00')
+        return struct.unpack('<q', k)[0]
+      else:
+        k = string.rjust(byte, 8, '\x00')
+        return struct.unpack('>q', k)[0]
+
+  def byte_to_str(self, byte):
+    retval = 'S'
+    sid = []
+
+    sid.append(self.byte_to_long(byte[0]))
+    sid.append(self.byte_to_long(byte[2:2+6], False))
+
+    for i in range(8, len(byte), 4):
+      sid.append(self.byte_to_long(byte[i:i+4]))
+    for i in sid:
+      retval += '-' + str(i)
+
+    return retval
+
+  def sid_to_byte(self, strsid):
+    sid = string.split(strsid, '-')
+    retval = ''
+    sid.remove('S')
+
+    for i in range(len(sid)):
+      sid[i] = int(sid[i])
+
+    sid.insert(1, len(sid)-2)
+    retval += self.long_to_byte(sid[0], size=1)
+    retval += self.long_to_byte(sid[1], size=1)
+    retval += self.long_to_byte(sid[2], False, 6)
+
+    for i in range(3, len(sid)):
+      retval += self.long_to_byte(sid[i])
+
+    return retval
+
+  def sid_to_base64(self, strsid):
+    return base64.b64encode(self.sid_to_byte(strsid))
+
+  def base64_to_str(self, data):
+    return self.byte_to_str(base64.b64decode(data))
+
+
+def test_conversion(source_base64, source_str):
+  print "* testing for BASE64: %s STR: %s" % (source_base64, source_str)
+
+  sid = SidConverter(source_base64, TYPE_BASE64)
+  status = 'BAD'
+
+  if source_str == str(sid):
+    status = 'OK'
+
+  print "Base64 to String: %s" % status
+
+  sid = SidConverter(source_str, TYPE_STRING)
+  status = 'BAD'
+
+  if source_base64 == sid.base64():
+    status = 'OK'
+
+  print "String to Base64: %s" % status
+
+def test():
+  test_data = [
+    ['AQUAAAAAAAUVAAAAHXSy2PF2AkD3RKDaUgQAAA==', 'S-1-5-21-3635573789-1073903345-3667936503-1106'],
+    ['AQUAAAAAAAUVAAAAHXSy2PF2AkD3RKDaUwQAAA==', 'S-1-5-21-3635573789-1073903345-3667936503-1107'],
+    ['AQUAAAAAAAUVAAAAHXSy2PF2AkD3RKDaVAQAAA==', 'S-1-5-21-3635573789-1073903345-3667936503-1108']
+  ]
+
+  for k in test_data:
+    test_conversion(k[0], k[1])
+
+
+if __name__ == "__main__":
+  parser = OptionParser(usage="Usage:  %prog [options] string_or_base64\n\n" +
+  "\t%prog AQUAAAAAAAUVAAAAHXSy2PF2AkD3RKDaUgQAAA==\n" +
+  "\t%prog -r S-1-5-21-3635573789-1073903345-3667936503-1106")
+
+  parser.add_option("-t", "--test",
+      action="store_true",
+      dest="test",
+      default=False,
+      help="self diagnostic")
+  parser.add_option("-r", "--tobase64",
+      action="store_true",
+      dest="tobase64",
+      default=False,
+      help="convert string to base64, default is to convert base64 to string")
+
+  (opts, args) = parser.parse_args()
+
+  if opts.test:
+    test()
+  elif len(args) == 0:
+    print 'please provide string_or_base64'
+  else:
+    if opts.tobase64:
+      sid = SidConverter(args[0], TYPE_STRING)
+      print sid.base64()
+    else:
+      sid = SidConverter(args[0], TYPE_BASE64)
+      print sid
+
+
