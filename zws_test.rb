@@ -1,11 +1,9 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 #
-# prints out
+# What does this code print out ?
+# a.k.a. do you trust your editor ?
 #
-#   1
-#   2
-#   3
 
 number = 1
 number​ = 2
