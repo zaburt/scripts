@@ -25,6 +25,7 @@ import os
 import sys
 import re
 import locale
+# from pprint import pprint as pp
 
 from optparse import OptionParser
 
@@ -32,201 +33,258 @@ import urllib2
 from HTMLParser import HTMLParser
 
 
-baseurl = "http://www.seslisozluk.net/%s-nedir-ne-demek/"
+masterkey = '68747470733a2f2f7777772e7365736c69736f7a6c756b2e6e65742f25732d6e656469722d6e652d64656d656b2f'
+basekey = ''.join([chr(int(''.join(c), 16)) for c in zip(masterkey[0::2], masterkey[1::2])])
 usageInfo = u"%prog [seçenekler] [Türkçe/İngilizce kelime]"
 
 
 class MyHTMLParser(HTMLParser):
-    def __init__(self):
-        HTMLParser.__init__(self)
-        self.lang = 'tr'
+  def __init__(self):
+    HTMLParser.__init__(self)
+    self.lang = 'tr'
 
-        self.in_main_wrapper = False
-        self.main_wrapper_depth = 0
-        self.in_data_wrapper = False
-        self.data_wrapper_depth = 0
+    self.in_main_wrapper = False
+    self.main_wrapper_depth = 0
+    self.in_data_wrapper = False
+    self.data_wrapper_depth = 0
+    self.in_similar = False
+    self.in_similar_highlight = False
 
-        self.in_list = False
-        self.in_header = False
-        self.in_header_wrapper = False
-        self.in_suggestion = False
-        self.append_to_previous = 0
-        self.highlighted = False
+    self.in_list = False
+    self.in_header = False
+    self.in_header_wrapper = False
+    self.in_suggestion = False
+    self.highlighted = False
+    self.italic = False
 
-        self.found_data = False
-        self.found_header = False
-        self.found_suggestion_header = False
-        self.data = {'tr':['Türkçe', []],
-                     'en': ['İngilizce', []],
-                     'images': ['Görseller', []],
-                     'didumean': ['Sonuç bulunamadı, aradığınız kelime bunlardan biri mi ?', []]}
+    self.found_data = False
+    self.found_header = False
+    self.found_suggestion_header = False
+    self.data = {'tr': {'name': 'Türkçe', 'results': [], 'similar': []},
+                 'en': {'name': 'İngilizce', 'results': [], 'similar': []},
+                 'images': {'name': 'Görseller', 'results': [], 'similar': []},
+                 'didumean': {'name': 'Sonuç bulunamadı, aradığınız kelime bunlardan biri mi ?', 'results': [], 'similar': []}}
 
-    def handle_starttag(self, tag, attrs):
-        if tag == 'div':
-            for name, value in attrs:
-                if name == 'class' and 'panel' in value and 'panel-default' in value:
-                    self.in_main_wrapper = True
-                elif name == 'class' and 'panel-body' in value and 'sozluk' in value:
-                    self.in_data_wrapper = True
-                elif name == 'class' and 'panel-heading' in value and 'sesli-red-bg' in value:
-                    self.in_header_wrapper = True
+  def handle_starttag(self, tag, attrs):
+    if tag == 'div':
+      for name, value in attrs:
+        if name == 'class' and 'panel' in value and 'panel-default' in value:
+          self.in_main_wrapper = True
+        elif name == 'class' and 'panel-body' in value and 'sozluk' in value:
+          self.in_data_wrapper = True
+        elif name == 'class' and 'panel-heading' in value and 'sesli-red-bg' in value:
+          self.in_header_wrapper = True
 
-            if self.in_main_wrapper:
-                self.main_wrapper_depth += 1
+      if self.in_main_wrapper:
+          self.main_wrapper_depth += 1
 
-            if self.in_data_wrapper:
-                self.data_wrapper_depth += 1
+      if self.in_data_wrapper:
+          self.data_wrapper_depth += 1
 
-        elif tag == 'b':
-            for name, value in attrs:
-                if name == 'class' and 'panel-title' in value:
-                    self.in_header = True
-                    if self.in_main_wrapper and self.in_header_wrapper:
-                        self.found_header = True
-        elif tag == 'h3':
-            for name, value in attrs:
-                if name == 'class' and 'panel-title' in value:
-                    self.in_header = True
-                    if self.in_main_wrapper and self.in_header_wrapper:
-                        self.found_suggestion_header = True
+    elif tag == 'b':
+      for name, value in attrs:
+        if name == 'class' and 'panel-title' in value:
+          self.in_header = True
 
-        elif tag == 'li':
-            self.in_list = True
+          if self.in_main_wrapper and self.in_header_wrapper:
+            self.found_header = True
 
-            if self.in_main_wrapper and self.in_data_wrapper:
-                self.found_data = True
+    elif tag == 'h3':
+      for name, value in attrs:
+        if name == 'class' and 'panel-title' in value:
+          self.in_header = True
 
-        elif tag in ['code', 'i']:
-            self.highlighted = True
-        elif tag == 'a':
-            if self.found_data:
-                # syntax changed somehow, added links to current page
-                # self.append_to_previous = 2
-                self.append_to_previous = 1
+          if self.in_main_wrapper and self.in_header_wrapper:
+            self.found_suggestion_header = True
 
-    def handle_endtag(self, tag):
-        if tag == 'div':
-            if self.in_main_wrapper:
-                self.main_wrapper_depth -= 1
-                if self.main_wrapper_depth == 0:
-                    self.in_main_wrapper = False
-                    self.in_suggestion = False
+    elif tag == 'dd':
+      self.in_list = True
 
-            if self.in_data_wrapper:
-                self.data_wrapper_depth -= 1
-                if self.data_wrapper_depth == 0:
-                    self.in_data_wrapper = False
+      if self.in_main_wrapper and self.in_data_wrapper:
+        self.found_data = True
 
-            self.in_header_wrapper = False
-        elif tag == 'h3':
-            self.in_header = False
-            self.found_header = False
-        elif tag == 'li':
-            self.in_list = False
-            self.found_data = False
-        elif tag in ['code', 'i']:
-            self.highlighted = False
+        if self.in_similar:
+          data_key = 'similar'
+        else:
+          data_key = 'results'
+          self.data[self.lang][data_key].append('')
 
-    def handle_data(self, data):
-        if self.found_header:
-            data_type = data.strip()
+    elif tag == 'dt':
+      for name, value in attrs:
+        if name == 'class' and 'similar' in value:
+          self.in_similar = True
 
-            if data_type == u'Görseller':
-                self.data['images'][1].append(data)
-            elif ' - ' in data_type:
-                detected_lang = data_type.split(' - ')[1]
+    elif tag in ['code', 'i', 'var']:
+      self.highlighted = True
 
-                if detected_lang == u'Türkçe':
-                    self.lang = 'tr'
-                elif detected_lang == u'İngilizce':
-                    self.lang = 'en'
+    elif tag in ['q']:
+      self.italic = True
 
-        if data.strip() != "":
-            clean_data = data.strip().replace("\n", '')
+    elif tag in ['a'] and self.in_similar:
+      for name, value in attrs:
+        if name == 'class' and 'word-link' in value:
+          self.in_similar_highlight = True
+          self.data[self.lang]['similar'].append('')
 
-            if self.in_suggestion:
-                self.data['didumean'][1].append(clean_data)
-            elif self.found_data:
-                if self.highlighted:
-                    self.data[self.lang][1][-1] += "\x1b[1;37m %s" % clean_data
-                else:
-                    if self.append_to_previous:
-                        self.data[self.lang][1][-1] += clean_data
-                        self.append_to_previous -= 1
-                    else:
-                        self.data[self.lang][1].append(clean_data)
+  def handle_endtag(self, tag):
+    if tag == 'div':
+      if self.in_main_wrapper:
+        self.main_wrapper_depth -= 1
 
-        if self.found_suggestion_header:
-            if data.strip() == 'Bunu mu demek istediniz?':
-                self.in_suggestion = True
+        if self.main_wrapper_depth == 0:
+          self.in_main_wrapper = False
+          self.in_suggestion = False
+
+      if self.in_data_wrapper:
+        self.data_wrapper_depth -= 1
+
+        if self.data_wrapper_depth == 0:
+          self.in_data_wrapper = False
+
+      self.in_header_wrapper = False
+    elif tag == 'h3':
+      self.in_header = False
+      self.found_header = False
+
+    elif tag == 'dd':
+      self.in_list = False
+      self.found_data = False
+      # dd afer dt.similar
+      self.in_similar = False
+
+    elif tag in ['code', 'i', 'var']:
+      self.highlighted = False
+
+    elif tag in ['q']:
+      self.italic = False
+
+    elif tag in ['a']:
+      self.in_similar_highlight = False
+
+  def handle_data(self, data):
+    if self.found_header:
+      data_type = data.strip()
+
+      if data_type == 'Görseller':
+        self.data['images'][1].append(data)
+      elif ' - ' in data_type:
+        detected_lang = data_type.split(' - ')[1]
+
+        if detected_lang == 'Türkçe':
+          self.lang = 'tr'
+        elif detected_lang == 'İngilizce':
+          self.lang = 'en'
+
+    if data.strip() != "":
+      clean_data = data.strip().replace("\n", '')
+
+      if self.in_similar or self.in_similar_highlight:
+        data_key = 'similar'
+      else:
+        data_key = 'results'
+
+      if self.in_suggestion:
+        self.data['didumean'][data_key].append(clean_data)
+      elif self.found_data or self.in_similar_highlight:
+        if self.data[self.lang][data_key][-1] != '':
+          self.data[self.lang][data_key][-1] += ' '
+
+        if self.in_similar_highlight:
+          self.data[self.lang][data_key][-1] += "\x1b[1;36m%s\x1b[0m" % clean_data
+        elif self.highlighted:
+          self.data[self.lang][data_key][-1] += "\x1b[1;37m%s\x1b[0m" % clean_data
+        elif self.italic:
+          self.data[self.lang][data_key][-1] += "\x1b[0;33m\"%s\"\x1b[0m" % clean_data
+        else:
+          self.data[self.lang][data_key][-1] += clean_data
+
+    if self.found_suggestion_header:
+      if data.strip() == 'Bunu mu demek istediniz?':
+        self.in_suggestion = True
 
 def loadUrl(_url):
-    try:
-        return urllib2.urlopen(_url).read()
-    except urllib2.URLError:
-        print "\x1b[1;31m Adrese erişilemedi:\x1b[0m %s" % _url
-        sys.exit(1)
+  try:
+    # handler = urllib2.HTTPSHandler(debuglevel=1)
+    handler = urllib2.HTTPSHandler()
+    opener = urllib2.build_opener(handler)
+    opener.addheaders = [('User-agent', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2624.3 Safari/537.36')]
+    urllib2.install_opener(opener)
+    return urllib2.urlopen(_url).read()
+  except urllib2.URLError, e:
+    print "\x1b[1;31m Adrese erişilemedi:\x1b[0m %s" % _url
+    print e
+    sys.exit(1)
 
-def printColorize(data):
-    print " \x1b[1;32m* \x1b[1;37m\x1b[0m%s" % data
+def printColorize(data, bullet_color = '1;32'):
+  print " \x1b[%sm* \x1b[1;37m\x1b[0m%s" % (bullet_color, data)
 
-def printResult(data, lang):
-    offblast = 0
-    print "\x1b[0;36m\n\t~~~ %s ~~~\n\x1b[0m" % data[lang][0]
+def printResult(data, lang, data_key):
+  offblast = 0
 
-    for k in data[lang][1]:
-        if cfg['count'] != 0 and offblast == cfg['count']:
-            break
+  if data_key == 'results':
+    print "\x1b[0;36m\n\t~~~ %s ~~~\n\x1b[0m" % data[lang]['name']
+    bullet_color = '1;32'
+  else:
+    # print "\x1b[1;30m\n~~~ %s ~~~\n\x1b[0m" % 'ilgili terimler'
+    bullet_color = '0;32'
 
-        printColorize(k)
-        offblast += 1
+  for k in data[lang][data_key]:
+    if cfg['count'] != 0 and offblast == cfg['count']:
+      break
+
+    printColorize(k, bullet_color)
+    offblast += 1
 
 def findWord(word):
-    resp = loadUrl(baseurl % word)
-    rawData = resp.decode('utf-8')
+  resp = loadUrl(basekey % word)
+  # resp = open('response', 'r').read()
+  # rawData = resp.decode('utf-8')
+  rawData = resp
 
-    p = MyHTMLParser()
-    p.feed(rawData)
+  p = MyHTMLParser()
+  p.feed(rawData)
 
-    if len(p.data['didumean'][1]):
-        printResult(p.data, 'didumean')
+  if len(p.data['didumean']['results']):
+    printResult(p.data, 'didumean', 'results')
 
-    else:
-        for lang in ['tr', 'en']:
-            if cfg[lang] and len(p.data[lang][1]):
-                printResult(p.data, lang)
+  else:
+    for lang in ['tr', 'en']:
+      for data_key in ['results', 'similar']:
+        if cfg[lang] and len(p.data[lang][data_key]):
+          printResult(p.data, lang, data_key)
+          print
 
-    print
-    p.close()
+  print
+  p.close()
 
 
 if __name__ == "__main__":
-    locale.setlocale(locale.LC_ALL, '')
+  locale.setlocale(locale.LC_ALL, '')
 
-    parser = OptionParser(usage = usageInfo)
-    parser.add_option("-t", "--tr", action="store_false", dest="en", default=True,
-            help=u"Türkçe çıktı [öntanımlı: açık]")
-    parser.add_option("-e", "--en", action="store_false", dest="tr", default=True,
-            help=u"İngilizce çıktı [öntanımlı: açık]")
-    # images are base64 so we do nothing for now
-    #parser.add_option("-i", "--images", action="store_true", dest="images", default=False,
-    #        help="Görselleri göster [öntanımlı: kapalı]")
-    parser.add_option("-s", "--sonuc", action="store", dest="count", default=10,
-            help=u"Kaç sonuç gösterilsin [öntanımlı: 10 sınırsız:0 ]")
+  parser = OptionParser(usage = usageInfo)
+  parser.add_option("-t", "--tr", action="store_false", dest="en", default=True,
+          help=u"Türkçe çıktı [öntanımlı: açık]")
+  parser.add_option("-e", "--en", action="store_false", dest="tr", default=True,
+          help=u"İngilizce çıktı [öntanımlı: açık]")
+  # images are base64 so we do nothing for now
+  #parser.add_option("-i", "--images", action="store_true", dest="images", default=False,
+  #        help="Görselleri göster [öntanımlı: kapalı]")
+  parser.add_option("-s", "--sonuc", action="store", dest="count", default=10,
+          help=u"Kaç sonuç gösterilsin [öntanımlı: 10 sınırsız:0 ]")
 
-    (opts, args) = parser.parse_args()
-    if not opts.en and not opts.tr:
-        opts.en = opts.tr = True
+  (opts, args) = parser.parse_args()
+  if not opts.en and not opts.tr:
+    opts.en = opts.tr = True
 
-    cfg = {'tr': opts.tr,
-           'en': opts.en,
-           # 'images': opts.images,
-           'count': int(opts.count)
-           }
+  cfg = {'tr': opts.tr,
+         'en': opts.en,
+         # 'images': opts.images,
+         'count': int(opts.count)
+         }
 
-    if len(args) != 1:
-        parser.print_help()
-    else:
-        findWord(args[0].replace(" ", "-"))
+  if len(args) != 1:
+    parser.print_help()
+  else:
+    findWord(args[0].replace(" ", "-"))
 
 
