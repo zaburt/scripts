@@ -165,14 +165,14 @@ class MyHTMLParser(HTMLParser):
     if self.found_header:
       data_type = data.strip()
 
-      if data_type == 'Görseller':
+      if data_type == u'Görseller':
         self.data['images'][1].append(data)
       elif ' - ' in data_type:
         detected_lang = data_type.split(' - ')[1]
 
-        if detected_lang == 'Türkçe':
+        if detected_lang == u'Türkçe':
           self.lang = 'tr'
-        elif detected_lang == 'İngilizce':
+        elif detected_lang == u'İngilizce':
           self.lang = 'en'
 
     if data.strip() != "":
@@ -238,8 +238,8 @@ def printResult(data, lang, data_key):
 def findWord(word):
   resp = loadUrl(basekey % word)
   # resp = open('response', 'r').read()
-  # rawData = resp.decode('utf-8')
-  rawData = resp
+  rawData = resp.decode('utf-8')
+  # rawData = resp
 
   p = MyHTMLParser()
   p.feed(rawData)
