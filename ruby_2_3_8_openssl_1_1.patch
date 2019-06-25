@@ -1,0 +1,6042 @@
+diff -Nur ruby-2.3.8-old/ext/openssl/depend ruby-2.3.8/ext/openssl/depend
+--- ruby-2.3.8-old/ext/openssl/depend	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/depend	2019-06-24 17:15:47.610345161 +0300
+@@ -4,6 +4,7 @@
+ openssl_missing.o: openssl_missing.h
+ ossl.o: $(RUBY_EXTCONF_H)
+ ossl.o: $(arch_hdrdir)/ruby/config.h
++ossl.o: $(hdrdir)/ruby/backward.h
+ ossl.o: $(hdrdir)/ruby/defines.h
+ ossl.o: $(hdrdir)/ruby/encoding.h
+ ossl.o: $(hdrdir)/ruby/intern.h
+@@ -40,6 +41,7 @@
+ ossl.o: ruby_missing.h
+ ossl_asn1.o: $(RUBY_EXTCONF_H)
+ ossl_asn1.o: $(arch_hdrdir)/ruby/config.h
++ossl_asn1.o: $(hdrdir)/ruby/backward.h
+ ossl_asn1.o: $(hdrdir)/ruby/defines.h
+ ossl_asn1.o: $(hdrdir)/ruby/encoding.h
+ ossl_asn1.o: $(hdrdir)/ruby/intern.h
+@@ -75,6 +77,7 @@
+ ossl_asn1.o: ruby_missing.h
+ ossl_bio.o: $(RUBY_EXTCONF_H)
+ ossl_bio.o: $(arch_hdrdir)/ruby/config.h
++ossl_bio.o: $(hdrdir)/ruby/backward.h
+ ossl_bio.o: $(hdrdir)/ruby/defines.h
+ ossl_bio.o: $(hdrdir)/ruby/encoding.h
+ ossl_bio.o: $(hdrdir)/ruby/intern.h
+@@ -110,6 +113,7 @@
+ ossl_bio.o: ruby_missing.h
+ ossl_bn.o: $(RUBY_EXTCONF_H)
+ ossl_bn.o: $(arch_hdrdir)/ruby/config.h
++ossl_bn.o: $(hdrdir)/ruby/backward.h
+ ossl_bn.o: $(hdrdir)/ruby/defines.h
+ ossl_bn.o: $(hdrdir)/ruby/encoding.h
+ ossl_bn.o: $(hdrdir)/ruby/intern.h
+@@ -145,6 +149,7 @@
+ ossl_bn.o: ruby_missing.h
+ ossl_cipher.o: $(RUBY_EXTCONF_H)
+ ossl_cipher.o: $(arch_hdrdir)/ruby/config.h
++ossl_cipher.o: $(hdrdir)/ruby/backward.h
+ ossl_cipher.o: $(hdrdir)/ruby/defines.h
+ ossl_cipher.o: $(hdrdir)/ruby/encoding.h
+ ossl_cipher.o: $(hdrdir)/ruby/intern.h
+@@ -180,6 +185,7 @@
+ ossl_cipher.o: ruby_missing.h
+ ossl_config.o: $(RUBY_EXTCONF_H)
+ ossl_config.o: $(arch_hdrdir)/ruby/config.h
++ossl_config.o: $(hdrdir)/ruby/backward.h
+ ossl_config.o: $(hdrdir)/ruby/defines.h
+ ossl_config.o: $(hdrdir)/ruby/encoding.h
+ ossl_config.o: $(hdrdir)/ruby/intern.h
+@@ -215,6 +221,7 @@
+ ossl_config.o: ruby_missing.h
+ ossl_digest.o: $(RUBY_EXTCONF_H)
+ ossl_digest.o: $(arch_hdrdir)/ruby/config.h
++ossl_digest.o: $(hdrdir)/ruby/backward.h
+ ossl_digest.o: $(hdrdir)/ruby/defines.h
+ ossl_digest.o: $(hdrdir)/ruby/encoding.h
+ ossl_digest.o: $(hdrdir)/ruby/intern.h
+@@ -250,6 +257,7 @@
+ ossl_digest.o: ruby_missing.h
+ ossl_engine.o: $(RUBY_EXTCONF_H)
+ ossl_engine.o: $(arch_hdrdir)/ruby/config.h
++ossl_engine.o: $(hdrdir)/ruby/backward.h
+ ossl_engine.o: $(hdrdir)/ruby/defines.h
+ ossl_engine.o: $(hdrdir)/ruby/encoding.h
+ ossl_engine.o: $(hdrdir)/ruby/intern.h
+@@ -285,6 +293,7 @@
+ ossl_engine.o: ruby_missing.h
+ ossl_hmac.o: $(RUBY_EXTCONF_H)
+ ossl_hmac.o: $(arch_hdrdir)/ruby/config.h
++ossl_hmac.o: $(hdrdir)/ruby/backward.h
+ ossl_hmac.o: $(hdrdir)/ruby/defines.h
+ ossl_hmac.o: $(hdrdir)/ruby/encoding.h
+ ossl_hmac.o: $(hdrdir)/ruby/intern.h
+@@ -320,6 +329,7 @@
+ ossl_hmac.o: ruby_missing.h
+ ossl_ns_spki.o: $(RUBY_EXTCONF_H)
+ ossl_ns_spki.o: $(arch_hdrdir)/ruby/config.h
++ossl_ns_spki.o: $(hdrdir)/ruby/backward.h
+ ossl_ns_spki.o: $(hdrdir)/ruby/defines.h
+ ossl_ns_spki.o: $(hdrdir)/ruby/encoding.h
+ ossl_ns_spki.o: $(hdrdir)/ruby/intern.h
+@@ -355,6 +365,7 @@
+ ossl_ns_spki.o: ruby_missing.h
+ ossl_ocsp.o: $(RUBY_EXTCONF_H)
+ ossl_ocsp.o: $(arch_hdrdir)/ruby/config.h
++ossl_ocsp.o: $(hdrdir)/ruby/backward.h
+ ossl_ocsp.o: $(hdrdir)/ruby/defines.h
+ ossl_ocsp.o: $(hdrdir)/ruby/encoding.h
+ ossl_ocsp.o: $(hdrdir)/ruby/intern.h
+@@ -390,6 +401,7 @@
+ ossl_ocsp.o: ruby_missing.h
+ ossl_pkcs12.o: $(RUBY_EXTCONF_H)
+ ossl_pkcs12.o: $(arch_hdrdir)/ruby/config.h
++ossl_pkcs12.o: $(hdrdir)/ruby/backward.h
+ ossl_pkcs12.o: $(hdrdir)/ruby/defines.h
+ ossl_pkcs12.o: $(hdrdir)/ruby/encoding.h
+ ossl_pkcs12.o: $(hdrdir)/ruby/intern.h
+@@ -425,6 +437,7 @@
+ ossl_pkcs12.o: ruby_missing.h
+ ossl_pkcs5.o: $(RUBY_EXTCONF_H)
+ ossl_pkcs5.o: $(arch_hdrdir)/ruby/config.h
++ossl_pkcs5.o: $(hdrdir)/ruby/backward.h
+ ossl_pkcs5.o: $(hdrdir)/ruby/defines.h
+ ossl_pkcs5.o: $(hdrdir)/ruby/encoding.h
+ ossl_pkcs5.o: $(hdrdir)/ruby/intern.h
+@@ -460,6 +473,7 @@
+ ossl_pkcs5.o: ruby_missing.h
+ ossl_pkcs7.o: $(RUBY_EXTCONF_H)
+ ossl_pkcs7.o: $(arch_hdrdir)/ruby/config.h
++ossl_pkcs7.o: $(hdrdir)/ruby/backward.h
+ ossl_pkcs7.o: $(hdrdir)/ruby/defines.h
+ ossl_pkcs7.o: $(hdrdir)/ruby/encoding.h
+ ossl_pkcs7.o: $(hdrdir)/ruby/intern.h
+@@ -495,6 +509,7 @@
+ ossl_pkcs7.o: ruby_missing.h
+ ossl_pkey.o: $(RUBY_EXTCONF_H)
+ ossl_pkey.o: $(arch_hdrdir)/ruby/config.h
++ossl_pkey.o: $(hdrdir)/ruby/backward.h
+ ossl_pkey.o: $(hdrdir)/ruby/defines.h
+ ossl_pkey.o: $(hdrdir)/ruby/encoding.h
+ ossl_pkey.o: $(hdrdir)/ruby/intern.h
+@@ -530,6 +545,7 @@
+ ossl_pkey.o: ruby_missing.h
+ ossl_pkey_dh.o: $(RUBY_EXTCONF_H)
+ ossl_pkey_dh.o: $(arch_hdrdir)/ruby/config.h
++ossl_pkey_dh.o: $(hdrdir)/ruby/backward.h
+ ossl_pkey_dh.o: $(hdrdir)/ruby/defines.h
+ ossl_pkey_dh.o: $(hdrdir)/ruby/encoding.h
+ ossl_pkey_dh.o: $(hdrdir)/ruby/intern.h
+@@ -565,6 +581,7 @@
+ ossl_pkey_dh.o: ruby_missing.h
+ ossl_pkey_dsa.o: $(RUBY_EXTCONF_H)
+ ossl_pkey_dsa.o: $(arch_hdrdir)/ruby/config.h
++ossl_pkey_dsa.o: $(hdrdir)/ruby/backward.h
+ ossl_pkey_dsa.o: $(hdrdir)/ruby/defines.h
+ ossl_pkey_dsa.o: $(hdrdir)/ruby/encoding.h
+ ossl_pkey_dsa.o: $(hdrdir)/ruby/intern.h
+@@ -600,6 +617,7 @@
+ ossl_pkey_dsa.o: ruby_missing.h
+ ossl_pkey_ec.o: $(RUBY_EXTCONF_H)
+ ossl_pkey_ec.o: $(arch_hdrdir)/ruby/config.h
++ossl_pkey_ec.o: $(hdrdir)/ruby/backward.h
+ ossl_pkey_ec.o: $(hdrdir)/ruby/defines.h
+ ossl_pkey_ec.o: $(hdrdir)/ruby/encoding.h
+ ossl_pkey_ec.o: $(hdrdir)/ruby/intern.h
+@@ -635,6 +653,7 @@
+ ossl_pkey_ec.o: ruby_missing.h
+ ossl_pkey_rsa.o: $(RUBY_EXTCONF_H)
+ ossl_pkey_rsa.o: $(arch_hdrdir)/ruby/config.h
++ossl_pkey_rsa.o: $(hdrdir)/ruby/backward.h
+ ossl_pkey_rsa.o: $(hdrdir)/ruby/defines.h
+ ossl_pkey_rsa.o: $(hdrdir)/ruby/encoding.h
+ ossl_pkey_rsa.o: $(hdrdir)/ruby/intern.h
+@@ -670,6 +689,7 @@
+ ossl_pkey_rsa.o: ruby_missing.h
+ ossl_rand.o: $(RUBY_EXTCONF_H)
+ ossl_rand.o: $(arch_hdrdir)/ruby/config.h
++ossl_rand.o: $(hdrdir)/ruby/backward.h
+ ossl_rand.o: $(hdrdir)/ruby/defines.h
+ ossl_rand.o: $(hdrdir)/ruby/encoding.h
+ ossl_rand.o: $(hdrdir)/ruby/intern.h
+@@ -705,6 +725,7 @@
+ ossl_rand.o: ruby_missing.h
+ ossl_ssl.o: $(RUBY_EXTCONF_H)
+ ossl_ssl.o: $(arch_hdrdir)/ruby/config.h
++ossl_ssl.o: $(hdrdir)/ruby/backward.h
+ ossl_ssl.o: $(hdrdir)/ruby/defines.h
+ ossl_ssl.o: $(hdrdir)/ruby/encoding.h
+ ossl_ssl.o: $(hdrdir)/ruby/intern.h
+@@ -740,6 +761,7 @@
+ ossl_ssl.o: ruby_missing.h
+ ossl_ssl_session.o: $(RUBY_EXTCONF_H)
+ ossl_ssl_session.o: $(arch_hdrdir)/ruby/config.h
++ossl_ssl_session.o: $(hdrdir)/ruby/backward.h
+ ossl_ssl_session.o: $(hdrdir)/ruby/defines.h
+ ossl_ssl_session.o: $(hdrdir)/ruby/encoding.h
+ ossl_ssl_session.o: $(hdrdir)/ruby/intern.h
+@@ -775,6 +797,7 @@
+ ossl_ssl_session.o: ruby_missing.h
+ ossl_x509.o: $(RUBY_EXTCONF_H)
+ ossl_x509.o: $(arch_hdrdir)/ruby/config.h
++ossl_x509.o: $(hdrdir)/ruby/backward.h
+ ossl_x509.o: $(hdrdir)/ruby/defines.h
+ ossl_x509.o: $(hdrdir)/ruby/encoding.h
+ ossl_x509.o: $(hdrdir)/ruby/intern.h
+@@ -810,6 +833,7 @@
+ ossl_x509.o: ruby_missing.h
+ ossl_x509attr.o: $(RUBY_EXTCONF_H)
+ ossl_x509attr.o: $(arch_hdrdir)/ruby/config.h
++ossl_x509attr.o: $(hdrdir)/ruby/backward.h
+ ossl_x509attr.o: $(hdrdir)/ruby/defines.h
+ ossl_x509attr.o: $(hdrdir)/ruby/encoding.h
+ ossl_x509attr.o: $(hdrdir)/ruby/intern.h
+@@ -845,6 +869,7 @@
+ ossl_x509attr.o: ruby_missing.h
+ ossl_x509cert.o: $(RUBY_EXTCONF_H)
+ ossl_x509cert.o: $(arch_hdrdir)/ruby/config.h
++ossl_x509cert.o: $(hdrdir)/ruby/backward.h
+ ossl_x509cert.o: $(hdrdir)/ruby/defines.h
+ ossl_x509cert.o: $(hdrdir)/ruby/encoding.h
+ ossl_x509cert.o: $(hdrdir)/ruby/intern.h
+@@ -880,6 +905,7 @@
+ ossl_x509cert.o: ruby_missing.h
+ ossl_x509crl.o: $(RUBY_EXTCONF_H)
+ ossl_x509crl.o: $(arch_hdrdir)/ruby/config.h
++ossl_x509crl.o: $(hdrdir)/ruby/backward.h
+ ossl_x509crl.o: $(hdrdir)/ruby/defines.h
+ ossl_x509crl.o: $(hdrdir)/ruby/encoding.h
+ ossl_x509crl.o: $(hdrdir)/ruby/intern.h
+@@ -915,6 +941,7 @@
+ ossl_x509crl.o: ruby_missing.h
+ ossl_x509ext.o: $(RUBY_EXTCONF_H)
+ ossl_x509ext.o: $(arch_hdrdir)/ruby/config.h
++ossl_x509ext.o: $(hdrdir)/ruby/backward.h
+ ossl_x509ext.o: $(hdrdir)/ruby/defines.h
+ ossl_x509ext.o: $(hdrdir)/ruby/encoding.h
+ ossl_x509ext.o: $(hdrdir)/ruby/intern.h
+@@ -950,6 +977,7 @@
+ ossl_x509ext.o: ruby_missing.h
+ ossl_x509name.o: $(RUBY_EXTCONF_H)
+ ossl_x509name.o: $(arch_hdrdir)/ruby/config.h
++ossl_x509name.o: $(hdrdir)/ruby/backward.h
+ ossl_x509name.o: $(hdrdir)/ruby/defines.h
+ ossl_x509name.o: $(hdrdir)/ruby/encoding.h
+ ossl_x509name.o: $(hdrdir)/ruby/intern.h
+@@ -985,6 +1013,7 @@
+ ossl_x509name.o: ruby_missing.h
+ ossl_x509req.o: $(RUBY_EXTCONF_H)
+ ossl_x509req.o: $(arch_hdrdir)/ruby/config.h
++ossl_x509req.o: $(hdrdir)/ruby/backward.h
+ ossl_x509req.o: $(hdrdir)/ruby/defines.h
+ ossl_x509req.o: $(hdrdir)/ruby/encoding.h
+ ossl_x509req.o: $(hdrdir)/ruby/intern.h
+@@ -1020,6 +1049,7 @@
+ ossl_x509req.o: ruby_missing.h
+ ossl_x509revoked.o: $(RUBY_EXTCONF_H)
+ ossl_x509revoked.o: $(arch_hdrdir)/ruby/config.h
++ossl_x509revoked.o: $(hdrdir)/ruby/backward.h
+ ossl_x509revoked.o: $(hdrdir)/ruby/defines.h
+ ossl_x509revoked.o: $(hdrdir)/ruby/encoding.h
+ ossl_x509revoked.o: $(hdrdir)/ruby/intern.h
+@@ -1055,6 +1085,7 @@
+ ossl_x509revoked.o: ruby_missing.h
+ ossl_x509store.o: $(RUBY_EXTCONF_H)
+ ossl_x509store.o: $(arch_hdrdir)/ruby/config.h
++ossl_x509store.o: $(hdrdir)/ruby/backward.h
+ ossl_x509store.o: $(hdrdir)/ruby/defines.h
+ ossl_x509store.o: $(hdrdir)/ruby/encoding.h
+ ossl_x509store.o: $(hdrdir)/ruby/intern.h
+diff -Nur ruby-2.3.8-old/ext/openssl/deprecation.rb ruby-2.3.8/ext/openssl/deprecation.rb
+--- ruby-2.3.8-old/ext/openssl/deprecation.rb	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/deprecation.rb	2019-06-24 17:15:47.610345161 +0300
+@@ -16,7 +16,11 @@
+   end
+ 
+   def self.check_func(func, header)
+-    have_func(func, header, deprecated_warning_flag) and
+-      have_header(header, nil, deprecated_warning_flag)
++    have_func(func, header, deprecated_warning_flag)
++  end
++
++  def self.check_func_or_macro(func, header)
++    check_func(func, header) or
++      have_macro(func, header) && $defs.push("-DHAVE_#{func.upcase}")
+   end
+ end
+diff -Nur ruby-2.3.8-old/ext/openssl/extconf.rb ruby-2.3.8/ext/openssl/extconf.rb
+--- ruby-2.3.8-old/ext/openssl/extconf.rb	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/extconf.rb	2019-06-24 17:15:47.610345161 +0300
+@@ -19,12 +19,15 @@
+ 
+ Logging::message "=== OpenSSL for Ruby configurator ===\n"
+ 
++# Add -Werror=deprecated-declarations to $warnflags if available
++OpenSSL.deprecated_warning_flag
++
+ ##
+ # Adds -DOSSL_DEBUG for compilation and some more targets when GCC is used
+ # To turn it on, use: --with-debug or --enable-debug
+ #
+ if with_config("debug") or enable_config("debug")
+-  $defs.push("-DOSSL_DEBUG") unless $defs.include? "-DOSSL_DEBUG"
++  $defs.push("-DOSSL_DEBUG")
+ end
+ 
+ Logging::message "=== Checking for system dependent stuff... ===\n"
+@@ -39,7 +42,6 @@
+ end
+ 
+ result = pkg_config("openssl") && have_header("openssl/ssl.h")
+-
+ unless result
+   result = have_header("openssl/ssl.h")
+   result &&= %w[crypto libeay32].any? {|lib| have_library(lib, "OpenSSL_add_all_digests")}
+@@ -51,107 +53,102 @@
+   end
+ end
+ 
+-unless have_header("openssl/conf_api.h")
+-  raise "OpenSSL 0.9.6 or later required."
++result = checking_for("OpenSSL version is 0.9.8 or later") {
++  try_static_assert("OPENSSL_VERSION_NUMBER >= 0x00908000L", "openssl/opensslv.h")
++}
++unless result
++  raise "OpenSSL 0.9.8 or later is required."
+ end
++
+ unless OpenSSL.check_func("SSL_library_init()", "openssl/ssl.h")
+   raise "Ignore OpenSSL broken by Apple.\nPlease use another openssl. (e.g. using `configure --with-openssl-dir=/path/to/openssl')"
+ end
+ 
+ Logging::message "=== Checking for OpenSSL features... ===\n"
+-have_func("ERR_peek_last_error")
+-have_func("ASN1_put_eoc")
+-have_func("BN_mod_add")
+-have_func("BN_mod_sqr")
+-have_func("BN_mod_sub")
+-have_func("BN_pseudo_rand_range")
+-have_func("BN_rand_range")
+-have_func("CONF_get1_default_config_file")
++# compile options
++
++# check OPENSSL_NO_{SSL2,SSL3_METHOD} macro: on some environment, these symbols
++# exist even if compiled with no-ssl2 or no-ssl3-method.
++unless have_macro("OPENSSL_NO_SSL2", "openssl/opensslconf.h")
++  have_func("SSLv2_method")
++end
++unless have_macro("OPENSSL_NO_SSL3_METHOD", "openssl/opensslconf.h")
++  have_func("SSLv3_method")
++end
++have_func("TLSv1_1_method")
++have_func("TLSv1_2_method")
++have_func("RAND_egd")
++engines = %w{builtin_engines openbsd_dev_crypto dynamic 4758cca aep atalla chil
++             cswift nuron sureware ubsec padlock capi gmp gost cryptodev aesni}
++engines.each { |name|
++  OpenSSL.check_func_or_macro("ENGINE_load_#{name}", "openssl/engine.h")
++}
++
++# added in 0.9.8X
++have_func("EVP_CIPHER_CTX_new")
++have_func("EVP_CIPHER_CTX_free")
++OpenSSL.check_func_or_macro("SSL_CTX_clear_options", "openssl/ssl.h")
++
++# added in 1.0.0
+ have_func("EVP_CIPHER_CTX_copy")
+-have_func("EVP_CIPHER_CTX_set_padding")
+-have_func("EVP_CipherFinal_ex")
+-have_func("EVP_CipherInit_ex")
+-have_func("EVP_DigestFinal_ex")
+-have_func("EVP_DigestInit_ex")
+-have_func("EVP_MD_CTX_cleanup")
+-have_func("EVP_MD_CTX_create")
+-have_func("EVP_MD_CTX_destroy")
+-have_func("EVP_MD_CTX_init")
+-have_func("HMAC_CTX_cleanup")
++have_func("EVP_PKEY_base_id")
+ have_func("HMAC_CTX_copy")
+-have_func("HMAC_CTX_init")
+-have_func("PEM_def_callback")
+ have_func("PKCS5_PBKDF2_HMAC")
+-have_func("PKCS5_PBKDF2_HMAC_SHA1")
+-have_func("RAND_egd")
+-have_func("X509V3_set_nconf")
+-have_func("X509V3_EXT_nconf_nid")
+-have_func("X509_CRL_add0_revoked")
+-have_func("X509_CRL_set_issuer_name")
+-have_func("X509_CRL_set_version")
+-have_func("X509_CRL_sort")
+ have_func("X509_NAME_hash_old")
+-have_func("X509_STORE_get_ex_data")
+-have_func("X509_STORE_set_ex_data")
+-have_func("OBJ_NAME_do_all_sorted")
+-have_func("SSL_SESSION_get_id")
+-have_func("SSL_SESSION_cmp")
+-have_func("OPENSSL_cleanse")
+-have_func("SSLv2_method")
+-have_func("SSLv2_server_method")
+-have_func("SSLv2_client_method")
+-have_func("SSLv3_method")
+-have_func("SSLv3_server_method")
+-have_func("SSLv3_client_method")
+-have_func("TLSv1_1_method")
+-have_func("TLSv1_1_server_method")
+-have_func("TLSv1_1_client_method")
+-have_func("TLSv1_2_method")
+-have_func("TLSv1_2_server_method")
+-have_func("TLSv1_2_client_method")
+-have_func("SSL_CTX_set_alpn_select_cb")
+-have_func("SSL_CTX_set_next_proto_select_cb")
+-unless have_func("SSL_set_tlsext_host_name", ['openssl/ssl.h'])
+-  have_macro("SSL_set_tlsext_host_name", ['openssl/ssl.h']) && $defs.push("-DHAVE_SSL_SET_TLSEXT_HOST_NAME")
+-end
+-if have_header("openssl/engine.h")
+-  have_func("ENGINE_add")
+-  have_func("ENGINE_load_builtin_engines")
+-  have_func("ENGINE_load_openbsd_dev_crypto")
+-  have_func("ENGINE_get_digest")
+-  have_func("ENGINE_get_cipher")
+-  have_func("ENGINE_cleanup")
+-  have_func("ENGINE_load_dynamic")
+-  have_func("ENGINE_load_4758cca")
+-  have_func("ENGINE_load_aep")
+-  have_func("ENGINE_load_atalla")
+-  have_func("ENGINE_load_chil")
+-  have_func("ENGINE_load_cswift")
+-  have_func("ENGINE_load_nuron")
+-  have_func("ENGINE_load_sureware")
+-  have_func("ENGINE_load_ubsec")
+-  have_func("ENGINE_load_padlock")
+-  have_func("ENGINE_load_capi")
+-  have_func("ENGINE_load_gmp")
+-  have_func("ENGINE_load_gost")
+-  have_func("ENGINE_load_cryptodev")
+-  have_func("ENGINE_load_aesni")
+-end
+-have_func("DH_generate_parameters_ex")
+-have_func("DSA_generate_parameters_ex")
+-have_func("RSA_generate_key_ex")
+-if checking_for('OpenSSL version is 0.9.7 or later') {
+-    try_static_assert('OPENSSL_VERSION_NUMBER >= 0x00907000L', 'openssl/opensslv.h')
+-  }
+-  have_header("openssl/ocsp.h")
+-end
++have_func("X509_STORE_CTX_get0_current_crl")
++have_func("X509_STORE_set_verify_cb")
++have_func("i2d_ASN1_SET_ANY")
++OpenSSL.check_func_or_macro("SSL_set_tlsext_host_name", "openssl/ssl.h")
+ have_struct_member("CRYPTO_THREADID", "ptr", "openssl/crypto.h")
+-have_struct_member("EVP_CIPHER_CTX", "flags", "openssl/evp.h")
+-have_struct_member("EVP_CIPHER_CTX", "engine", "openssl/evp.h")
+-have_struct_member("X509_ATTRIBUTE", "single", "openssl/x509.h")
+-have_macro("OPENSSL_FIPS", ['openssl/opensslconf.h']) && $defs.push("-DHAVE_OPENSSL_FIPS")
++
++# added in 1.0.1
++have_func("SSL_CTX_set_next_proto_select_cb")
+ have_macro("EVP_CTRL_GCM_GET_TAG", ['openssl/evp.h']) && $defs.push("-DHAVE_AUTHENTICATED_ENCRYPTION")
+ 
++# added in 1.0.2
++have_func("CRYPTO_memcmp")
++have_func("EC_curve_nist2nid")
++have_func("X509_REVOKED_dup")
++have_func("X509_STORE_CTX_get0_store")
++have_func("SSL_is_server")
++have_func("SSL_CTX_set_alpn_select_cb")
++OpenSSL.check_func_or_macro("SSL_CTX_set1_curves_list", "openssl/ssl.h")
++OpenSSL.check_func_or_macro("SSL_CTX_set_ecdh_auto", "openssl/ssl.h")
++OpenSSL.check_func_or_macro("SSL_get_server_tmp_key", "openssl/ssl.h")
++
++# added in 1.1.0
++have_func("CRYPTO_lock") || $defs.push("-DHAVE_OPENSSL_110_THREADING_API")
++have_struct_member("SSL", "ctx", "openssl/ssl.h") || $defs.push("-DHAVE_OPAQUE_OPENSSL")
++have_func("BN_GENCB_new")
++have_func("BN_GENCB_free")
++have_func("BN_GENCB_get_arg")
++have_func("EVP_MD_CTX_new")
++have_func("EVP_MD_CTX_free")
++have_func("HMAC_CTX_new")
++have_func("HMAC_CTX_free")
++have_func("HMAC_CTX_reset")
++OpenSSL.check_func("RAND_pseudo_bytes", "openssl/rand.h") # deprecated
++have_func("X509_STORE_get_ex_data")
++have_func("X509_STORE_set_ex_data")
++have_func("X509_CRL_get0_signature")
++have_func("X509_REQ_get0_signature")
++have_func("X509_REVOKED_get0_serialNumber")
++have_func("X509_REVOKED_get0_revocationDate")
++have_func("X509_get0_tbs_sigalg")
++have_func("X509_STORE_CTX_get0_untrusted")
++have_func("X509_STORE_CTX_get0_cert")
++have_func("X509_STORE_CTX_get0_chain")
++have_func("OCSP_SINGLERESP_get0_id")
++have_func("X509_up_ref")
++have_func("X509_CRL_up_ref")
++have_func("X509_STORE_up_ref")
++have_func("SSL_CTX_get_ciphers")
++have_func("SSL_SESSION_up_ref")
++have_func("EVP_PKEY_up_ref")
++have_func("SSL_CTX_get_security_level")
++OpenSSL.check_func_or_macro("SSL_CTX_set_min_proto_version", "openssl/ssl.h")
++OpenSSL.check_func_or_macro("SSL_CTX_set_tmp_ecdh_callback", "openssl/ssl.h") # removed
++
+ Logging::message "=== Checking done. ===\n"
+ 
+ create_header
+diff -Nur ruby-2.3.8-old/ext/openssl/lib/openssl/digest.rb ruby-2.3.8/ext/openssl/lib/openssl/digest.rb
+--- ruby-2.3.8-old/ext/openssl/lib/openssl/digest.rb	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/lib/openssl/digest.rb	2019-06-24 17:15:47.610345161 +0300
+@@ -15,7 +15,10 @@
+ module OpenSSL
+   class Digest
+ 
+-    alg = %w(DSS DSS1 MD2 MD4 MD5 MDC2 RIPEMD160 SHA SHA1)
++    alg = %w(MD2 MD4 MD5 MDC2 RIPEMD160 SHA1)
++    if OPENSSL_VERSION_NUMBER < 0x10100000
++      alg += %w(DSS DSS1 SHA)
++    end
+     if OPENSSL_VERSION_NUMBER > 0x00908000
+       alg += %w(SHA224 SHA256 SHA384 SHA512)
+     end
+diff -Nur ruby-2.3.8-old/ext/openssl/lib/openssl/pkey.rb ruby-2.3.8/ext/openssl/lib/openssl/pkey.rb
+--- ruby-2.3.8-old/ext/openssl/lib/openssl/pkey.rb	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/lib/openssl/pkey.rb	2019-06-24 17:15:47.610345161 +0300
+@@ -4,13 +4,6 @@
+     if defined?(OpenSSL::PKey::DH)
+ 
+     class DH
+-      DEFAULT_512 = new <<-_end_of_pem_
+------BEGIN DH PARAMETERS-----
+-MEYCQQD0zXHljRg/mJ9PYLACLv58Cd8VxBxxY7oEuCeURMiTqEhMym16rhhKgZG2
+-zk2O9uUIBIxSj+NKMURHGaFKyIvLAgEC
+------END DH PARAMETERS-----
+-      _end_of_pem_
+-
+       DEFAULT_1024 = new <<-_end_of_pem_
+ -----BEGIN DH PARAMETERS-----
+ MIGHAoGBAJ0lOVy0VIr/JebWn0zDwY2h+rqITFOpdNr6ugsgvkDXuucdcChhYExJ
+@@ -18,13 +11,24 @@
+ T4h7KZ/2zmjvV+eF8kBUHBJAojUlzxKj4QeO2x20FP9X5xmNUXeDAgEC
+ -----END DH PARAMETERS-----
+       _end_of_pem_
++
++      DEFAULT_2048 = new <<-_end_of_pem_
++-----BEGIN DH PARAMETERS-----
++MIIBCAKCAQEA7E6kBrYiyvmKAMzQ7i8WvwVk9Y/+f8S7sCTN712KkK3cqd1jhJDY
++JbrYeNV3kUIKhPxWHhObHKpD1R84UpL+s2b55+iMd6GmL7OYmNIT/FccKhTcveab
++VBmZT86BZKYyf45hUF9FOuUM9xPzuK3Vd8oJQvfYMCd7LPC0taAEljQLR4Edf8E6
++YoaOffgTf5qxiwkjnlVZQc3whgnEt9FpVMvQ9eknyeGB5KHfayAc3+hUAvI3/Cr3
++1bNveX5wInh5GDx1FGhKBZ+s1H+aedudCm7sCgRwv8lKWYGiHzObSma8A86KG+MD
++7Lo5JquQ3DlBodj3IDyPrxIv96lvRPFtAwIBAg==
++-----END DH PARAMETERS-----
++      _end_of_pem_
+     end
+ 
+     DEFAULT_TMP_DH_CALLBACK = lambda { |ctx, is_export, keylen|
+       warn "using default DH parameters." if $VERBOSE
+       case keylen
+-      when 512  then OpenSSL::PKey::DH::DEFAULT_512
+       when 1024 then OpenSSL::PKey::DH::DEFAULT_1024
++      when 2048 then OpenSSL::PKey::DH::DEFAULT_2048
+       else
+         nil
+       end
+diff -Nur ruby-2.3.8-old/ext/openssl/lib/openssl/ssl.rb ruby-2.3.8/ext/openssl/lib/openssl/ssl.rb
+--- ruby-2.3.8-old/ext/openssl/lib/openssl/ssl.rb	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/lib/openssl/ssl.rb	2019-06-24 17:15:47.610345161 +0300
+@@ -290,10 +290,7 @@
+       # call-seq:
+       #    ssl.sysclose => nil
+       #
+-      # Sends "close notify" to the peer and tries to shut down the SSL
+-      # connection gracefully.
+-      #
+-      # If sync_close is set to +true+, the underlying IO is also closed.
++      # Shuts down the SSL connection and prepares it for another connection.
+       def sysclose
+         return if closed?
+         stop
+diff -Nur ruby-2.3.8-old/ext/openssl/openssl_missing.c ruby-2.3.8/ext/openssl/openssl_missing.c
+--- ruby-2.3.8-old/ext/openssl/openssl_missing.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/openssl_missing.c	2019-06-24 17:15:47.610345161 +0300
+@@ -9,93 +9,38 @@
+  */
+ #include RUBY_EXTCONF_H
+ 
+-#if defined(HAVE_OPENSSL_ENGINE_H) && defined(HAVE_EVP_CIPHER_CTX_ENGINE)
++#include <string.h> /* memcpy() */
++#if !defined(OPENSSL_NO_ENGINE)
+ # include <openssl/engine.h>
+ #endif
+-#include <openssl/x509_vfy.h>
+-
+-#if !defined(OPENSSL_NO_HMAC)
+-#include <string.h> /* memcpy() */
+ #include <openssl/hmac.h>
++#include <openssl/x509_vfy.h>
+ 
+ #include "openssl_missing.h"
+ 
+-#if !defined(HAVE_HMAC_CTX_COPY)
+-void
+-HMAC_CTX_copy(HMAC_CTX *out, HMAC_CTX *in)
+-{
+-    if (!out || !in) return;
+-    memcpy(out, in, sizeof(HMAC_CTX));
+-
+-    EVP_MD_CTX_copy(&out->md_ctx, &in->md_ctx);
+-    EVP_MD_CTX_copy(&out->i_ctx, &in->i_ctx);
+-    EVP_MD_CTX_copy(&out->o_ctx, &in->o_ctx);
+-}
+-#endif /* HAVE_HMAC_CTX_COPY */
+-#endif /* NO_HMAC */
+-
+-#if !defined(HAVE_EVP_MD_CTX_CREATE)
+-EVP_MD_CTX *
+-EVP_MD_CTX_create(void)
+-{
+-    EVP_MD_CTX *ctx = OPENSSL_malloc(sizeof(EVP_MD_CTX));
+-    if (!ctx) return NULL;
+-
+-    memset(ctx, 0, sizeof(EVP_MD_CTX));
+-
++/* added in 0.9.8X */
++#if !defined(HAVE_EVP_CIPHER_CTX_NEW)
++EVP_CIPHER_CTX *
++EVP_CIPHER_CTX_new(void)
++{
++    EVP_CIPHER_CTX *ctx = OPENSSL_malloc(sizeof(EVP_CIPHER_CTX));
++    if (!ctx)
++	return NULL;
++    EVP_CIPHER_CTX_init(ctx);
+     return ctx;
+ }
+ #endif
+ 
+-#if !defined(HAVE_EVP_MD_CTX_CLEANUP)
+-int
+-EVP_MD_CTX_cleanup(EVP_MD_CTX *ctx)
+-{
+-    /* FIXME!!! */
+-    memset(ctx, 0, sizeof(EVP_MD_CTX));
+-
+-    return 1;
+-}
+-#endif
+-
+-#if !defined(HAVE_EVP_MD_CTX_DESTROY)
++#if !defined(HAVE_EVP_CIPHER_CTX_FREE)
+ void
+-EVP_MD_CTX_destroy(EVP_MD_CTX *ctx)
++EVP_CIPHER_CTX_free(EVP_CIPHER_CTX *ctx)
+ {
+-    EVP_MD_CTX_cleanup(ctx);
++    EVP_CIPHER_CTX_cleanup(ctx);
+     OPENSSL_free(ctx);
+ }
+ #endif
+ 
+-#if !defined(HAVE_EVP_MD_CTX_INIT)
+-void
+-EVP_MD_CTX_init(EVP_MD_CTX *ctx)
+-{
+-    memset(ctx, 0, sizeof(EVP_MD_CTX));
+-}
+-#endif
+-
+-#if !defined(HAVE_HMAC_CTX_INIT)
+-void
+-HMAC_CTX_init(HMAC_CTX *ctx)
+-{
+-    EVP_MD_CTX_init(&ctx->i_ctx);
+-    EVP_MD_CTX_init(&ctx->o_ctx);
+-    EVP_MD_CTX_init(&ctx->md_ctx);
+-}
+-#endif
+-
+-#if !defined(HAVE_HMAC_CTX_CLEANUP)
+-void
+-HMAC_CTX_cleanup(HMAC_CTX *ctx)
+-{
+-    EVP_MD_CTX_cleanup(&ctx->i_ctx);
+-    EVP_MD_CTX_cleanup(&ctx->o_ctx);
+-    EVP_MD_CTX_cleanup(&ctx->md_ctx);
+-    memset(ctx, 0, sizeof(HMAC_CTX));
+-}
+-#endif
+-
++/* added in 1.0.0 */
+ #if !defined(HAVE_EVP_CIPHER_CTX_COPY)
+ /*
+  * this function does not exist in OpenSSL yet... or ever?.
+@@ -103,11 +48,11 @@
+  * tested on 0.9.7d.
+  */
+ int
+-EVP_CIPHER_CTX_copy(EVP_CIPHER_CTX *out, EVP_CIPHER_CTX *in)
++EVP_CIPHER_CTX_copy(EVP_CIPHER_CTX *out, const EVP_CIPHER_CTX *in)
+ {
+     memcpy(out, in, sizeof(EVP_CIPHER_CTX));
+ 
+-#if defined(HAVE_ENGINE_ADD) && defined(HAVE_EVP_CIPHER_CTX_ENGINE)
++#if !defined(OPENSSL_NO_ENGINE)
+     if (in->engine) ENGINE_add(out->engine);
+     if (in->cipher_data) {
+ 	out->cipher_data = OPENSSL_malloc(in->cipher->ctx_size);
+@@ -119,222 +64,127 @@
+ }
+ #endif
+ 
+-#if !defined(HAVE_X509_CRL_SET_VERSION)
+-int
+-X509_CRL_set_version(X509_CRL *x, long version)
+-{
+-    if (x == NULL || x->crl == NULL) return 0;
+-    if (x->crl->version == NULL) {
+-	x->crl->version = M_ASN1_INTEGER_new();
+-	if (x->crl->version == NULL) return 0;
+-    }
+-    return ASN1_INTEGER_set(x->crl->version, version);
+-}
+-#endif
+-
+-#if !defined(HAVE_X509_CRL_SET_ISSUER_NAME)
+-int
+-X509_CRL_set_issuer_name(X509_CRL *x, X509_NAME *name)
+-{
+-    if (x == NULL || x->crl == NULL) return 0;
+-    return X509_NAME_set(&x->crl->issuer, name);
+-}
+-#endif
+-
+-#if !defined(HAVE_X509_CRL_SORT)
+-int
+-X509_CRL_sort(X509_CRL *c)
+-{
+-    int i;
+-    X509_REVOKED *r;
+-    /* sort the data so it will be written in serial
+-     * number order */
+-    sk_X509_REVOKED_sort(c->crl->revoked);
+-    for (i=0; i<sk_X509_REVOKED_num(c->crl->revoked); i++) {
+-	r=sk_X509_REVOKED_value(c->crl->revoked, i);
+-	r->sequence=i;
+-    }
+-    return 1;
+-}
+-#endif
+-
+-#if !defined(HAVE_X509_CRL_ADD0_REVOKED)
+-static int
+-OSSL_X509_REVOKED_cmp(const X509_REVOKED * const *a, const X509_REVOKED * const *b)
+-{
+-    return(ASN1_STRING_cmp(
+-		(ASN1_STRING *)(*a)->serialNumber,
+-		(ASN1_STRING *)(*b)->serialNumber));
+-}
+-
++#if !defined(HAVE_HMAC_CTX_COPY)
+ int
+-X509_CRL_add0_revoked(X509_CRL *crl, X509_REVOKED *rev)
++HMAC_CTX_copy(HMAC_CTX *out, HMAC_CTX *in)
+ {
+-    X509_CRL_INFO *inf;
+-
+-    inf = crl->crl;
+-    if (!inf->revoked)
+-	inf->revoked = sk_X509_REVOKED_new(OSSL_X509_REVOKED_cmp);
+-    if (!inf->revoked || !sk_X509_REVOKED_push(inf->revoked, rev))
++    if (!out || !in)
+ 	return 0;
+-    return 1;
+-}
+-#endif
+-
+-#if !defined(HAVE_BN_MOD_SQR)
+-int
+-BN_mod_sqr(BIGNUM *r, const BIGNUM *a, const BIGNUM *m, BN_CTX *ctx)
+-{
+-    if (!BN_sqr(r, (BIGNUM*)a, ctx)) return 0;
+-    return BN_mod(r, r, m, ctx);
+-}
+-#endif
+-
+-#if !defined(HAVE_BN_MOD_ADD) || !defined(HAVE_BN_MOD_SUB)
+-int BN_nnmod(BIGNUM *r, const BIGNUM *m, const BIGNUM *d, BN_CTX *ctx)
+-{
+-    if (!BN_mod(r,m,d,ctx)) return 0;
+-    if (!r->neg) return 1;
+-    return (d->neg ? BN_sub : BN_add)(r, r, d);
+-}
+-#endif
+ 
+-#if !defined(HAVE_BN_MOD_ADD)
+-int
+-BN_mod_add(BIGNUM *r, const BIGNUM *a, const BIGNUM *b, const BIGNUM *m, BN_CTX *ctx)
+-{
+-    if (!BN_add(r, a, b)) return 0;
+-    return BN_nnmod(r, r, m, ctx);
+-}
+-#endif
+-
+-#if !defined(HAVE_BN_MOD_SUB)
+-int
+-BN_mod_sub(BIGNUM *r, const BIGNUM *a, const BIGNUM *b, const BIGNUM *m, BN_CTX *ctx)
+-{
+-    if (!BN_sub(r, a, b)) return 0;
+-    return BN_nnmod(r, r, m, ctx);
+-}
+-#endif
++    memcpy(out, in, sizeof(HMAC_CTX));
+ 
+-#if !defined(HAVE_BN_RAND_RANGE) || !defined(HAVE_BN_PSEUDO_RAND_RANGE)
+-static int
+-bn_rand_range(int pseudo, BIGNUM *r, BIGNUM *range)
+-{
+-    int (*bn_rand)(BIGNUM *, int, int, int) = pseudo ? BN_pseudo_rand : BN_rand;
+-    int n;
+-
+-    if (range->neg || BN_is_zero(range)) return 0;
+-
+-    n = BN_num_bits(range);
+-
+-    if (n == 1) {
+-	if (!BN_zero(r)) return 0;
+-    } else if (!BN_is_bit_set(range, n - 2) && !BN_is_bit_set(range, n - 3)) {
+-	do {
+-	    if (!bn_rand(r, n + 1, -1, 0)) return 0;
+-	    if (BN_cmp(r ,range) >= 0) {
+-		if (!BN_sub(r, r, range)) return 0;
+-		if (BN_cmp(r, range) >= 0)
+-		    if (!BN_sub(r, r, range)) return 0;
+-	    }
+-	} while (BN_cmp(r, range) >= 0);
+-    } else {
+-	do {
+-	    if (!bn_rand(r, n, -1, 0)) return 0;
+-	} while (BN_cmp(r, range) >= 0);
+-    }
++    EVP_MD_CTX_copy(&out->md_ctx, &in->md_ctx);
++    EVP_MD_CTX_copy(&out->i_ctx, &in->i_ctx);
++    EVP_MD_CTX_copy(&out->o_ctx, &in->o_ctx);
+ 
+     return 1;
+ }
+-#endif
++#endif /* HAVE_HMAC_CTX_COPY */
+ 
+-#if !defined(HAVE_BN_RAND_RANGE)
++/* added in 1.0.2 */
++#if !defined(HAVE_CRYPTO_MEMCMP)
+ int
+-BN_rand_range(BIGNUM *r, BIGNUM *range)
+-{
+-    return bn_rand_range(0, r, range);
++CRYPTO_memcmp(const volatile void * volatile in_a,
++	      const volatile void * volatile in_b,
++	      size_t len)
++{
++    size_t i;
++    const volatile unsigned char *a = in_a;
++    const volatile unsigned char *b = in_b;
++    unsigned char x = 0;
++
++    for (i = 0; i < len; i++)
++	x |= a[i] ^ b[i];
++
++    return x;
++}
++#endif
++
++#if !defined(OPENSSL_NO_EC)
++#if !defined(HAVE_EC_CURVE_NIST2NID)
++static struct {
++    const char *name;
++    int nid;
++} nist_curves[] = {
++    {"B-163", NID_sect163r2},
++    {"B-233", NID_sect233r1},
++    {"B-283", NID_sect283r1},
++    {"B-409", NID_sect409r1},
++    {"B-571", NID_sect571r1},
++    {"K-163", NID_sect163k1},
++    {"K-233", NID_sect233k1},
++    {"K-283", NID_sect283k1},
++    {"K-409", NID_sect409k1},
++    {"K-571", NID_sect571k1},
++    {"P-192", NID_X9_62_prime192v1},
++    {"P-224", NID_secp224r1},
++    {"P-256", NID_X9_62_prime256v1},
++    {"P-384", NID_secp384r1},
++    {"P-521", NID_secp521r1}
++};
++
++int
++EC_curve_nist2nid(const char *name)
++{
++    size_t i;
++    for (i = 0; i < (sizeof(nist_curves) / sizeof(nist_curves[0])); i++) {
++	if (!strcmp(nist_curves[i].name, name))
++	    return nist_curves[i].nid;
++    }
++    return NID_undef;
++}
++#endif
++#endif
++
++/*** added in 1.1.0 ***/
++#if !defined(HAVE_HMAC_CTX_NEW)
++HMAC_CTX *
++HMAC_CTX_new(void)
++{
++    HMAC_CTX *ctx = OPENSSL_malloc(sizeof(HMAC_CTX));
++    HMAC_CTX_reset(ctx);
++    if (!ctx)
++	return NULL;
++    return ctx;
+ }
+ #endif
+ 
+-#if !defined(HAVE_BN_PSEUDO_RAND_RANGE)
+-int
+-BN_pseudo_rand_range(BIGNUM *r, BIGNUM *range)
++#if !defined(HAVE_HMAC_CTX_FREE)
++void
++HMAC_CTX_free(HMAC_CTX *ctx)
+ {
+-    return bn_rand_range(1, r, range);
++    HMAC_CTX_cleanup(ctx);
++    OPENSSL_free(ctx);
+ }
+ #endif
+ 
+-#if !defined(HAVE_CONF_GET1_DEFAULT_CONFIG_FILE)
+-#define OPENSSL_CONF "openssl.cnf"
+-char *
+-CONF_get1_default_config_file(void)
++#if !defined(HAVE_HMAC_CTX_RESET)
++int
++HMAC_CTX_reset(HMAC_CTX *ctx)
+ {
+-    char *file;
+-    int len;
+-
+-    file = getenv("OPENSSL_CONF");
+-    if (file) return BUF_strdup(file);
+-    len = strlen(X509_get_default_cert_area());
+-#ifndef OPENSSL_SYS_VMS
+-    len++;
+-#endif
+-    len += strlen(OPENSSL_CONF);
+-    file = OPENSSL_malloc(len + 1);
+-    if (!file) return NULL;
+-    strcpy(file,X509_get_default_cert_area());
+-#ifndef OPENSSL_SYS_VMS
+-    strcat(file,"/");
+-#endif
+-    strcat(file,OPENSSL_CONF);
+-
+-    return file;
++    HMAC_CTX_init(ctx);
++    return 0;
+ }
+ #endif
+ 
+-#if !defined(HAVE_PEM_DEF_CALLBACK)
+-#define OSSL_PASS_MIN_LENGTH 4
+-int
+-PEM_def_callback(char *buf, int num, int w, void *key)
++#if !defined(HAVE_X509_CRL_GET0_SIGNATURE)
++void
++X509_CRL_get0_signature(ASN1_BIT_STRING **psig, X509_ALGOR **palg, X509_CRL *crl)
+ {
+-    int i,j;
+-    const char *prompt;
+-
+-    if (key) {
+-	i = strlen(key);
+-	i = (i > num) ? num : i;
+-	memcpy(buf, key, i);
+-	return i;
+-    }
+-
+-    prompt = EVP_get_pw_prompt();
+-    if (prompt == NULL) prompt = "Enter PEM pass phrase:";
+-    for (;;) {
+-	i = EVP_read_pw_string(buf, num, prompt, w);
+-	if (i != 0) {
+-	    memset(buf, 0, (unsigned int)num);
+-	    return(-1);
+-	}
+-	j = strlen(buf);
+-	if (j < OSSL_PASS_MIN_LENGTH) {
+-	    fprintf(stderr,
+-		    "phrase is too short, needs to be at least %d chars\n",
+-		    OSSL_PASS_MIN_LENGTH);
+-	}
+-	else break;
+-    }
+-    return j;
++    if (psig != NULL)
++	*psig = crl->signature;
++    if (palg != NULL)
++	*palg = crl->sig_alg;
+ }
+ #endif
+ 
+-#if !defined(HAVE_ASN1_PUT_EOC)
+-int
+-ASN1_put_eoc(unsigned char **pp)
++#if !defined(HAVE_X509_REQ_GET0_SIGNATURE)
++void
++X509_REQ_get0_signature(ASN1_BIT_STRING **psig, X509_ALGOR **palg, X509_REQ *req)
+ {
+-    unsigned char *p = *pp;
+-    *p++ = 0;
+-    *p++ = 0;
+-    *pp = p;
+-    return 2;
++    if (psig != NULL)
++	*psig = req->signature;
++    if (palg != NULL)
++	*palg = req->sig_alg;
+ }
+ #endif
+diff -Nur ruby-2.3.8-old/ext/openssl/openssl_missing.h ruby-2.3.8/ext/openssl/openssl_missing.h
+--- ruby-2.3.8-old/ext/openssl/openssl_missing.h	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/openssl_missing.h	2019-06-24 17:15:47.610345161 +0300
+@@ -10,192 +10,261 @@
+ #if !defined(_OSSL_OPENSSL_MISSING_H_)
+ #define _OSSL_OPENSSL_MISSING_H_
+ 
+-#if defined(__cplusplus)
+-extern "C" {
++/* added in 0.9.8X */
++#if !defined(HAVE_EVP_CIPHER_CTX_NEW)
++EVP_CIPHER_CTX *EVP_CIPHER_CTX_new(void);
+ #endif
+ 
+-#ifndef TYPEDEF_D2I_OF
+-typedef char *d2i_of_void();
++#if !defined(HAVE_EVP_CIPHER_CTX_FREE)
++void EVP_CIPHER_CTX_free(EVP_CIPHER_CTX *ctx);
+ #endif
+-#ifndef TYPEDEF_I2D_OF
+-typedef int i2d_of_void();
+-#endif
+-
+-/*
+- * These functions are not included in headers of OPENSSL <= 0.9.6b
+- */
+ 
+-#if !defined(PEM_read_bio_DSAPublicKey)
+-# define PEM_read_bio_DSAPublicKey(bp,x,cb,u) (DSA *)PEM_ASN1_read_bio( \
+-        (d2i_of_void *)d2i_DSAPublicKey,PEM_STRING_DSA_PUBLIC,(bp),(void **)(x),(cb),(u))
++#if !defined(HAVE_SSL_CTX_CLEAR_OPTIONS)
++# define SSL_CTX_clear_options(ctx, op) do \
++	(ctx)->options &= ~(op); while (0)
+ #endif
+ 
+-#if !defined(PEM_write_bio_DSAPublicKey)
+-# define PEM_write_bio_DSAPublicKey(bp,x) \
+-	PEM_ASN1_write_bio((i2d_of_void *)i2d_DSAPublicKey,\
+-		PEM_STRING_DSA_PUBLIC,\
+-		(bp),(char *)(x), NULL, NULL, 0, NULL, NULL)
++/* added in 1.0.0 */
++#if !defined(HAVE_EVP_PKEY_BASE_ID)
++#  define EVP_PKEY_base_id(pkey) EVP_PKEY_type((pkey)->type)
+ #endif
+ 
+-#if !defined(DSAPrivateKey_dup)
+-# define DSAPrivateKey_dup(dsa) (DSA *)ASN1_dup((i2d_of_void *)i2d_DSAPrivateKey, \
+-	(d2i_of_void *)d2i_DSAPrivateKey,(char *)(dsa))
+-#endif
+-
+-#if !defined(DSAPublicKey_dup)
+-# define DSAPublicKey_dup(dsa) (DSA *)ASN1_dup((i2d_of_void *)i2d_DSAPublicKey, \
+-	(d2i_of_void *)d2i_DSAPublicKey,(char *)(dsa))
++#if !defined(HAVE_EVP_CIPHER_CTX_COPY)
++int EVP_CIPHER_CTX_copy(EVP_CIPHER_CTX *out, const EVP_CIPHER_CTX *in);
+ #endif
+ 
+-#if !defined(X509_REVOKED_dup)
+-# define X509_REVOKED_dup(rev) (X509_REVOKED *)ASN1_dup((i2d_of_void *)i2d_X509_REVOKED, \
+-	(d2i_of_void *)d2i_X509_REVOKED, (char *)(rev))
++#if !defined(HAVE_HMAC_CTX_COPY)
++int HMAC_CTX_copy(HMAC_CTX *out, HMAC_CTX *in);
+ #endif
+ 
+-#if !defined(PKCS7_SIGNER_INFO_dup)
+-#  define PKCS7_SIGNER_INFO_dup(si) (PKCS7_SIGNER_INFO *)ASN1_dup((i2d_of_void *)i2d_PKCS7_SIGNER_INFO, \
+-	(d2i_of_void *)d2i_PKCS7_SIGNER_INFO, (char *)(si))
++#if !defined(HAVE_X509_STORE_CTX_GET0_CURRENT_CRL)
++#  define X509_STORE_CTX_get0_current_crl(x) ((x)->current_crl)
+ #endif
+ 
+-#if !defined(PKCS7_RECIP_INFO_dup)
+-#  define PKCS7_RECIP_INFO_dup(ri) (PKCS7_RECIP_INFO *)ASN1_dup((i2d_of_void *)i2d_PKCS7_RECIP_INFO, \
+-	(d2i_of_void *)d2i_PKCS7_RECIP_INFO, (char *)(ri))
++#if !defined(HAVE_X509_STORE_SET_VERIFY_CB)
++#  define X509_STORE_set_verify_cb X509_STORE_set_verify_cb_func
+ #endif
+ 
+-#if !defined(HAVE_HMAC_CTX_INIT)
+-void HMAC_CTX_init(HMAC_CTX *ctx);
++#if !defined(HAVE_I2D_ASN1_SET_ANY)
++#  define i2d_ASN1_SET_ANY(sk, x) i2d_ASN1_SET_OF_ASN1_TYPE((sk), (x), \
++		i2d_ASN1_TYPE, V_ASN1_SET, V_ASN1_UNIVERSAL, 0)
+ #endif
+ 
+-#if !defined(HAVE_HMAC_CTX_COPY)
+-void HMAC_CTX_copy(HMAC_CTX *out, HMAC_CTX *in);
++/* added in 1.0.2 */
++#if !defined(HAVE_CRYPTO_MEMCMP)
++int CRYPTO_memcmp(const volatile void * volatile in_a, const volatile void * volatile in_b, size_t len);
+ #endif
+ 
+-#if !defined(HAVE_HMAC_CTX_CLEANUP)
+-void HMAC_CTX_cleanup(HMAC_CTX *ctx);
++#if !defined(OPENSSL_NO_EC)
++#if !defined(HAVE_EC_CURVE_NIST2NID)
++int EC_curve_nist2nid(const char *str);
+ #endif
+-
+-#if !defined(HAVE_EVP_MD_CTX_CREATE)
+-EVP_MD_CTX *EVP_MD_CTX_create(void);
+ #endif
+ 
+-#if !defined(HAVE_EVP_MD_CTX_INIT)
+-void EVP_MD_CTX_init(EVP_MD_CTX *ctx);
++#if !defined(HAVE_X509_REVOKED_DUP)
++# define X509_REVOKED_dup(rev) (X509_REVOKED *)ASN1_dup((i2d_of_void *)i2d_X509_REVOKED, \
++	(d2i_of_void *)d2i_X509_REVOKED, (char *)(rev))
+ #endif
+ 
+-#if !defined(HAVE_EVP_MD_CTX_CLEANUP)
+-int EVP_MD_CTX_cleanup(EVP_MD_CTX *ctx);
++#if !defined(HAVE_X509_STORE_CTX_GET0_STORE)
++#  define X509_STORE_CTX_get0_store(x) ((x)->ctx)
+ #endif
+ 
+-#if !defined(HAVE_EVP_MD_CTX_DESTROY)
+-void EVP_MD_CTX_destroy(EVP_MD_CTX *ctx);
++#if !defined(HAVE_SSL_IS_SERVER)
++#  define SSL_is_server(s) ((s)->server)
+ #endif
+ 
+-#if !defined(HAVE_EVP_CIPHER_CTX_COPY)
+-int EVP_CIPHER_CTX_copy(EVP_CIPHER_CTX *out, EVP_CIPHER_CTX *in);
++/* added in 1.1.0 */
++#if !defined(HAVE_BN_GENCB_NEW)
++#  define BN_GENCB_new() ((BN_GENCB *)OPENSSL_malloc(sizeof(BN_GENCB)))
+ #endif
+ 
+-#if !defined(HAVE_EVP_DIGESTINIT_EX)
+-#  define EVP_DigestInit_ex(ctx, md, engine) EVP_DigestInit((ctx), (md))
+-#endif
+-#if !defined(HAVE_EVP_DIGESTFINAL_EX)
+-#  define EVP_DigestFinal_ex(ctx, buf, len) EVP_DigestFinal((ctx), (buf), (len))
++#if !defined(HAVE_BN_GENCB_FREE)
++#  define BN_GENCB_free(cb) OPENSSL_free(cb)
+ #endif
+ 
+-#if !defined(HAVE_EVP_CIPHERINIT_EX)
+-#  define EVP_CipherInit_ex(ctx, type, impl, key, iv, enc) EVP_CipherInit((ctx), (type), (key), (iv), (enc))
+-#endif
+-#if !defined(HAVE_EVP_CIPHERFINAL_EX)
+-#  define EVP_CipherFinal_ex(ctx, outm, outl) EVP_CipherFinal((ctx), (outm), (outl))
++#if !defined(HAVE_BN_GENCB_GET_ARG)
++#  define BN_GENCB_get_arg(cb) (cb)->arg
+ #endif
+ 
+-#if !defined(EVP_CIPHER_name)
+-#  define EVP_CIPHER_name(e) OBJ_nid2sn(EVP_CIPHER_nid(e))
++#if !defined(HAVE_EVP_MD_CTX_NEW)
++#  define EVP_MD_CTX_new EVP_MD_CTX_create
+ #endif
+ 
+-#if !defined(EVP_MD_name)
+-#  define EVP_MD_name(e) OBJ_nid2sn(EVP_MD_type(e))
++#if !defined(HAVE_EVP_MD_CTX_FREE)
++#  define EVP_MD_CTX_free EVP_MD_CTX_destroy
+ #endif
+ 
+-#if !defined(HAVE_EVP_HMAC_INIT_EX)
+-#  define HMAC_Init_ex(ctx, key, len, digest, engine) HMAC_Init((ctx), (key), (len), (digest))
++#if !defined(HAVE_HMAC_CTX_NEW)
++HMAC_CTX *HMAC_CTX_new(void);
+ #endif
+ 
+-#if !defined(PKCS7_is_detached)
+-#  define PKCS7_is_detached(p7) (PKCS7_type_is_signed(p7) && PKCS7_get_detached(p7))
++#if !defined(HAVE_HMAC_CTX_FREE)
++void HMAC_CTX_free(HMAC_CTX *ctx);
+ #endif
+ 
+-#if !defined(PKCS7_type_is_encrypted)
+-#  define PKCS7_type_is_encrypted(a) (OBJ_obj2nid((a)->type) == NID_pkcs7_encrypted)
+-#endif
+-
+-#if !defined(HAVE_OPENSSL_CLEANSE)
+-#define OPENSSL_cleanse(p, l) memset((p), 0, (l))
++#if !defined(HAVE_HMAC_CTX_RESET)
++int HMAC_CTX_reset(HMAC_CTX *ctx);
+ #endif
+ 
+ #if !defined(HAVE_X509_STORE_GET_EX_DATA)
+ #  define X509_STORE_get_ex_data(x, idx) \
+-	CRYPTO_get_ex_data(&(x)->ex_data, (idx))
++	CRYPTO_get_ex_data(&(x)->ex_data, idx)
+ #endif
+ 
+ #if !defined(HAVE_X509_STORE_SET_EX_DATA)
+ #  define X509_STORE_set_ex_data(x, idx, data) \
+-	CRYPTO_set_ex_data(&(x)->ex_data, (idx), (data))
++	CRYPTO_set_ex_data(&(x)->ex_data, idx, data)
+ #  define X509_STORE_get_ex_new_index(l, p, newf, dupf, freef) \
+-	CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_X509_STORE, (l), (p), \
+-				(newf), (dupf), (freef))
+-#endif
+-
+-#if !defined(HAVE_X509_CRL_SET_VERSION)
+-int X509_CRL_set_version(X509_CRL *x, long version);
++	CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_X509_STORE, l, p, newf, dupf, freef)
+ #endif
+ 
+-#if !defined(HAVE_X509_CRL_SET_ISSUER_NAME)
+-int X509_CRL_set_issuer_name(X509_CRL *x, X509_NAME *name);
++#if !defined(HAVE_X509_CRL_GET0_SIGNATURE)
++void X509_CRL_get0_signature(ASN1_BIT_STRING **psig, X509_ALGOR **palg, X509_CRL *crl);
+ #endif
+ 
+-#if !defined(HAVE_X509_CRL_SORT)
+-int X509_CRL_sort(X509_CRL *c);
+-#endif
+-
+-#if !defined(HAVE_X509_CRL_ADD0_REVOKED)
+-int X509_CRL_add0_revoked(X509_CRL *crl, X509_REVOKED *rev);
+-#endif
+-
+-#if !defined(HAVE_BN_MOD_SQR)
+-int BN_mod_sqr(BIGNUM *r, const BIGNUM *a, const BIGNUM *m, BN_CTX *ctx);
+-#endif
++#if !defined(HAVE_X509_REQ_GET0_SIGNATURE)
++void X509_REQ_get0_signature(ASN1_BIT_STRING **psig, X509_ALGOR **palg, X509_REQ *req);
++#endif
++
++#if !defined(HAVE_X509_REVOKED_GET0_SERIALNUMBER)
++#  define X509_REVOKED_get0_serialNumber(x) ((x)->serialNumber)
++#endif
++
++#if !defined(HAVE_X509_REVOKED_GET0_REVOCATIONDATE)
++#  define X509_REVOKED_get0_revocationDate(x) ((x)->revocationDate)
++#endif
++
++#if !defined(HAVE_X509_GET0_TBS_SIGALG)
++#  define X509_get0_tbs_sigalg(x) ((x)->cert_info->signature)
++#endif
++
++#if !defined(HAVE_X509_STORE_CTX_GET0_UNTRUSTED)
++#  define X509_STORE_CTX_get0_untrusted(x) ((x)->untrusted)
++#endif
++
++#if !defined(HAVE_X509_STORE_CTX_GET0_CERT)
++#  define X509_STORE_CTX_get0_cert(x) ((x)->cert)
++#endif
++
++#if !defined(HAVE_X509_STORE_CTX_GET0_CHAIN)
++#  define X509_STORE_CTX_get0_chain(ctx) X509_STORE_CTX_get_chain(ctx)
++#endif
++
++#if !defined(HAVE_OCSP_SINGLERESP_GET0_ID)
++#  define OCSP_SINGLERESP_get0_id(s) ((s)->certId)
++#endif
++
++#if !defined(HAVE_X509_UP_REF)
++#  define X509_up_ref(x) \
++	CRYPTO_add(&(x)->references, 1, CRYPTO_LOCK_X509)
++#endif
++
++#if !defined(HAVE_X509_CRL_UP_REF)
++#  define X509_CRL_up_ref(x) \
++	CRYPTO_add(&(x)->references, 1, CRYPTO_LOCK_X509_CRL);
++#endif
++
++#if !defined(HAVE_X509_STORE_UP_REF)
++#  define X509_STORE_up_ref(x) \
++	CRYPTO_add(&(x)->references, 1, CRYPTO_LOCK_X509_STORE);
++#endif
++
++#if !defined(HAVE_SSL_CTX_GET_CIPHERS)
++#  define SSL_CTX_get_ciphers(ctx) ((ctx)->cipher_list)
++#endif
++
++#if !defined(HAVE_SSL_SESSION_UP_REF)
++#  define SSL_SESSION_up_ref(x) \
++	CRYPTO_add(&(x)->references, 1, CRYPTO_LOCK_SSL_SESSION);
++#endif
++
++#if !defined(HAVE_EVP_PKEY_UP_REF)
++#  define EVP_PKEY_up_ref(x) \
++	CRYPTO_add(&(x)->references, 1, CRYPTO_LOCK_EVP_PKEY);
++#endif
++
++#if !defined(HAVE_OPAQUE_OPENSSL)
++#if !defined(OPENSSL_NO_RSA)
++static inline RSA *EVP_PKEY_get0_RSA(EVP_PKEY *pkey) { return pkey->pkey.rsa; }
++static inline void RSA_get0_key(RSA *rsa, BIGNUM **n, BIGNUM **e, BIGNUM **d) {
++	if (n) *n = rsa->n;
++	if (e) *e = rsa->e;
++	if (d) *d = rsa->d; }
++static inline int RSA_set0_key(RSA *rsa, BIGNUM *n, BIGNUM *e, BIGNUM *d) {
++	if (!n || !e) return 0;
++	BN_free(rsa->n); rsa->n = n;
++	BN_free(rsa->e); rsa->e = e;
++	BN_free(rsa->d); rsa->d = d;
++	return 1; }
++static inline void RSA_get0_factors(RSA *rsa, BIGNUM **p, BIGNUM **q) {
++	if (p) *p = rsa->p;
++	if (q) *q = rsa->q; }
++static inline int RSA_set0_factors(RSA *rsa, BIGNUM *p, BIGNUM *q) {
++	if (!p || !q) return 0;
++	BN_free(rsa->p); rsa->p = p;
++	BN_free(rsa->q); rsa->q = q;
++	return 1; }
++static inline void RSA_get0_crt_params(RSA *rsa, BIGNUM **dmp1, BIGNUM **dmq1, BIGNUM **iqmp) {
++	if (dmp1) *dmp1 = rsa->dmp1;
++	if (dmq1) *dmq1 = rsa->dmq1;
++	if (iqmp) *iqmp = rsa->iqmp; }
++static inline int RSA_set0_crt_params(RSA *rsa, BIGNUM *dmp1, BIGNUM *dmq1, BIGNUM *iqmp) {
++	if (!dmp1 || !dmq1 || !iqmp) return 0;
++	BN_free(rsa->dmp1); rsa->dmp1 = dmp1;
++	BN_free(rsa->dmq1); rsa->dmq1 = dmq1;
++	BN_free(rsa->iqmp); rsa->iqmp = iqmp;
++	return 1; }
++#endif /* RSA */
++
++#if !defined(OPENSSL_NO_DSA)
++static inline DSA *EVP_PKEY_get0_DSA(EVP_PKEY *pkey) { return pkey->pkey.dsa; }
++static inline void DSA_get0_key(DSA *dsa, BIGNUM **pub_key, BIGNUM **priv_key) {
++	if (pub_key) *pub_key = dsa->pub_key;
++	if (priv_key) *priv_key = dsa->priv_key; }
++static inline int DSA_set0_key(DSA *dsa, BIGNUM *pub_key, BIGNUM *priv_key) {
++	if (!pub_key) return 0;
++	BN_free(dsa->pub_key); dsa->pub_key = pub_key;
++	BN_free(dsa->priv_key); dsa->priv_key = priv_key;
++	return 1; }
++static inline void DSA_get0_pqg(DSA *dsa, BIGNUM **p, BIGNUM **q, BIGNUM **g) {
++	if (p) *p = dsa->p;
++	if (q) *q = dsa->q;
++	if (g) *g = dsa->g; }
++static inline int DSA_set0_pqg(DSA *dsa, BIGNUM *p, BIGNUM *q, BIGNUM *g) {
++	if (!p || !q || !g) return 0;
++	BN_free(dsa->p); dsa->p = p;
++	BN_free(dsa->q); dsa->q = q;
++	BN_free(dsa->g); dsa->g = g;
++	return 1; }
++#endif /* DSA */
++
++#if !defined(OPENSSL_NO_DH)
++static inline DH *EVP_PKEY_get0_DH(EVP_PKEY *pkey) { return pkey->pkey.dh; }
++static inline ENGINE *DH_get0_engine(DH *dh) { return dh->engine; }
++static inline void DH_get0_key(DH *dh, BIGNUM **pub_key, BIGNUM **priv_key) {
++	if (pub_key) *pub_key = dh->pub_key;
++	if (priv_key) *priv_key = dh->priv_key; }
++static inline int DH_set0_key(DH *dh, BIGNUM *pub_key, BIGNUM *priv_key) {
++	if (!pub_key) return 0;
++	BN_free(dh->pub_key); dh->pub_key = pub_key;
++	BN_free(dh->priv_key); dh->priv_key = priv_key;
++	return 1; }
++static inline void DH_get0_pqg(DH *dh, BIGNUM **p, BIGNUM **q, BIGNUM **g) {
++	if (p) *p = dh->p;
++	if (q) *q = dh->q;
++	if (g) *g = dh->g; }
++static inline int DH_set0_pqg(DH *dh, BIGNUM *p, BIGNUM *q, BIGNUM *g) {
++	if (!p || !g) return 0;
++	BN_free(dh->p); dh->p = p;
++	BN_free(dh->q); dh->q = q;
++	BN_free(dh->g); dh->g = g;
++	return 1; }
++#endif /* DH */
+ 
+-#if !defined(HAVE_BN_MOD_ADD)
+-int BN_mod_add(BIGNUM *r, const BIGNUM *a, const BIGNUM *b, const BIGNUM *m, BN_CTX *ctx);
++#if !defined(OPENSSL_NO_EC)
++static inline EC_KEY *EVP_PKEY_get0_EC_KEY(EVP_PKEY *pkey) { return pkey->pkey.ec; }
+ #endif
+-
+-#if !defined(HAVE_BN_MOD_SUB)
+-int BN_mod_sub(BIGNUM *r, const BIGNUM *a, const BIGNUM *b, const BIGNUM *m, BN_CTX *ctx);
+-#endif
+-
+-#if !defined(HAVE_BN_RAND_RANGE)
+-int BN_rand_range(BIGNUM *r, BIGNUM *range);
+-#endif
+-
+-#if !defined(HAVE_BN_PSEUDO_RAND_RANGE)
+-int BN_pseudo_rand_range(BIGNUM *r, BIGNUM *range);
+ #endif
+ 
+-#if !defined(HAVE_CONF_GET1_DEFAULT_CONFIG_FILE)
+-char *CONF_get1_default_config_file(void);
+-#endif
+-
+-#if !defined(HAVE_PEM_DEF_CALLBACK)
+-int PEM_def_callback(char *buf, int num, int w, void *key);
+-#endif
+-
+-#if !defined(HAVE_ASN1_PUT_EOC)
+-int ASN1_put_eoc(unsigned char **pp);
+-#endif
+-
+-#if defined(__cplusplus)
+-}
+-#endif
+-
+-
+ #endif /* _OSSL_OPENSSL_MISSING_H_ */
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_asn1.c ruby-2.3.8/ext/openssl/ossl_asn1.c
+--- ruby-2.3.8-old/ext/openssl/ossl_asn1.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_asn1.c	2019-06-24 17:15:47.610345161 +0300
+@@ -212,19 +212,6 @@
+ static ID sivVALUE, sivTAG, sivTAG_CLASS, sivTAGGING, sivINFINITE_LENGTH, sivUNUSED_BITS;
+ 
+ /*
+- * We need to implement these for backward compatibility
+- * reasons, behavior of ASN1_put_object and ASN1_object_size
+- * for infinite length values is different in OpenSSL <= 0.9.7
+- */
+-#if OPENSSL_VERSION_NUMBER < 0x00908000L
+-#define ossl_asn1_object_size(cons, len, tag)		(cons) == 2 ? (len) + ASN1_object_size((cons), 0, (tag)) : ASN1_object_size((cons), (len), (tag))
+-#define ossl_asn1_put_object(pp, cons, len, tag, xc)	(cons) == 2 ? ASN1_put_object((pp), (cons), 0, (tag), (xc)) : ASN1_put_object((pp), (cons), (len), (tag), (xc))
+-#else
+-#define ossl_asn1_object_size(cons, len, tag)		ASN1_object_size((cons), (len), (tag))
+-#define ossl_asn1_put_object(pp, cons, len, tag, xc)	ASN1_put_object((pp), (cons), (len), (tag), (xc))
+-#endif
+-
+-/*
+  * Ruby to ASN1 converters
+  */
+ static ASN1_BOOLEAN
+@@ -233,11 +220,7 @@
+     if (NIL_P(obj))
+ 	ossl_raise(rb_eTypeError, "Can't convert nil into Boolean");
+ 
+-#if OPENSSL_VERSION_NUMBER < 0x00907000L
+-     return RTEST(obj) ? 0xff : 0x100;
+-#else
+      return RTEST(obj) ? 0xff : 0x0;
+-#endif
+ }
+ 
+ static ASN1_INTEGER*
+@@ -347,14 +330,15 @@
+ static VALUE
+ decode_bool(unsigned char* der, long length)
+ {
+-    int val;
+-    const unsigned char *p;
++    const unsigned char *p = der;
+ 
+-    p = der;
+-    if((val = d2i_ASN1_BOOLEAN(NULL, &p, length)) < 0)
+-	ossl_raise(eASN1Error, NULL);
++    assert(length == 3);
++    if (*p++ != 1)
++	ossl_raise(eASN1Error, "not boolean");
++    if (*p++ != 1)
++	ossl_raise(eASN1Error, "length is not 1");
+ 
+-    return val ? Qtrue : Qfalse;
++    return *p ? Qtrue : Qfalse;
+ }
+ 
+ static VALUE
+@@ -778,11 +762,11 @@
+     if (inf_length == Qtrue) {
+ 	is_cons = 2;
+     }
+-    if((length = ossl_asn1_object_size(is_cons, RSTRING_LENINT(value), tag)) <= 0)
++    if((length = ASN1_object_size(is_cons, RSTRING_LENINT(value), tag)) <= 0)
+ 	ossl_raise(eASN1Error, NULL);
+     der = rb_str_new(0, length);
+     p = (unsigned char *)RSTRING_PTR(der);
+-    ossl_asn1_put_object(&p, is_cons, RSTRING_LENINT(value), tag, tag_class);
++    ASN1_put_object(&p, is_cons, RSTRING_LENINT(value), tag, tag_class);
+     memcpy(p, RSTRING_PTR(value), RSTRING_LEN(value));
+     p += RSTRING_LEN(value);
+     ossl_str_adjust(der, p);
+@@ -870,18 +854,19 @@
+ {
+     VALUE value, asn1data, ary;
+     int infinite;
+-    long available_len, off = *offset;
++    long off = *offset;
+ 
+     infinite = (j == 0x21);
+     ary = rb_ary_new();
+ 
+-    available_len = infinite ? max_len : length;
+-    while (available_len > 0) {
++    while (length > 0 || infinite) {
+ 	long inner_read = 0;
+-	value = ossl_asn1_decode0(pp, available_len, &off, depth + 1, yield, &inner_read);
++	value = ossl_asn1_decode0(pp, max_len, &off, depth + 1, yield, &inner_read);
+ 	*num_read += inner_read;
+-	available_len -= inner_read;
++	max_len -= inner_read;
+ 	rb_ary_push(ary, value);
++	if (length > 0)
++	    length -= inner_read;
+ 
+ 	if (infinite &&
+ 	    NUM2INT(ossl_asn1_get_tag(value)) == V_ASN1_EOC &&
+@@ -972,7 +957,7 @@
+     if(j & V_ASN1_CONSTRUCTED) {
+ 	*pp += hlen;
+ 	off += hlen;
+-	asn1data = int_ossl_asn1_decode0_cons(pp, length - hlen, len, &off, depth, yield, j, tag, tag_class, &inner_read);
++	asn1data = int_ossl_asn1_decode0_cons(pp, length, len, &off, depth, yield, j, tag, tag_class, &inner_read);
+ 	inner_read += hlen;
+     }
+     else {
+@@ -1183,30 +1168,6 @@
+     return self;
+ }
+ 
+-static int
+-ossl_i2d_ASN1_TYPE(ASN1_TYPE *a, unsigned char **pp)
+-{
+-#if OPENSSL_VERSION_NUMBER < 0x00907000L
+-    if(!a) return 0;
+-    if(a->type == V_ASN1_BOOLEAN)
+-        return i2d_ASN1_BOOLEAN(a->value.boolean, pp);
+-#endif
+-    return i2d_ASN1_TYPE(a, pp);
+-}
+-
+-static void
+-ossl_ASN1_TYPE_free(ASN1_TYPE *a)
+-{
+-#if OPENSSL_VERSION_NUMBER < 0x00907000L
+-    if(!a) return;
+-    if(a->type == V_ASN1_BOOLEAN){
+-        OPENSSL_free(a);
+-        return;
+-    }
+-#endif
+-    ASN1_TYPE_free(a);
+-}
+-
+ /*
+  * call-seq:
+  *    asn1.to_der => DER-encoded String
+@@ -1227,22 +1188,22 @@
+     explicit = ossl_asn1_is_explicit(self);
+     asn1 = ossl_asn1_get_asn1type(self);
+ 
+-    len = ossl_asn1_object_size(1, ossl_i2d_ASN1_TYPE(asn1, NULL), tn);
++    len = ASN1_object_size(1, i2d_ASN1_TYPE(asn1, NULL), tn);
+     if(!(buf = OPENSSL_malloc(len))){
+-	ossl_ASN1_TYPE_free(asn1);
++	ASN1_TYPE_free(asn1);
+ 	ossl_raise(eASN1Error, "cannot alloc buffer");
+     }
+     p = buf;
+     if (tc == V_ASN1_UNIVERSAL) {
+-        ossl_i2d_ASN1_TYPE(asn1, &p);
++        i2d_ASN1_TYPE(asn1, &p);
+     } else if (explicit) {
+-        ossl_asn1_put_object(&p, 1, ossl_i2d_ASN1_TYPE(asn1, NULL), tn, tc);
+-        ossl_i2d_ASN1_TYPE(asn1, &p);
++        ASN1_put_object(&p, 1, i2d_ASN1_TYPE(asn1, NULL), tn, tc);
++        i2d_ASN1_TYPE(asn1, &p);
+     } else {
+-        ossl_i2d_ASN1_TYPE(asn1, &p);
++        i2d_ASN1_TYPE(asn1, &p);
+         *buf = tc | tn | (*buf & V_ASN1_CONSTRUCTED);
+     }
+-    ossl_ASN1_TYPE_free(asn1);
++    ASN1_TYPE_free(asn1);
+     reallen = p - buf;
+     assert(reallen <= len);
+     str = ossl_buf2str((char *)buf, rb_long2int(reallen)); /* buf will be free in ossl_buf2str */
+@@ -1308,19 +1269,19 @@
+     explicit = ossl_asn1_is_explicit(self);
+     value = join_der(ossl_asn1_get_value(self));
+ 
+-    seq_len = ossl_asn1_object_size(constructed, RSTRING_LENINT(value), tag);
+-    length = ossl_asn1_object_size(constructed, seq_len, tn);
++    seq_len = ASN1_object_size(constructed, RSTRING_LENINT(value), tag);
++    length = ASN1_object_size(constructed, seq_len, tn);
+     str = rb_str_new(0, length);
+     p = (unsigned char *)RSTRING_PTR(str);
+     if(tc == V_ASN1_UNIVERSAL)
+-	ossl_asn1_put_object(&p, constructed, RSTRING_LENINT(value), tn, tc);
++	ASN1_put_object(&p, constructed, RSTRING_LENINT(value), tn, tc);
+     else{
+ 	if(explicit){
+-	    ossl_asn1_put_object(&p, constructed, seq_len, tn, tc);
+-	    ossl_asn1_put_object(&p, constructed, RSTRING_LENINT(value), tag, V_ASN1_UNIVERSAL);
++	    ASN1_put_object(&p, constructed, seq_len, tn, tc);
++	    ASN1_put_object(&p, constructed, RSTRING_LENINT(value), tag, V_ASN1_UNIVERSAL);
+ 	}
+ 	else{
+-	    ossl_asn1_put_object(&p, constructed, RSTRING_LENINT(value), tn, tc);
++	    ASN1_put_object(&p, constructed, RSTRING_LENINT(value), tn, tc);
+ 	}
+     }
+     memcpy(p, RSTRING_PTR(value), RSTRING_LEN(value));
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_bio.c ruby-2.3.8/ext/openssl/ossl_bio.c
+--- ruby-2.3.8-old/ext/openssl/ossl_bio.c	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_bio.c	2019-06-24 17:15:47.610345161 +0300
+@@ -13,22 +13,48 @@
+ #endif
+ 
+ BIO *
+-ossl_obj2bio(volatile VALUE *pobj)
++ossl_obj2bio(VALUE obj)
+ {
+-    VALUE obj = *pobj;
+     BIO *bio;
+ 
+-    if (RB_TYPE_P(obj, T_FILE))
+-	obj = rb_funcallv(obj, rb_intern("read"), 0, NULL);
+-    StringValue(obj);
+-    bio = BIO_new_mem_buf(RSTRING_PTR(obj), RSTRING_LENINT(obj));
+-    if (!bio)
+-	ossl_raise(eOSSLError, "BIO_new_mem_buf");
+-    *pobj = obj;
++    if (RB_TYPE_P(obj, T_FILE)) {
++	rb_io_t *fptr;
++	FILE *fp;
++	int fd;
++
++	GetOpenFile(obj, fptr);
++	rb_io_check_readable(fptr);
++	if ((fd = rb_cloexec_dup(FPTR_TO_FD(fptr))) < 0){
++	    rb_sys_fail(0);
++	}
++        rb_update_max_fd(fd);
++	if (!(fp = fdopen(fd, "r"))){
++	    int e = errno;
++	    close(fd);
++	    rb_syserr_fail(e, 0);
++	}
++	if (!(bio = BIO_new_fp(fp, BIO_CLOSE))){
++	    fclose(fp);
++	    ossl_raise(eOSSLError, NULL);
++	}
++    }
++    else {
++	StringValue(obj);
++	bio = BIO_new_mem_buf(RSTRING_PTR(obj), RSTRING_LENINT(obj));
++	if (!bio) ossl_raise(eOSSLError, NULL);
++    }
+ 
+     return bio;
+ }
+ 
++BIO *
++ossl_protect_obj2bio(VALUE obj, int *status)
++{
++     BIO *ret = NULL;
++     ret = (BIO*)rb_protect((VALUE(*)_((VALUE)))ossl_obj2bio, obj, status);
++     return ret;
++}
++
+ VALUE
+ ossl_membio2str0(BIO *bio)
+ {
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_bio.h ruby-2.3.8/ext/openssl/ossl_bio.h
+--- ruby-2.3.8-old/ext/openssl/ossl_bio.h	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_bio.h	2019-06-24 17:15:47.610345161 +0300
+@@ -10,7 +10,8 @@
+ #if !defined(_OSSL_BIO_H_)
+ #define _OSSL_BIO_H_
+ 
+-BIO *ossl_obj2bio(volatile VALUE *);
++BIO *ossl_obj2bio(VALUE);
++BIO *ossl_protect_obj2bio(VALUE,int*);
+ VALUE ossl_membio2str0(BIO*);
+ VALUE ossl_membio2str(BIO*);
+ VALUE ossl_protect_membio2str(BIO*,int*);
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_bn.c ruby-2.3.8/ext/openssl/ossl_bn.c
+--- ruby-2.3.8-old/ext/openssl/ossl_bn.c	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_bn.c	2019-06-24 17:15:47.610345161 +0300
+@@ -37,17 +37,12 @@
+     BN_clear_free(ptr);
+ }
+ 
+-static size_t
+-ossl_bn_size(const void *ptr)
+-{
+-    return sizeof(BIGNUM);
+-}
+-
+ static const rb_data_type_t ossl_bn_type = {
+     "OpenSSL/BN",
+-    {0, ossl_bn_free, ossl_bn_size,},
+-    0, 0,
+-    RUBY_TYPED_FREE_IMMEDIATELY,
++    {
++	0, ossl_bn_free,
++    },
++    0, 0, RUBY_TYPED_FREE_IMMEDIATELY,
+ };
+ 
+ /*
+@@ -82,8 +77,8 @@
+     return obj;
+ }
+ 
+-static BIGNUM *
+-try_convert_to_bnptr(VALUE obj)
++BIGNUM *
++GetBNPtr(VALUE obj)
+ {
+     BIGNUM *bn = NULL;
+     VALUE newobj;
+@@ -100,17 +95,11 @@
+ 	}
+ 	SetBN(newobj, bn); /* Handle potencial mem leaks */
+ 	break;
+-    }
+-    return bn;
+-}
+-
+-BIGNUM *
+-GetBNPtr(VALUE obj)
+-{
+-    BIGNUM *bn = try_convert_to_bnptr(obj);
+-    if (!bn)
++    case T_NIL:
++	break;
++    default:
+ 	ossl_raise(rb_eTypeError, "Cannot convert into OpenSSL::BN");
+-
++    }
+     return bn;
+ }
+ 
+@@ -772,7 +761,7 @@
+     if (!(result = BN_new())) {
+ 	ossl_raise(eBNError, NULL);
+     }
+-    if (!BN_generate_prime(result, num, safe, add, rem, NULL, NULL)) {
++    if (!BN_generate_prime_ex(result, num, safe, add, rem, NULL)) {
+ 	BN_free(result);
+ 	ossl_raise(eBNError, NULL);
+     }
+@@ -847,75 +836,18 @@
+ 
+ /*
+  *  call-seq:
+- *     bn == obj => true or false
+- *
+- *  Returns +true+ only if +obj+ has the same value as +bn+. Contrast this
+- *  with OpenSSL::BN#eql?, which requires obj to be OpenSSL::BN.
+- */
+-static VALUE
+-ossl_bn_eq(VALUE self, VALUE other)
+-{
+-    BIGNUM *bn1, *bn2;
+-
+-    GetBN(self, bn1);
+-    /* BNPtr may raise, so we can't use here */
+-    bn2 = try_convert_to_bnptr(other);
+-
+-    if (bn2 && !BN_cmp(bn1, bn2)) {
+-	return Qtrue;
+-    }
+-    return Qfalse;
+-}
+-
+-/*
+- *  call-seq:
+- *     bn.eql?(obj) => true or false
++ *     big.eql?(obj) => true or false
+  *
+  *  Returns <code>true</code> only if <i>obj</i> is a
+- *  <code>OpenSSL::BN</code> with the same value as <i>big</i>. Contrast this
+- *  with OpenSSL::BN#==, which performs type conversions.
++ *  <code>Bignum</code> with the same value as <i>big</i>. Contrast this
+  */
+ static VALUE
+ ossl_bn_eql(VALUE self, VALUE other)
+ {
+-    BIGNUM *bn1, *bn2;
+-
+-    if (!rb_obj_is_kind_of(other, cBN))
+-	return Qfalse;
+-    GetBN(self, bn1);
+-    GetBN(other, bn2);
+-
+-    return BN_cmp(bn1, bn2) ? Qfalse : Qtrue;
+-}
+-
+-/*
+- *  call-seq:
+- *     bn.hash => Integer
+- *
+- *  Returns a hash code for this object.
+- *
+- *  See also Object#hash.
+- */
+-static VALUE
+-ossl_bn_hash(VALUE self)
+-{
+-    BIGNUM *bn;
+-    VALUE hash;
+-    unsigned char *buf;
+-    int len;
+-
+-    GetBN(self, bn);
+-    len = BN_num_bytes(bn);
+-    buf = xmalloc(len);
+-    if (BN_bn2bin(bn, buf) != len) {
+-	xfree(buf);
+-	ossl_raise(eBNError, NULL);
++    if (ossl_bn_cmp(self, other) == INT2FIX(0)) {
++	return Qtrue;
+     }
+-
+-    hash = LONG2FIX((long)rb_memhash(buf, len));
+-    xfree(buf);
+-
+-    return hash;
++    return Qfalse;
+ }
+ 
+ /*
+@@ -937,7 +869,7 @@
+ 	checks = NUM2INT(vchecks);
+     }
+     GetBN(self, bn);
+-    switch (BN_is_prime(bn, checks, NULL, ossl_bn_ctx, NULL)) {
++    switch (BN_is_prime_ex(bn, checks, ossl_bn_ctx, NULL)) {
+     case 1:
+ 	return Qtrue;
+     case 0:
+@@ -976,7 +908,7 @@
+     if (vtrivdiv == Qfalse) {
+ 	do_trial_division = 0;
+     }
+-    switch (BN_is_prime_fasttest(bn, checks, NULL, ossl_bn_ctx, NULL, do_trial_division)) {
++    switch (BN_is_prime_fasttest_ex(bn, checks, ossl_bn_ctx, do_trial_division, NULL)) {
+     case 1:
+ 	return Qtrue;
+     case 0:
+@@ -1045,9 +977,8 @@
+     rb_define_alias(cBN, "<=>", "cmp");
+     rb_define_method(cBN, "ucmp", ossl_bn_ucmp, 1);
+     rb_define_method(cBN, "eql?", ossl_bn_eql, 1);
+-    rb_define_method(cBN, "hash", ossl_bn_hash, 0);
+-    rb_define_method(cBN, "==", ossl_bn_eq, 1);
+-    rb_define_alias(cBN, "===", "==");
++    rb_define_alias(cBN, "==", "eql?");
++    rb_define_alias(cBN, "===", "eql?");
+     rb_define_method(cBN, "zero?", ossl_bn_is_zero, 0);
+     rb_define_method(cBN, "one?", ossl_bn_is_one, 0);
+     /* is_word */
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl.c ruby-2.3.8/ext/openssl/ossl.c
+--- ruby-2.3.8-old/ext/openssl/ossl.c	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl.c	2019-06-24 17:15:47.610345161 +0300
+@@ -217,7 +217,7 @@
+ 
+     proc = (VALUE)X509_STORE_CTX_get_ex_data(ctx, ossl_store_ctx_ex_verify_cb_idx);
+     if (!proc)
+-	proc = (VALUE)X509_STORE_get_ex_data(ctx->ctx, ossl_store_ex_verify_cb_idx);
++	proc = (VALUE)X509_STORE_get_ex_data(X509_STORE_CTX_get0_store(ctx), ossl_store_ex_verify_cb_idx);
+     if (!proc)
+ 	return ok;
+     if (!NIL_P(proc)) {
+@@ -298,11 +298,7 @@
+     const char *msg;
+     long e;
+ 
+-#ifdef HAVE_ERR_PEEK_LAST_ERROR
+     e = ERR_peek_last_error();
+-#else
+-    e = ERR_peek_error();
+-#endif
+     if (fmt) {
+ 	str = rb_vsprintf(fmt, args);
+     }
+@@ -447,7 +443,7 @@
+ ossl_fips_mode_set(VALUE self, VALUE enabled)
+ {
+ 
+-#ifdef HAVE_OPENSSL_FIPS
++#ifdef OPENSSL_FIPS
+     if (RTEST(enabled)) {
+ 	int mode = FIPS_mode();
+ 	if(!mode && !FIPS_mode_set(1)) /* turning on twice leads to an error */
+@@ -464,50 +460,37 @@
+ #endif
+ }
+ 
++#if !defined(HAVE_OPENSSL_110_THREADING_API)
+ /**
+  * Stores locks needed for OpenSSL thread safety
+  */
+ #include "ruby/thread_native.h"
+-struct CRYPTO_dynlock_value {
+-    rb_nativethread_lock_t lock;
+-    rb_nativethread_id_t owner;
+-    size_t count;
+-};
++static rb_nativethread_lock_t *ossl_locks;
+ 
+ static void
+-ossl_lock_init(struct CRYPTO_dynlock_value *l)
++ossl_lock_unlock(int mode, rb_nativethread_lock_t *lock)
+ {
+-    rb_nativethread_lock_initialize(&l->lock);
+-    l->count = 0;
++    if (mode & CRYPTO_LOCK) {
++	rb_nativethread_lock_lock(lock);
++    } else {
++	rb_nativethread_lock_unlock(lock);
++    }
+ }
+ 
+ static void
+-ossl_lock_unlock(int mode, struct CRYPTO_dynlock_value *l)
++ossl_lock_callback(int mode, int type, const char *file, int line)
+ {
+-    if (mode & CRYPTO_LOCK) {
+-	/* TODO: rb_nativethread_id_t is not necessarily compared with ==. */
+-	rb_nativethread_id_t tid = rb_nativethread_self();
+-	if (l->count && l->owner == tid) {
+-	    l->count++;
+-	    return;
+-	}
+-	rb_nativethread_lock_lock(&l->lock);
+-	l->owner = tid;
+-	l->count = 1;
+-    } else {
+-	if (!--l->count)
+-	    rb_nativethread_lock_unlock(&l->lock);
+-    }
++    ossl_lock_unlock(mode, &ossl_locks[type]);
+ }
+ 
++struct CRYPTO_dynlock_value {
++    rb_nativethread_lock_t lock;
++};
++
+ static struct CRYPTO_dynlock_value *
+ ossl_dyn_create_callback(const char *file, int line)
+ {
+-    /* Do not use xmalloc() here, since it may raise NoMemoryError */
+-    struct CRYPTO_dynlock_value *dynlock =
+-	OPENSSL_malloc(sizeof(struct CRYPTO_dynlock_value));
+-    if (dynlock)
+-	ossl_lock_init(dynlock);
++    struct CRYPTO_dynlock_value *dynlock = (struct CRYPTO_dynlock_value *)OPENSSL_malloc((int)sizeof(struct CRYPTO_dynlock_value));
+     rb_nativethread_lock_initialize(&dynlock->lock);
+     return dynlock;
+ }
+@@ -515,7 +498,7 @@
+ static void
+ ossl_dyn_lock_callback(int mode, struct CRYPTO_dynlock_value *l, const char *file, int line)
+ {
+-    ossl_lock_unlock(mode, l);
++    ossl_lock_unlock(mode, &l->lock);
+ }
+ 
+ static void
+@@ -539,22 +522,21 @@
+ }
+ #endif
+ 
+-static struct CRYPTO_dynlock_value *ossl_locks;
+-
+-static void
+-ossl_lock_callback(int mode, int type, const char *file, int line)
+-{
+-    ossl_lock_unlock(mode, &ossl_locks[type]);
+-}
+-
+ static void Init_ossl_locks(void)
+ {
+     int i;
+     int num_locks = CRYPTO_num_locks();
+ 
+-    ossl_locks = ALLOC_N(struct CRYPTO_dynlock_value, num_locks);
+-    for (i = 0; i < num_locks; i++)
+-	ossl_lock_init(&ossl_locks[i]);
++    if ((unsigned)num_locks >= INT_MAX / (int)sizeof(VALUE)) {
++	rb_raise(rb_eRuntimeError, "CRYPTO_num_locks() is too big: %d", num_locks);
++    }
++    ossl_locks = (rb_nativethread_lock_t *) OPENSSL_malloc(num_locks * (int)sizeof(rb_nativethread_lock_t));
++    if (!ossl_locks) {
++	rb_raise(rb_eNoMemError, "CRYPTO_num_locks() is too big: %d", num_locks);
++    }
++    for (i = 0; i < num_locks; i++) {
++	rb_nativethread_lock_initialize(&ossl_locks[i]);
++    }
+ 
+ #ifdef HAVE_CRYPTO_THREADID_PTR
+     CRYPTO_THREADID_set_callback(ossl_threadid_func);
+@@ -566,6 +548,7 @@
+     CRYPTO_set_dynlock_lock_callback(ossl_dyn_lock_callback);
+     CRYPTO_set_dynlock_destroy_callback(ossl_dyn_destroy_callback);
+ }
++#endif /* !HAVE_OPENSSL_110_THREADING_API */
+ 
+ /*
+  * OpenSSL provides SSL, TLS and general purpose cryptography.  It wraps the
+@@ -642,6 +625,7 @@
+  * loading the key:
+  *
+  *   key4_pem = File.read 'private.secure.pem'
++ *   pass_phrase = 'my secure pass phrase goes here'
+  *   key4 = OpenSSL::PKey::RSA.new key4_pem, pass_phrase
+  *
+  * == RSA Encryption
+@@ -806,6 +790,7 @@
+  * This example creates a self-signed certificate using an RSA key and a SHA1
+  * signature.
+  *
++ *   key = OpenSSL::PKey::RSA.new 2048
+  *   name = OpenSSL::X509::Name.parse 'CN=nobody/DC=example'
+  *
+  *   cert = OpenSSL::X509::Certificate.new
+@@ -875,6 +860,7 @@
+  * not readable by other users.
+  *
+  *   ca_key = OpenSSL::PKey::RSA.new 2048
++ *   pass_phrase = 'my secure pass phrase goes here'
+  *
+  *   cipher = OpenSSL::Cipher::Cipher.new 'AES-128-CBC'
+  *
+@@ -1126,7 +1112,7 @@
+     /*
+      * Boolean indicating whether OpenSSL is FIPS-enabled or not
+      */
+-#ifdef HAVE_OPENSSL_FIPS
++#ifdef OPENSSL_FIPS
+     rb_define_const(mOSSL, "OPENSSL_FIPS", Qtrue);
+ #else
+     rb_define_const(mOSSL, "OPENSSL_FIPS", Qfalse);
+@@ -1163,7 +1149,9 @@
+      */
+     ossl_s_to_der = rb_intern("to_der");
+ 
++#if !defined(HAVE_OPENSSL_110_THREADING_API)
+     Init_ossl_locks();
++#endif
+ 
+     /*
+      * Init components
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_cipher.c ruby-2.3.8/ext/openssl/ossl_cipher.c
+--- ruby-2.3.8-old/ext/openssl/ossl_cipher.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_cipher.c	2019-06-24 17:15:47.610345161 +0300
+@@ -11,10 +11,12 @@
+ 
+ #define NewCipher(klass) \
+     TypedData_Wrap_Struct((klass), &ossl_cipher_type, 0)
+-#define MakeCipher(obj, klass, ctx) \
+-    (obj) = TypedData_Make_Struct((klass), EVP_CIPHER_CTX, &ossl_cipher_type, (ctx))
+-#define AllocCipher(obj, ctx) \
+-    (DATA_PTR(obj) = (ctx) = ZALLOC(EVP_CIPHER_CTX))
++#define AllocCipher(obj, ctx) do { \
++    (ctx) = EVP_CIPHER_CTX_new(); \
++    if (!(ctx)) \
++	ossl_raise(rb_eRuntimeError, NULL); \
++    RTYPEDDATA_DATA(obj) = (ctx); \
++} while (0)
+ #define GetCipherInit(obj, ctx) do { \
+     TypedData_Get_Struct((obj), EVP_CIPHER_CTX, &ossl_cipher_type, (ctx)); \
+ } while (0)
+@@ -34,17 +36,16 @@
+  */
+ VALUE cCipher;
+ VALUE eCipherError;
+-static ID id_key_set;
+ 
+ static VALUE ossl_cipher_alloc(VALUE klass);
+ static void ossl_cipher_free(void *ptr);
+-static size_t ossl_cipher_memsize(const void *ptr);
+ 
+ static const rb_data_type_t ossl_cipher_type = {
+     "OpenSSL/Cipher",
+-    {0, ossl_cipher_free, ossl_cipher_memsize,},
+-    0, 0,
+-    RUBY_TYPED_FREE_IMMEDIATELY,
++    {
++	0, ossl_cipher_free,
++    },
++    0, 0, RUBY_TYPED_FREE_IMMEDIATELY,
+ };
+ 
+ /*
+@@ -68,7 +69,6 @@
+ 
+     ret = ossl_cipher_alloc(cCipher);
+     AllocCipher(ret, ctx);
+-    EVP_CIPHER_CTX_init(ctx);
+     if (EVP_CipherInit_ex(ctx, cipher, NULL, NULL, NULL, -1) != 1)
+ 	ossl_raise(eCipherError, NULL);
+ 
+@@ -88,13 +88,6 @@
+     }
+ }
+ 
+-static size_t
+-ossl_cipher_memsize(const void *ptr)
+-{
+-    const EVP_CIPHER_CTX *ctx = ptr;
+-    return sizeof(*ctx);
+-}
+-
+ static VALUE
+ ossl_cipher_alloc(VALUE klass)
+ {
+@@ -115,6 +108,17 @@
+     EVP_CIPHER_CTX *ctx;
+     const EVP_CIPHER *cipher;
+     char *name;
++    /*
++     * EVP_CipherInit_ex() allows to specify NULL to key and iv, however some
++     * ciphers unfortunately don't handle well. [Bug #2768]
++     *
++     * The EVP which has EVP_CIPH_RAND_KEY flag (such as DES3) allows
++     * uninitialized key, but other EVPs (such as AES) does not allow it.
++     * Calling EVP_CipherUpdate() without initializing key causes SEGV so we
++     * set the data filled with '\0' as the key by default.
++     */
++    unsigned char dummy_key[EVP_MAX_KEY_LENGTH] = { 0 };
++    unsigned char dummy_iv[EVP_MAX_IV_LENGTH] = { 0 };
+ 
+     name = StringValuePtr(str);
+     GetCipherInit(self, ctx);
+@@ -122,11 +126,11 @@
+ 	ossl_raise(rb_eRuntimeError, "Cipher already inititalized!");
+     }
+     AllocCipher(self, ctx);
+-    EVP_CIPHER_CTX_init(ctx);
+     if (!(cipher = EVP_get_cipherbyname(name))) {
+ 	ossl_raise(rb_eRuntimeError, "unsupported cipher algorithm (%s)", name);
+     }
+-    if (EVP_CipherInit_ex(ctx, cipher, NULL, NULL, NULL, -1) != 1)
++
++    if (EVP_CipherInit_ex(ctx, cipher, NULL, dummy_key, dummy_iv, -1) != 1)
+ 	ossl_raise(eCipherError, NULL);
+ 
+     return self;
+@@ -151,16 +155,13 @@
+     return self;
+ }
+ 
+-#ifdef HAVE_OBJ_NAME_DO_ALL_SORTED
+ static void*
+ add_cipher_name_to_ary(const OBJ_NAME *name, VALUE ary)
+ {
+     rb_ary_push(ary, rb_str_new2(name->name));
+     return NULL;
+ }
+-#endif
+ 
+-#ifdef HAVE_OBJ_NAME_DO_ALL_SORTED
+ /*
+  *  call-seq:
+  *     OpenSSL::Cipher.ciphers -> array[string...]
+@@ -179,9 +180,6 @@
+ 
+     return ary;
+ }
+-#else
+-#define ossl_s_ciphers rb_f_notimplement
+-#endif
+ 
+ /*
+  *  call-seq:
+@@ -245,9 +243,6 @@
+ 	ossl_raise(eCipherError, NULL);
+     }
+ 
+-    if (p_key)
+-	rb_ivar_set(self, id_key_set, Qtrue);
+-
+     return self;
+ }
+ 
+@@ -334,8 +329,6 @@
+     OPENSSL_cleanse(key, sizeof key);
+     OPENSSL_cleanse(iv, sizeof iv);
+ 
+-    rb_ivar_set(self, id_key_set, Qtrue);
+-
+     return Qnil;
+ }
+ 
+@@ -389,9 +382,6 @@
+ 
+     rb_scan_args(argc, argv, "11", &data, &str);
+ 
+-    if (!RTEST(rb_attr_get(self, id_key_set)))
+-	ossl_raise(eCipherError, "key not set");
+-
+     StringValue(data);
+     in = (unsigned char *)RSTRING_PTR(data);
+     if ((in_len = RSTRING_LEN(data)) == 0)
+@@ -491,8 +481,6 @@
+     if (EVP_CipherInit_ex(ctx, NULL, NULL, (unsigned char *)RSTRING_PTR(key), NULL, -1) != 1)
+         ossl_raise(eCipherError, NULL);
+ 
+-    rb_ivar_set(self, id_key_set, Qtrue);
+-
+     return key;
+ }
+ 
+@@ -560,8 +548,6 @@
+     in_len = RSTRING_LEN(data);
+ 
+     GetCipher(self, ctx);
+-    if (!(EVP_CIPHER_flags(EVP_CIPHER_CTX_cipher(ctx)) & EVP_CIPH_FLAG_AEAD_CIPHER))
+-	ossl_raise(eCipherError, "AEAD not supported by this cipher");
+ 
+     if (!ossl_cipher_update_long(ctx, NULL, &out_len, in, in_len))
+         ossl_raise(eCipherError, "couldn't set additional authenticated data");
+@@ -724,7 +710,6 @@
+     return key_length;
+ }
+ 
+-#if defined(HAVE_EVP_CIPHER_CTX_SET_PADDING)
+ /*
+  *  call-seq:
+  *     cipher.padding = integer -> integer
+@@ -746,9 +731,6 @@
+ 	ossl_raise(eCipherError, NULL);
+     return padding;
+ }
+-#else
+-#define ossl_cipher_set_padding rb_f_notimplement
+-#endif
+ 
+ #define CIPHER_0ARG_INT(func)					\
+     static VALUE						\
+@@ -1013,6 +995,4 @@
+     rb_define_method(cCipher, "iv_len", ossl_cipher_iv_length, 0);
+     rb_define_method(cCipher, "block_size", ossl_cipher_block_size, 0);
+     rb_define_method(cCipher, "padding=", ossl_cipher_set_padding, 1);
+-
+-    id_key_set = rb_intern_const("key_set");
+ }
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_config.c ruby-2.3.8/ext/openssl/ossl_config.c
+--- ruby-2.3.8-old/ext/openssl/ossl_config.c	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_config.c	2019-06-24 17:15:47.610345161 +0300
+@@ -26,13 +26,13 @@
+  */
+ 
+ /*
+- * DupConfigPtr is a public C-level function for getting OpenSSL CONF struct
++ * GetConfigPtr is a public C-level function for getting OpenSSL CONF struct
+  * from an OpenSSL::Config(eConfig) instance.  We decided to implement
+  * OpenSSL::Config in Ruby level but we need to pass native CONF struct for
+  * some OpenSSL features such as X509V3_EXT_*.
+  */
+ CONF *
+-DupConfigPtr(VALUE obj)
++GetConfigPtr(VALUE obj)
+ {
+     CONF *conf;
+     VALUE str;
+@@ -41,7 +41,7 @@
+ 
+     OSSL_Check_Kind(obj, cConfig);
+     str = rb_funcall(obj, rb_intern("to_s"), 0);
+-    bio = ossl_obj2bio(&str);
++    bio = ossl_obj2bio(str);
+     conf = NCONF_new(NULL);
+     if(!conf){
+ 	BIO_free(bio);
+@@ -50,10 +50,9 @@
+     if(!NCONF_load_bio(conf, bio, &eline)){
+ 	BIO_free(bio);
+ 	NCONF_free(conf);
+-	if (eline <= 0)
+-	    ossl_raise(eConfigError, "wrong config format");
+-	else
+-	    ossl_raise(eConfigError, "error in line %d", eline);
++	if (eline <= 0) ossl_raise(eConfigError, "wrong config format");
++	else ossl_raise(eConfigError, "error in line %d", eline);
++	ossl_raise(eConfigError, NULL);
+     }
+     BIO_free(bio);
+ 
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_config.h ruby-2.3.8/ext/openssl/ossl_config.h
+--- ruby-2.3.8-old/ext/openssl/ossl_config.h	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_config.h	2019-06-24 17:15:47.610345161 +0300
+@@ -13,6 +13,7 @@
+ extern VALUE cConfig;
+ extern VALUE eConfigError;
+ 
++CONF* GetConfigPtr(VALUE obj);
+ CONF* DupConfigPtr(VALUE obj);
+ void Init_ossl_config(void);
+ 
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_engine.c ruby-2.3.8/ext/openssl/ossl_engine.c
+--- ruby-2.3.8-old/ext/openssl/ossl_engine.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_engine.c	2019-06-24 17:15:47.610345161 +0300
+@@ -9,7 +9,7 @@
+  */
+ #include "ossl.h"
+ 
+-#if defined(OSSL_ENGINE_ENABLED)
++#if !defined(OPENSSL_NO_ENGINE)
+ 
+ #define NewEngine(klass) \
+     TypedData_Wrap_Struct((klass), &ossl_engine_type, 0)
+@@ -160,14 +160,14 @@
+  * It is only necessary to run cleanup when engines are loaded via
+  * OpenSSL::Engine.load. However, running cleanup before exit is recommended.
+  *
++ * Note that this method is no-op if using OpenSSL 1.1.0 or newer.
++ *
+  * See also, https://www.openssl.org/docs/crypto/engine.html
+  */
+ static VALUE
+ ossl_engine_s_cleanup(VALUE self)
+ {
+-#if defined(HAVE_ENGINE_CLEANUP)
+     ENGINE_cleanup();
+-#endif
+     return Qnil;
+ }
+ 
+@@ -296,7 +296,6 @@
+     return Qnil;
+ }
+ 
+-#if defined(HAVE_ENGINE_GET_CIPHER)
+ /* Document-method: OpenSSL::Engine#cipher
+  *
+  * call-seq:
+@@ -331,11 +330,7 @@
+ 
+     return ossl_cipher_new(ciph);
+ }
+-#else
+-#define ossl_engine_get_cipher rb_f_notimplement
+-#endif
+ 
+-#if defined(HAVE_ENGINE_GET_DIGEST)
+ /* Document-method: OpenSSL::Engine#digest
+  *
+  * call-seq:
+@@ -370,9 +365,6 @@
+ 
+     return ossl_digest_new(md);
+ }
+-#else
+-#define ossl_engine_get_digest rb_f_notimplement
+-#endif
+ 
+ /* Document-method: OpenSSL::Engine#load_private_key
+  *
+@@ -396,11 +388,7 @@
+     sid = NIL_P(id) ? NULL : StringValuePtr(id);
+     sdata = NIL_P(data) ? NULL : StringValuePtr(data);
+     GetEngine(self, e);
+-#if OPENSSL_VERSION_NUMBER < 0x00907000L
+-    pkey = ENGINE_load_private_key(e, sid, sdata);
+-#else
+     pkey = ENGINE_load_private_key(e, sid, NULL, sdata);
+-#endif
+     if (!pkey) ossl_raise(eEngineError, NULL);
+     obj = ossl_pkey_new(pkey);
+     OSSL_PKEY_SET_PRIVATE(obj);
+@@ -430,11 +418,7 @@
+     sid = NIL_P(id) ? NULL : StringValuePtr(id);
+     sdata = NIL_P(data) ? NULL : StringValuePtr(data);
+     GetEngine(self, e);
+-#if OPENSSL_VERSION_NUMBER < 0x00907000L
+-    pkey = ENGINE_load_public_key(e, sid, sdata);
+-#else
+     pkey = ENGINE_load_public_key(e, sid, NULL, sdata);
+-#endif
+     if (!pkey) ossl_raise(eEngineError, NULL);
+ 
+     return ossl_pkey_new(pkey);
+@@ -585,12 +569,8 @@
+ #ifdef ENGINE_METHOD_BN_MOD_EXP_CRT
+     DefEngineConst(METHOD_BN_MOD_EXP_CRT);
+ #endif
+-#ifdef ENGINE_METHOD_CIPHERS
+     DefEngineConst(METHOD_CIPHERS);
+-#endif
+-#ifdef ENGINE_METHOD_DIGESTS
+     DefEngineConst(METHOD_DIGESTS);
+-#endif
+     DefEngineConst(METHOD_ALL);
+     DefEngineConst(METHOD_NONE);
+ }
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl.h ruby-2.3.8/ext/openssl/ossl.h
+--- ruby-2.3.8-old/ext/openssl/ossl.h	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl.h	2019-06-24 17:15:47.610345161 +0300
+@@ -12,10 +12,6 @@
+ 
+ #include RUBY_EXTCONF_H
+ 
+-#if defined(__cplusplus)
+-extern "C" {
+-#endif
+-
+ #if 0
+   mOSSL = rb_define_module("OpenSSL");
+   mX509 = rb_define_module_under(mOSSL, "X509");
+@@ -31,11 +27,6 @@
+ #include <ruby/io.h>
+ #include <ruby/thread.h>
+ 
+-/*
+- * Check the OpenSSL version
+- * The only supported are:
+- * 	OpenSSL >= 0.9.7
+- */
+ #include <openssl/opensslv.h>
+ 
+ #ifdef HAVE_ASSERT_H
+@@ -46,7 +37,6 @@
+ 
+ #if defined(_WIN32) && !defined(LIBRESSL_VERSION_NUMBER)
+ #  include <openssl/e_os2.h>
+-#  define OSSL_NO_CONF_API 1
+ #  if !defined(OPENSSL_SYS_WIN32)
+ #    define OPENSSL_SYS_WIN32 1
+ #  endif
+@@ -54,7 +44,7 @@
+ #endif
+ #include <errno.h>
+ #include <openssl/err.h>
+-#include <openssl/asn1_mac.h>
++#include <openssl/asn1.h>
+ #include <openssl/x509v3.h>
+ #include <openssl/ssl.h>
+ #include <openssl/pkcs12.h>
+@@ -63,19 +53,15 @@
+ #include <openssl/rand.h>
+ #include <openssl/conf.h>
+ #include <openssl/conf_api.h>
++#if !defined(OPENSSL_NO_OCSP)
++#  include <openssl/ocsp.h>
++#endif
+ #if !defined(_WIN32)
+ #  include <openssl/crypto.h>
+ #endif
+-#undef X509_NAME
+-#undef PKCS7_SIGNER_INFO
+-#if defined(HAVE_OPENSSL_ENGINE_H) && defined(HAVE_EVP_CIPHER_CTX_ENGINE)
+-#  define OSSL_ENGINE_ENABLED
++#if !defined(OPENSSL_NO_ENGINE)
+ #  include <openssl/engine.h>
+ #endif
+-#if defined(HAVE_OPENSSL_OCSP_H)
+-#  define OSSL_OCSP_ENABLED
+-#  include <openssl/ocsp.h>
+-#endif
+ 
+ /* OpenSSL requires passwords for PEM-encoded files to be at least four
+  * characters long
+@@ -116,13 +102,6 @@
+ } while (0)
+ 
+ /*
+- * Compatibility
+- */
+-#if OPENSSL_VERSION_NUMBER >= 0x10000000L
+-#define STACK _STACK
+-#endif
+-
+-/*
+  * String to HEXString conversion
+  */
+ int string2hex(const unsigned char *, int, char **, int *);
+@@ -242,8 +221,4 @@
+ 
+ void Init_openssl(void);
+ 
+-#if defined(__cplusplus)
+-}
+-#endif
+-
+ #endif /* _OSSL_H_ */
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_hmac.c ruby-2.3.8/ext/openssl/ossl_hmac.c
+--- ruby-2.3.8-old/ext/openssl/ossl_hmac.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_hmac.c	2019-06-24 17:15:47.610345161 +0300
+@@ -7,12 +7,10 @@
+  * This program is licensed under the same licence as Ruby.
+  * (See the file 'LICENCE'.)
+  */
+-#if !defined(OPENSSL_NO_HMAC)
+-
+ #include "ossl.h"
+ 
+-#define MakeHMAC(obj, klass, ctx) \
+-    (obj) = TypedData_Make_Struct((klass), HMAC_CTX, &ossl_hmac_type, (ctx))
++#define NewHMAC(klass) \
++    TypedData_Wrap_Struct((klass), &ossl_hmac_type, 0)
+ #define GetHMAC(obj, ctx) do { \
+     TypedData_Get_Struct((obj), HMAC_CTX, &ossl_hmac_type, (ctx)); \
+     if (!(ctx)) { \
+@@ -40,8 +38,7 @@
+ static void
+ ossl_hmac_free(void *ctx)
+ {
+-    HMAC_CTX_cleanup(ctx);
+-    ruby_xfree(ctx);
++    HMAC_CTX_free(ctx);
+ }
+ 
+ static const rb_data_type_t ossl_hmac_type = {
+@@ -55,11 +52,12 @@
+ static VALUE
+ ossl_hmac_alloc(VALUE klass)
+ {
+-    HMAC_CTX *ctx;
+     VALUE obj;
+-
+-    MakeHMAC(obj, klass, ctx);
+-    HMAC_CTX_init(ctx);
++    HMAC_CTX *ctx = HMAC_CTX_new();
++    if (!ctx)
++	ossl_raise(rb_eRuntimeError, "HMAC_CTX_new() failed");
++    obj = NewHMAC(klass);
++    RTYPEDDATA_DATA(obj) = ctx;
+ 
+     return obj;
+ }
+@@ -107,8 +105,9 @@
+ 
+     StringValue(key);
+     GetHMAC(self, ctx);
+-    HMAC_Init(ctx, RSTRING_PTR(key), RSTRING_LENINT(key),
+-		 GetDigestPtr(digest));
++    HMAC_CTX_reset(ctx);
++    HMAC_Init_ex(ctx, RSTRING_PTR(key), RSTRING_LENINT(key),
++		 GetDigestPtr(digest), NULL);
+ 
+     return self;
+ }
+@@ -161,16 +160,18 @@
+ static void
+ hmac_final(HMAC_CTX *ctx, unsigned char **buf, unsigned int *buf_len)
+ {
+-    HMAC_CTX final;
+-
+-    HMAC_CTX_copy(&final, ctx);
+-    if (!(*buf = OPENSSL_malloc(HMAC_size(&final)))) {
+-	HMAC_CTX_cleanup(&final);
+-	OSSL_Debug("Allocating %d mem", HMAC_size(&final));
++    HMAC_CTX *final = HMAC_CTX_new();
++    if (!final)
++	ossl_raise(eHMACError, "HMAC_CTX_new() failed");
++
++    HMAC_CTX_copy(final, ctx);
++    if (!(*buf = OPENSSL_malloc(HMAC_size(final)))) {
++	HMAC_CTX_free(final);
++	OSSL_Debug("Allocating %"PRIuSIZE" mem", (size_t)HMAC_size(final));
+ 	ossl_raise(eHMACError, "Cannot allocate memory for hmac");
+     }
+-    HMAC_Final(&final, *buf, buf_len);
+-    HMAC_CTX_cleanup(&final);
++    HMAC_Final(final, *buf, buf_len);
++    HMAC_CTX_free(final);
+ }
+ 
+ /*
+@@ -256,7 +257,7 @@
+     HMAC_CTX *ctx;
+ 
+     GetHMAC(self, ctx);
+-    HMAC_Init(ctx, NULL, 0, NULL);
++    HMAC_CTX_reset(ctx);
+ 
+     return self;
+ }
+@@ -360,12 +361,3 @@
+     rb_define_alias(cHMAC, "inspect", "hexdigest");
+     rb_define_alias(cHMAC, "to_s", "hexdigest");
+ }
+-
+-#else /* NO_HMAC */
+-#  warning >>> OpenSSL is compiled without HMAC support <<<
+-void
+-Init_ossl_hmac(void)
+-{
+-    rb_warning("HMAC is not available: OpenSSL is compiled without HMAC.");
+-}
+-#endif /* NO_HMAC */
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_ocsp.c ruby-2.3.8/ext/openssl/ossl_ocsp.c
+--- ruby-2.3.8-old/ext/openssl/ossl_ocsp.c	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_ocsp.c	2019-06-24 17:15:47.610345161 +0300
+@@ -10,7 +10,7 @@
+  */
+ #include "ossl.h"
+ 
+-#if defined(OSSL_OCSP_ENABLED)
++#if !defined(OPENSSL_NO_OCSP)
+ 
+ #define NewOCSPReq(klass) \
+     TypedData_Wrap_Struct((klass), &ossl_ocsp_request_type, 0)
+@@ -271,17 +271,12 @@
+ ossl_ocspreq_add_certid(VALUE self, VALUE certid)
+ {
+     OCSP_REQUEST *req;
+-    OCSP_CERTID *id, *id_new;
++    OCSP_CERTID *id;
+ 
+     GetOCSPReq(self, req);
+     GetOCSPCertId(certid, id);
+-
+-    if (!(id_new = OCSP_CERTID_dup(id)))
+-	ossl_raise(eOCSPError, "OCSP_CERTID_dup");
+-    if (!OCSP_request_add0_id(req, id_new)) {
+-	OCSP_CERTID_free(id_new);
+-	ossl_raise(eOCSPError, "OCSP_request_add0_id");
+-    }
++    if(!OCSP_request_add0_id(req, OCSP_CERTID_dup(id)))
++	ossl_raise(eOCSPError, NULL);
+ 
+     return self;
+ }
+@@ -713,8 +708,8 @@
+ 
+     if(!NIL_P(ext)){
+ 	X509_EXTENSION *x509ext;
+-	sk_X509_EXTENSION_pop_free(single->singleExtensions, X509_EXTENSION_free);
+-	single->singleExtensions = NULL;
++	while ((x509ext = OCSP_SINGLERESP_delete_ext(single, 0)))
++	    X509_EXTENSION_free(x509ext);
+ 	for(i = 0; i < RARRAY_LEN(ext); i++){
+ 	    x509ext = DupX509ExtPtr(RARRAY_AREF(ext, i));
+ 	    if(!OCSP_SINGLERESP_add_ext(single, x509ext, -1)){
+@@ -769,7 +764,7 @@
+ 	status = OCSP_single_get0_status(single, &reason, &revtime,
+ 					 &thisupd, &nextupd);
+ 	if(status < 0) continue;
+-	if(!(cid = OCSP_CERTID_dup(single->certId)))
++	if(!(cid = OCSP_CERTID_dup(OCSP_SINGLERESP_get0_id(single))))
+ 	    ossl_raise(eOCSPError, NULL);
+ 	ary = rb_ary_new();
+ 	rb_ary_push(ary, ossl_ocspcertid_new(cid));
+@@ -968,10 +963,12 @@
+ ossl_ocspcid_get_serial(VALUE self)
+ {
+     OCSP_CERTID *id;
++    ASN1_INTEGER *serial;
+ 
+     GetOCSPCertId(self, id);
++    OCSP_id_get0_info(NULL, NULL, NULL, &serial, id);
+ 
+-    return asn1integer_to_num(id->serialNumber);
++    return asn1integer_to_num(serial);
+ }
+ 
+ void
+@@ -1255,7 +1252,7 @@
+     rb_define_const(mOCSP, "V_RESPID_KEY", INT2NUM(V_OCSP_RESPID_KEY));
+ }
+ 
+-#else /* ! OSSL_OCSP_ENABLED */
++#else
+ void
+ Init_ossl_ocsp(void)
+ {
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_ocsp.h ruby-2.3.8/ext/openssl/ossl_ocsp.h
+--- ruby-2.3.8-old/ext/openssl/ossl_ocsp.h	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_ocsp.h	2019-06-24 17:15:47.610345161 +0300
+@@ -11,12 +11,10 @@
+ #if !defined(_OSSL_OCSP_H_)
+ #define _OSSL_OCSP_H_
+ 
+-#if defined(OSSL_OCSP_ENABLED)
+ extern VALUE mOCSP;
+ extern VALUE cOPCSReq;
+ extern VALUE cOPCSRes;
+ extern VALUE cOPCSBasicRes;
+-#endif
+ 
+ void Init_ossl_ocsp(void);
+ 
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_pkcs12.c ruby-2.3.8/ext/openssl/ossl_pkcs12.c
+--- ruby-2.3.8-old/ext/openssl/ossl_pkcs12.c	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_pkcs12.c	2019-06-24 17:15:47.610345161 +0300
+@@ -104,6 +104,7 @@
+     friendlyname = NIL_P(name) ? NULL : StringValuePtr(name);
+     key = GetPKeyPtr(pkey);
+     x509 = GetX509CertPtr(cert);
++    x509s = NIL_P(ca) ? NULL : ossl_x509_ary2sk(ca);
+ /* TODO: make a VALUE to nid function */
+     if (!NIL_P(key_nid)) {
+         if ((nkey = OBJ_txt2nid(StringValuePtr(key_nid))) == NID_undef)
+@@ -121,7 +122,6 @@
+         ktype = NUM2INT(keytype);
+ 
+     obj = NewPKCS12(cPKCS12);
+-    x509s = NIL_P(ca) ? NULL : ossl_x509_ary2sk(ca);
+     p12 = PKCS12_create(passphrase, friendlyname, key, x509, x509s,
+                         nkey, ncert, kiter, miter, ktype);
+     sk_X509_pop_free(x509s, X509_free);
+@@ -159,18 +159,14 @@
+ 
+     if(rb_scan_args(argc, argv, "02", &arg, &pass) == 0) return self;
+     passphrase = NIL_P(pass) ? NULL : StringValuePtr(pass);
+-    in = ossl_obj2bio(&arg);
++    in = ossl_obj2bio(arg);
+     d2i_PKCS12_bio(in, &pkcs);
+     DATA_PTR(self) = pkcs;
+     BIO_free(in);
+ 
+     pkey = cert = ca = Qnil;
+-    /* OpenSSL's bug; PKCS12_parse() puts errors even if it succeeds.
+-     * Fixed in OpenSSL 1.0.0t, 1.0.1p, 1.0.2d */
+-    ERR_set_mark();
+     if(!PKCS12_parse(pkcs, passphrase, &key, &x509, &x509s))
+ 	ossl_raise(ePKCS12Error, "PKCS12_parse");
+-    ERR_pop_to_mark();
+     pkey = rb_protect((VALUE(*)_((VALUE)))ossl_pkey_new, (VALUE)key,
+ 		      &st); /* NO DUP */
+     if(st) goto err;
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_pkcs5.c ruby-2.3.8/ext/openssl/ossl_pkcs5.c
+--- ruby-2.3.8-old/ext/openssl/ossl_pkcs5.c	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_pkcs5.c	2019-06-24 17:15:47.610345161 +0300
+@@ -48,7 +48,6 @@
+ #endif
+ 
+ 
+-#ifdef HAVE_PKCS5_PBKDF2_HMAC_SHA1
+ /*
+  * call-seq:
+  *    PKCS5.pbkdf2_hmac_sha1(pass, salt, iter, keylen) => string
+@@ -81,9 +80,6 @@
+ 
+     return str;
+ }
+-#else
+-#define ossl_pkcs5_pbkdf2_hmac_sha1 rb_f_notimplement
+-#endif
+ 
+ void
+ Init_ossl_pkcs5(void)
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_pkcs7.c ruby-2.3.8/ext/openssl/ossl_pkcs7.c
+--- ruby-2.3.8-old/ext/openssl/ossl_pkcs7.c	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_pkcs7.c	2019-06-24 17:15:47.610345161 +0300
+@@ -127,6 +127,22 @@
+  * Public
+  * (MADE PRIVATE UNTIL SOMEBODY WILL NEED THEM)
+  */
++static PKCS7_SIGNER_INFO *
++ossl_PKCS7_SIGNER_INFO_dup(const PKCS7_SIGNER_INFO *si)
++{
++    return (PKCS7_SIGNER_INFO *)ASN1_dup((i2d_of_void *)i2d_PKCS7_SIGNER_INFO,
++					 (d2i_of_void *)d2i_PKCS7_SIGNER_INFO,
++					 (char *)si);
++}
++
++static PKCS7_RECIP_INFO *
++ossl_PKCS7_RECIP_INFO_dup(const PKCS7_RECIP_INFO *si)
++{
++    return (PKCS7_RECIP_INFO *)ASN1_dup((i2d_of_void *)i2d_PKCS7_RECIP_INFO,
++					(d2i_of_void *)d2i_PKCS7_RECIP_INFO,
++					(char *)si);
++}
++
+ static VALUE
+ ossl_pkcs7si_new(PKCS7_SIGNER_INFO *p7si)
+ {
+@@ -134,7 +150,7 @@
+     VALUE obj;
+ 
+     obj = NewPKCS7si(cPKCS7Signer);
+-    pkcs7 = p7si ? PKCS7_SIGNER_INFO_dup(p7si) : PKCS7_SIGNER_INFO_new();
++    pkcs7 = p7si ? ossl_PKCS7_SIGNER_INFO_dup(p7si) : PKCS7_SIGNER_INFO_new();
+     if (!pkcs7) ossl_raise(ePKCS7Error, NULL);
+     SetPKCS7si(obj, pkcs7);
+ 
+@@ -147,7 +163,7 @@
+     PKCS7_SIGNER_INFO *p7si, *pkcs7;
+ 
+     SafeGetPKCS7si(obj, p7si);
+-    if (!(pkcs7 = PKCS7_SIGNER_INFO_dup(p7si))) {
++    if (!(pkcs7 = ossl_PKCS7_SIGNER_INFO_dup(p7si))) {
+ 	ossl_raise(ePKCS7Error, NULL);
+     }
+ 
+@@ -161,7 +177,7 @@
+     VALUE obj;
+ 
+     obj = NewPKCS7ri(cPKCS7Recipient);
+-    pkcs7 = p7ri ? PKCS7_RECIP_INFO_dup(p7ri) : PKCS7_RECIP_INFO_new();
++    pkcs7 = p7ri ? ossl_PKCS7_RECIP_INFO_dup(p7ri) : PKCS7_RECIP_INFO_new();
+     if (!pkcs7) ossl_raise(ePKCS7Error, NULL);
+     SetPKCS7ri(obj, pkcs7);
+ 
+@@ -174,7 +190,7 @@
+     PKCS7_RECIP_INFO *p7ri, *pkcs7;
+ 
+     SafeGetPKCS7ri(obj, p7ri);
+-    if (!(pkcs7 = PKCS7_RECIP_INFO_dup(p7ri))) {
++    if (!(pkcs7 = ossl_PKCS7_RECIP_INFO_dup(p7ri))) {
+ 	ossl_raise(ePKCS7Error, NULL);
+     }
+ 
+@@ -193,7 +209,7 @@
+     VALUE ret, data;
+ 
+     ret = NewPKCS7(cPKCS7);
+-    in = ossl_obj2bio(&arg);
++    in = ossl_obj2bio(arg);
+     out = NULL;
+     pkcs7 = SMIME_read_PKCS7(in, &out);
+     BIO_free(in);
+@@ -225,7 +241,7 @@
+     SafeGetPKCS7(pkcs7, p7);
+     if(!NIL_P(data) && PKCS7_is_detached(p7))
+ 	flg |= PKCS7_DETACHED;
+-    in = NIL_P(data) ? NULL : ossl_obj2bio(&data);
++    in = NIL_P(data) ? NULL : ossl_obj2bio(data);
+     if(!(out = BIO_new(BIO_s_mem()))){
+         BIO_free(in);
+         ossl_raise(ePKCS7Error, NULL);
+@@ -262,7 +278,7 @@
+     pkey = GetPrivPKeyPtr(key); /* NO NEED TO DUP */
+     flg = NIL_P(flags) ? 0 : NUM2INT(flags);
+     ret = NewPKCS7(cPKCS7);
+-    in = ossl_obj2bio(&data);
++    in = ossl_obj2bio(data);
+     if(NIL_P(certs)) x509s = NULL;
+     else{
+ 	x509s = ossl_protect_x509_ary2sk(certs, &status);
+@@ -318,7 +334,7 @@
+     else ciph = GetCipherPtr(cipher); /* NO NEED TO DUP */
+     flg = NIL_P(flags) ? 0 : NUM2INT(flags);
+     ret = NewPKCS7(cPKCS7);
+-    in = ossl_obj2bio(&data);
++    in = ossl_obj2bio(data);
+     x509s = ossl_protect_x509_ary2sk(certs, &status);
+     if(status){
+ 	BIO_free(in);
+@@ -369,7 +385,7 @@
+     if(rb_scan_args(argc, argv, "01", &arg) == 0)
+ 	return self;
+     arg = ossl_to_der_if_possible(arg);
+-    in = ossl_obj2bio(&arg);
++    in = ossl_obj2bio(arg);
+     p7 = PEM_read_bio_PKCS7(in, &pkcs, NULL, NULL);
+     if (!p7) {
+ 	OSSL_BIO_reset(in);
+@@ -755,12 +771,10 @@
+     VALUE data;
+     const char *msg;
+ 
+-    GetPKCS7(self, p7);
+     rb_scan_args(argc, argv, "22", &certs, &store, &indata, &flags);
+-    x509st = GetX509StorePtr(store);
+     flg = NIL_P(flags) ? 0 : NUM2INT(flags);
+     if(NIL_P(indata)) indata = ossl_pkcs7_get_data(self);
+-    in = NIL_P(indata) ? NULL : ossl_obj2bio(&indata);
++    in = NIL_P(indata) ? NULL : ossl_obj2bio(indata);
+     if(NIL_P(certs)) x509s = NULL;
+     else{
+ 	x509s = ossl_protect_x509_ary2sk(certs, &status);
+@@ -769,6 +783,8 @@
+ 	    rb_jump_tag(status);
+ 	}
+     }
++    x509st = GetX509StorePtr(store);
++    GetPKCS7(self, p7);
+     if(!(out = BIO_new(BIO_s_mem()))){
+ 	BIO_free(in);
+ 	sk_X509_pop_free(x509s, X509_free);
+@@ -776,13 +792,13 @@
+     }
+     ok = PKCS7_verify(p7, x509s, x509st, in, out, flg);
+     BIO_free(in);
+-    sk_X509_pop_free(x509s, X509_free);
+-    if (ok < 0) ossl_raise(ePKCS7Error, "PKCS7_verify");
++    if (ok < 0) ossl_raise(ePKCS7Error, NULL);
+     msg = ERR_reason_error_string(ERR_get_error());
+     ossl_pkcs7_set_err_string(self, msg ? rb_str_new2(msg) : Qnil);
+     ERR_clear_error();
+     data = ossl_membio2str(out);
+     ossl_pkcs7_set_data(self, data);
++    sk_X509_pop_free(x509s, X509_free);
+ 
+     return (ok == 1) ? Qtrue : Qfalse;
+ }
+@@ -822,12 +838,12 @@
+     char buf[4096];
+     int len;
+ 
++    in = ossl_obj2bio(data);
+     GetPKCS7(self, pkcs7);
+     if(PKCS7_type_is_signed(pkcs7)){
+ 	if(!PKCS7_content_new(pkcs7, NID_pkcs7_data))
+ 	    ossl_raise(ePKCS7Error, NULL);
+     }
+-    in = ossl_obj2bio(&data);
+     if(!(out = PKCS7_dataInit(pkcs7, NULL))) goto err;
+     for(;;){
+ 	if((len = BIO_read(in, buf, sizeof(buf))) <= 0)
+@@ -839,7 +855,7 @@
+     ossl_pkcs7_set_data(self, Qnil);
+ 
+  err:
+-    BIO_free_all(out);
++    BIO_free(out);
+     BIO_free(in);
+     if(ERR_peek_error()){
+ 	ossl_raise(ePKCS7Error, NULL);
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_pkey.c ruby-2.3.8/ext/openssl/ossl_pkey.c
+--- ruby-2.3.8-old/ext/openssl/ossl_pkey.c	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_pkey.c	2019-06-24 17:15:47.610345161 +0300
+@@ -20,20 +20,6 @@
+ /*
+  * callback for generating keys
+  */
+-void
+-ossl_generate_cb(int p, int n, void *arg)
+-{
+-    VALUE ary;
+-
+-    ary = rb_ary_new2(2);
+-    rb_ary_store(ary, 0, INT2NUM(p));
+-    rb_ary_store(ary, 1, INT2NUM(n));
+-
+-    rb_yield(ary);
+-}
+-
+-#if HAVE_BN_GENCB
+-/* OpenSSL 2nd version of GN generation callback */
+ int
+ ossl_generate_cb_2(int p, int n, BN_GENCB *cb)
+ {
+@@ -41,7 +27,7 @@
+     struct ossl_generate_cb_arg *arg;
+     int state;
+ 
+-    arg = (struct ossl_generate_cb_arg *)cb->arg;
++    arg = (struct ossl_generate_cb_arg *)BN_GENCB_get_arg(cb);
+     if (arg->yield) {
+ 	ary = rb_ary_new2(2);
+ 	rb_ary_store(ary, 0, INT2NUM(p));
+@@ -66,7 +52,6 @@
+     struct ossl_generate_cb_arg *arg = (struct ossl_generate_cb_arg *)ptr;
+     arg->stop = 1;
+ }
+-#endif
+ 
+ static void
+ ossl_evp_pkey_free(void *ptr)
+@@ -91,7 +76,7 @@
+     if (!pkey) {
+ 	ossl_raise(ePKeyError, "Cannot make new key from NULL.");
+     }
+-    switch (EVP_PKEY_type(pkey->type)) {
++    switch (EVP_PKEY_base_id(pkey)) {
+ #if !defined(OPENSSL_NO_RSA)
+     case EVP_PKEY_RSA:
+ 	return ossl_rsa_new(pkey);
+@@ -159,7 +144,7 @@
+ 
+      rb_scan_args(argc, argv, "11", &data, &pass);
+ 
+-     bio = ossl_obj2bio(&data);
++     bio = ossl_obj2bio(data);
+      if (!(pkey = d2i_PrivateKey_bio(bio, NULL))) {
+ 	OSSL_BIO_reset(bio);
+ 	if (!NIL_P(pass)) {
+@@ -212,7 +197,7 @@
+     EVP_PKEY *pkey;
+ 
+     SafeGetPKey(obj, pkey);
+-    CRYPTO_add(&pkey->references, 1, CRYPTO_LOCK_EVP_PKEY);
++    EVP_PKEY_up_ref(pkey);
+ 
+     return pkey;
+ }
+@@ -226,7 +211,7 @@
+ 	ossl_raise(rb_eArgError, "Private key is needed.");
+     }
+     SafeGetPKey(obj, pkey);
+-    CRYPTO_add(&pkey->references, 1, CRYPTO_LOCK_EVP_PKEY);
++    EVP_PKEY_up_ref(pkey);
+ 
+     return pkey;
+ }
+@@ -286,21 +271,22 @@
+ ossl_pkey_sign(VALUE self, VALUE digest, VALUE data)
+ {
+     EVP_PKEY *pkey;
+-    EVP_MD_CTX ctx;
++    EVP_MD_CTX *ctx = EVP_MD_CTX_new();
+     unsigned int buf_len;
+     VALUE str;
+     int result;
+ 
+-    if (rb_funcallv(self, id_private_q, 0, NULL) != Qtrue) {
++    if (rb_funcallv(self, id_private_q, 0, NULL) != Qtrue)
+ 	ossl_raise(rb_eArgError, "Private key is needed.");
+-    }
++    if (!ctx)
++	ossl_raise(rb_eRuntimeError, "EVP_MD_CTX_new() failed");
+     GetPKey(self, pkey);
+-    EVP_SignInit(&ctx, GetDigestPtr(digest));
++    EVP_SignInit(ctx, GetDigestPtr(digest));
+     StringValue(data);
+-    EVP_SignUpdate(&ctx, RSTRING_PTR(data), RSTRING_LEN(data));
++    EVP_SignUpdate(ctx, RSTRING_PTR(data), RSTRING_LEN(data));
+     str = rb_str_new(0, EVP_PKEY_size(pkey)+16);
+-    result = EVP_SignFinal(&ctx, (unsigned char *)RSTRING_PTR(str), &buf_len, pkey);
+-    EVP_MD_CTX_cleanup(&ctx);
++    result = EVP_SignFinal(ctx, (unsigned char *)RSTRING_PTR(str), &buf_len, pkey);
++    EVP_MD_CTX_free(ctx);
+     if (!result)
+ 	ossl_raise(ePKeyError, NULL);
+     assert((long)buf_len <= RSTRING_LEN(str));
+@@ -334,16 +320,18 @@
+ ossl_pkey_verify(VALUE self, VALUE digest, VALUE sig, VALUE data)
+ {
+     EVP_PKEY *pkey;
+-    EVP_MD_CTX ctx;
++    EVP_MD_CTX *ctx = EVP_MD_CTX_new();
+     int result;
+ 
++    if (!ctx)
++	ossl_raise(rb_eRuntimeError, "EVP_MD_CTX_new() failed");
+     GetPKey(self, pkey);
+     StringValue(sig);
+     StringValue(data);
+-    EVP_VerifyInit(&ctx, GetDigestPtr(digest));
+-    EVP_VerifyUpdate(&ctx, RSTRING_PTR(data), RSTRING_LEN(data));
+-    result = EVP_VerifyFinal(&ctx, (unsigned char *)RSTRING_PTR(sig), RSTRING_LENINT(sig), pkey);
+-    EVP_MD_CTX_cleanup(&ctx);
++    EVP_VerifyInit(ctx, GetDigestPtr(digest));
++    EVP_VerifyUpdate(ctx, RSTRING_PTR(data), RSTRING_LEN(data));
++    result = EVP_VerifyFinal(ctx, (unsigned char *)RSTRING_PTR(sig), RSTRING_LENINT(sig), pkey);
++    EVP_MD_CTX_free(ctx);
+     switch (result) {
+     case 0:
+ 	return Qfalse;
+@@ -374,7 +362,7 @@
+      * algorithm consists of two parts: a public key that may be distributed
+      * to others and a private key that needs to remain secret.
+      *
+-     * Messages encrypted with a public key can only be encrypted by
++     * Messages encrypted with a public key can only be decrypted by
+      * recipients that are in possession of the associated private key.
+      * Since public key algorithms are considerably slower than symmetric
+      * key algorithms (cf. OpenSSL::Cipher) they are often used to establish
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_pkey_dh.c ruby-2.3.8/ext/openssl/ossl_pkey_dh.c
+--- ruby-2.3.8-old/ext/openssl/ossl_pkey_dh.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_pkey_dh.c	2019-06-24 17:15:47.610345161 +0300
+@@ -7,25 +7,20 @@
+  * This program is licensed under the same licence as Ruby.
+  * (See the file 'LICENCE'.)
+  */
+-#if !defined(OPENSSL_NO_DH)
+-
+ #include "ossl.h"
+ 
++#if !defined(OPENSSL_NO_DH)
++
+ #define GetPKeyDH(obj, pkey) do { \
+     GetPKey((obj), (pkey)); \
+-    if (EVP_PKEY_type((pkey)->type) != EVP_PKEY_DH) { /* PARANOIA? */ \
++    if (EVP_PKEY_base_id(pkey) != EVP_PKEY_DH) { /* PARANOIA? */ \
+ 	ossl_raise(rb_eRuntimeError, "THIS IS NOT A DH!") ; \
+     } \
+ } while (0)
+ 
+-#define DH_HAS_PRIVATE(dh) ((dh)->priv_key)
+-
+-#ifdef OSSL_ENGINE_ENABLED
+-#  define DH_PRIVATE(dh) (DH_HAS_PRIVATE(dh) || (dh)->engine)
+-#else
+-#  define DH_PRIVATE(dh) DH_HAS_PRIVATE(dh)
+-#endif
+-
++/* we don't use q */
++#define DH_get0_pg(obj, p, g) DH_get0_pqg(obj, p, NULL, g)
++#define DH_set0_pg(obj, p, g) DH_set0_pqg(obj, p, NULL, g)
+ 
+ /*
+  * Classes
+@@ -67,7 +62,7 @@
+ 	obj = dh_instance(cDH, DH_new());
+     } else {
+ 	obj = NewPKey(cDH);
+-	if (EVP_PKEY_type(pkey->type) != EVP_PKEY_DH) {
++	if (EVP_PKEY_base_id(pkey) != EVP_PKEY_DH) {
+ 	    ossl_raise(rb_eTypeError, "Not a DH key!");
+ 	}
+ 	SetPKey(obj, pkey);
+@@ -82,7 +77,10 @@
+ /*
+  * Private
+  */
+-#if defined(HAVE_DH_GENERATE_PARAMETERS_EX) && HAVE_BN_GENCB
++
++OSSL_PKEY_BN_DEF2(dh, DH, pg, p, g)
++OSSL_PKEY_BN_DEF2(dh, DH, key, pub_key, priv_key)
++
+ struct dh_blocking_gen_arg {
+     DH *dh;
+     int size;
+@@ -98,27 +96,29 @@
+     gen->result = DH_generate_parameters_ex(gen->dh, gen->size, gen->gen, gen->cb);
+     return 0;
+ }
+-#endif
+ 
+ static DH *
+ dh_generate(int size, int gen)
+ {
+-#if defined(HAVE_DH_GENERATE_PARAMETERS_EX) && HAVE_BN_GENCB
+-    BN_GENCB cb;
+     struct ossl_generate_cb_arg cb_arg;
+     struct dh_blocking_gen_arg gen_arg;
+     DH *dh = DH_new();
++    BN_GENCB *cb = BN_GENCB_new();
+ 
+-    if (!dh) return 0;
++    if (!dh || !cb) {
++	if (dh) DH_free(dh);
++	if (cb) BN_GENCB_free(cb);
++	return 0;
++    }
+ 
+     memset(&cb_arg, 0, sizeof(struct ossl_generate_cb_arg));
+     if (rb_block_given_p())
+ 	cb_arg.yield = 1;
+-    BN_GENCB_set(&cb, ossl_generate_cb_2, &cb_arg);
++    BN_GENCB_set(cb, ossl_generate_cb_2, &cb_arg);
+     gen_arg.dh = dh;
+     gen_arg.size = size;
+     gen_arg.gen = gen;
+-    gen_arg.cb = &cb;
++    gen_arg.cb = cb;
+     if (cb_arg.yield == 1) {
+ 	/* we cannot release GVL when callback proc is supplied */
+ 	dh_blocking_gen(&gen_arg);
+@@ -127,17 +127,12 @@
+ 	rb_thread_call_without_gvl(dh_blocking_gen, &gen_arg, ossl_generate_cb_stop, &cb_arg);
+     }
+ 
++    BN_GENCB_free(cb);
+     if (!gen_arg.result) {
+ 	DH_free(dh);
+ 	if (cb_arg.state) rb_jump_tag(cb_arg.state);
+ 	return 0;
+     }
+-#else
+-    DH *dh;
+-
+-    dh = DH_generate_parameters(size, gen, rb_block_given_p() ? ossl_generate_cb : NULL, NULL);
+-    if (!dh) return 0;
+-#endif
+ 
+     if (!DH_generate_key(dh)) {
+         DH_free(dh);
+@@ -225,7 +220,7 @@
+     }
+     else {
+ 	arg = ossl_to_der_if_possible(arg);
+-	in = ossl_obj2bio(&arg);
++	in = ossl_obj2bio(arg);
+ 	dh = PEM_read_bio_DHparams(in, NULL, NULL, NULL);
+ 	if (!dh){
+ 	    OSSL_BIO_reset(in);
+@@ -253,11 +248,15 @@
+ static VALUE
+ ossl_dh_is_public(VALUE self)
+ {
++    BIGNUM *bn;
+     EVP_PKEY *pkey;
++    DH *dh;
+ 
+     GetPKeyDH(self, pkey);
++    dh = EVP_PKEY_get0_DH(pkey);
++    DH_get0_key(dh, &bn, NULL);
+ 
+-    return (pkey->pkey.dh->pub_key) ? Qtrue : Qfalse;
++    return bn ? Qtrue : Qfalse;
+ }
+ 
+ /*
+@@ -270,11 +269,19 @@
+ static VALUE
+ ossl_dh_is_private(VALUE self)
+ {
++    BIGNUM *bn;
+     EVP_PKEY *pkey;
++    DH *dh;
+ 
+     GetPKeyDH(self, pkey);
++    dh = EVP_PKEY_get0_DH(pkey);
++    DH_get0_key(dh, &bn, NULL);
+ 
+-    return (DH_PRIVATE(pkey->pkey.dh)) ? Qtrue : Qfalse;
++#if !defined(OPENSSL_NO_ENGINE)
++    return (bn || DH_get0_engine(dh)) ? Qtrue : Qfalse;
++#else
++    return bn ? Qtrue : Qfalse;
++#endif
+ }
+ 
+ /*
+@@ -298,7 +305,7 @@
+     if (!(out = BIO_new(BIO_s_mem()))) {
+ 	ossl_raise(eDHError, NULL);
+     }
+-    if (!PEM_write_bio_DHparams(out, pkey->pkey.dh)) {
++    if (!PEM_write_bio_DHparams(out, EVP_PKEY_get0_DH(pkey))) {
+ 	BIO_free(out);
+ 	ossl_raise(eDHError, NULL);
+     }
+@@ -320,16 +327,18 @@
+ ossl_dh_to_der(VALUE self)
+ {
+     EVP_PKEY *pkey;
++    DH *dh;
+     unsigned char *p;
+     long len;
+     VALUE str;
+ 
+     GetPKeyDH(self, pkey);
+-    if((len = i2d_DHparams(pkey->pkey.dh, NULL)) <= 0)
++    dh = EVP_PKEY_get0_DH(pkey);
++    if((len = i2d_DHparams(dh, NULL)) <= 0)
+ 	ossl_raise(eDHError, NULL);
+     str = rb_str_new(0, len);
+     p = (unsigned char *)RSTRING_PTR(str);
+-    if(i2d_DHparams(pkey->pkey.dh, &p) < 0)
++    if(i2d_DHparams(dh, &p) < 0)
+ 	ossl_raise(eDHError, NULL);
+     ossl_str_adjust(str, p);
+ 
+@@ -347,17 +356,12 @@
+ static VALUE
+ ossl_dh_get_params(VALUE self)
+ {
+-    EVP_PKEY *pkey;
+-    VALUE hash;
+-
+-    GetPKeyDH(self, pkey);
++    VALUE hash = rb_hash_new();
+ 
+-    hash = rb_hash_new();
+-
+-    rb_hash_aset(hash, rb_str_new2("p"), ossl_bn_new(pkey->pkey.dh->p));
+-    rb_hash_aset(hash, rb_str_new2("g"), ossl_bn_new(pkey->pkey.dh->g));
+-    rb_hash_aset(hash, rb_str_new2("pub_key"), ossl_bn_new(pkey->pkey.dh->pub_key));
+-    rb_hash_aset(hash, rb_str_new2("priv_key"), ossl_bn_new(pkey->pkey.dh->priv_key));
++    rb_hash_aset(hash, rb_str_new2("p"), ossl_dh_get_p(self));
++    rb_hash_aset(hash, rb_str_new2("g"), ossl_dh_get_g(self));
++    rb_hash_aset(hash, rb_str_new2("pub_key"), ossl_dh_get_pub_key(self));
++    rb_hash_aset(hash, rb_str_new2("priv_key"), ossl_dh_get_priv_key(self));
+ 
+     return hash;
+ }
+@@ -381,7 +385,7 @@
+     if (!(out = BIO_new(BIO_s_mem()))) {
+ 	ossl_raise(eDHError, NULL);
+     }
+-    if (!DHparams_print(out, pkey->pkey.dh)) {
++    if (!DHparams_print(out, EVP_PKEY_get0_DH(pkey))) {
+ 	BIO_free(out);
+ 	ossl_raise(eDHError, NULL);
+     }
+@@ -419,7 +423,7 @@
+     VALUE obj;
+ 
+     GetPKeyDH(self, pkey);
+-    dh = DHparams_dup(pkey->pkey.dh); /* err check perfomed by dh_instance */
++    dh = DHparams_dup(EVP_PKEY_get0_DH(pkey)); /* err check perfomed by dh_instance */
+     obj = dh_instance(CLASS_OF(self), dh);
+     if (obj == Qfalse) {
+ 	DH_free(dh);
+@@ -445,7 +449,7 @@
+     int codes;
+ 
+     GetPKeyDH(self, pkey);
+-    dh = pkey->pkey.dh;
++    dh = EVP_PKEY_get0_DH(pkey);
+ 
+     if (!DH_check(dh, &codes)) {
+ 	return Qfalse;
+@@ -477,7 +481,7 @@
+     EVP_PKEY *pkey;
+ 
+     GetPKeyDH(self, pkey);
+-    dh = pkey->pkey.dh;
++    dh = EVP_PKEY_get0_DH(pkey);
+ 
+     if (!DH_generate_key(dh))
+ 	ossl_raise(eDHError, "Failed to generate key");
+@@ -505,9 +509,7 @@
+     int len;
+ 
+     GetPKeyDH(self, pkey);
+-    dh = pkey->pkey.dh;
+-    if (!dh->p)
+-	ossl_raise(eDHError, "incomplete DH");
++    dh = EVP_PKEY_get0_DH(pkey);
+     pub_key = GetBNPtr(pub);
+     len = DH_size(dh);
+     str = rb_str_new(0, len);
+@@ -519,11 +521,6 @@
+     return str;
+ }
+ 
+-OSSL_PKEY_BN(dh, p)
+-OSSL_PKEY_BN(dh, g)
+-OSSL_PKEY_BN(dh, pub_key)
+-OSSL_PKEY_BN(dh, priv_key)
+-
+ /*
+  * INIT
+  */
+@@ -588,6 +585,9 @@
+     DEF_OSSL_PKEY_BN(cDH, dh, g);
+     DEF_OSSL_PKEY_BN(cDH, dh, pub_key);
+     DEF_OSSL_PKEY_BN(cDH, dh, priv_key);
++    rb_define_method(cDH, "set_pg", ossl_dh_set_pg, 2);
++    rb_define_method(cDH, "set_key", ossl_dh_set_key, 2);
++
+     rb_define_method(cDH, "params", ossl_dh_get_params, 0);
+ }
+ 
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_pkey_dsa.c ruby-2.3.8/ext/openssl/ossl_pkey_dsa.c
+--- ruby-2.3.8-old/ext/openssl/ossl_pkey_dsa.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_pkey_dsa.c	2019-06-24 17:15:47.610345161 +0300
+@@ -7,20 +7,17 @@
+  * This program is licensed under the same licence as Ruby.
+  * (See the file 'LICENCE'.)
+  */
+-#if !defined(OPENSSL_NO_DSA)
+-
+ #include "ossl.h"
+ 
++#if !defined(OPENSSL_NO_DSA)
++
+ #define GetPKeyDSA(obj, pkey) do { \
+     GetPKey((obj), (pkey)); \
+-    if (EVP_PKEY_type((pkey)->type) != EVP_PKEY_DSA) { /* PARANOIA? */ \
++    if (EVP_PKEY_base_id(pkey) != EVP_PKEY_DSA) { /* PARANOIA? */ \
+ 	ossl_raise(rb_eRuntimeError, "THIS IS NOT A DSA!"); \
+     } \
+ } while (0)
+ 
+-#define DSA_HAS_PRIVATE(dsa) ((dsa)->priv_key)
+-#define DSA_PRIVATE(obj,dsa) (DSA_HAS_PRIVATE(dsa)||OSSL_PKEY_IS_PRIVATE(obj))
+-
+ /*
+  * Classes
+  */
+@@ -61,7 +58,7 @@
+ 	obj = dsa_instance(cDSA, DSA_new());
+     } else {
+ 	obj = NewPKey(cDSA);
+-	if (EVP_PKEY_type(pkey->type) != EVP_PKEY_DSA) {
++	if (EVP_PKEY_base_id(pkey) != EVP_PKEY_DSA) {
+ 	    ossl_raise(rb_eTypeError, "Not a DSA key!");
+ 	}
+ 	SetPKey(obj, pkey);
+@@ -76,7 +73,24 @@
+ /*
+  * Private
+  */
+-#if defined(HAVE_DSA_GENERATE_PARAMETERS_EX) && HAVE_BN_GENCB
++
++OSSL_PKEY_BN_DEF3(dsa, DSA, pqg, p, q, g)
++OSSL_PKEY_BN_DEF2(dsa, DSA, key, pub_key, priv_key)
++
++static inline int
++dsa_has_private(DSA *dsa)
++{
++    BIGNUM *bn;
++    DSA_get0_key(dsa, NULL, &bn);
++    return !!bn;
++}
++
++static inline int
++dsa_is_private(VALUE obj, DSA *dsa)
++{
++    return dsa_has_private(dsa) || OSSL_PKEY_IS_PRIVATE(obj);
++}
++
+ struct dsa_blocking_gen_arg {
+     DSA *dsa;
+     int size;
+@@ -95,21 +109,23 @@
+     gen->result = DSA_generate_parameters_ex(gen->dsa, gen->size, gen->seed, gen->seed_len, gen->counter, gen->h, gen->cb);
+     return 0;
+ }
+-#endif
+ 
+ static DSA *
+ dsa_generate(int size)
+ {
+-#if defined(HAVE_DSA_GENERATE_PARAMETERS_EX) && HAVE_BN_GENCB
+-    BN_GENCB cb;
+     struct ossl_generate_cb_arg cb_arg;
+     struct dsa_blocking_gen_arg gen_arg;
+     DSA *dsa = DSA_new();
++    BN_GENCB *cb = BN_GENCB_new();
+     unsigned char seed[20];
+     int seed_len = 20, counter;
+     unsigned long h;
+ 
+-    if (!dsa) return 0;
++    if (!dsa || !cb) {
++	if (dsa) DSA_free(dsa);
++	if (cb) BN_GENCB_free(cb);
++	return 0;
++    }
+     if (RAND_bytes(seed, seed_len) <= 0) {
+ 	DSA_free(dsa);
+ 	return 0;
+@@ -118,14 +134,14 @@
+     memset(&cb_arg, 0, sizeof(struct ossl_generate_cb_arg));
+     if (rb_block_given_p())
+ 	cb_arg.yield = 1;
+-    BN_GENCB_set(&cb, ossl_generate_cb_2, &cb_arg);
++    BN_GENCB_set(cb, ossl_generate_cb_2, &cb_arg);
+     gen_arg.dsa = dsa;
+     gen_arg.size = size;
+     gen_arg.seed = seed;
+     gen_arg.seed_len = seed_len;
+     gen_arg.counter = &counter;
+     gen_arg.h = &h;
+-    gen_arg.cb = &cb;
++    gen_arg.cb = cb;
+     if (cb_arg.yield == 1) {
+ 	/* we cannot release GVL when callback proc is supplied */
+ 	dsa_blocking_gen(&gen_arg);
+@@ -133,24 +149,13 @@
+ 	/* there's a chance to unblock */
+ 	rb_thread_call_without_gvl(dsa_blocking_gen, &gen_arg, ossl_generate_cb_stop, &cb_arg);
+     }
++
++    BN_GENCB_free(cb);
+     if (!gen_arg.result) {
+ 	DSA_free(dsa);
+ 	if (cb_arg.state) rb_jump_tag(cb_arg.state);
+ 	return 0;
+     }
+-#else
+-    DSA *dsa;
+-    unsigned char seed[20];
+-    int seed_len = 20, counter;
+-    unsigned long h;
+-
+-    if (RAND_bytes(seed, seed_len) <= 0) {
+-	return 0;
+-    }
+-    dsa = DSA_generate_parameters(size, seed, seed_len, &counter, &h,
+-	    rb_block_given_p() ? ossl_generate_cb : NULL, NULL);
+-    if(!dsa) return 0;
+-#endif
+ 
+     if (!DSA_generate_key(dsa)) {
+ 	DSA_free(dsa);
+@@ -224,7 +229,7 @@
+     else {
+ 	if (!NIL_P(pass)) passwd = StringValuePtr(pass);
+ 	arg = ossl_to_der_if_possible(arg);
+-	in = ossl_obj2bio(&arg);
++	in = ossl_obj2bio(arg);
+ 	dsa = PEM_read_bio_DSAPrivateKey(in, NULL, ossl_pem_passwd_cb, passwd);
+ 	if (!dsa) {
+ 	    OSSL_BIO_reset(in);
+@@ -240,7 +245,10 @@
+ 	}
+ 	if (!dsa) {
+ 	    OSSL_BIO_reset(in);
++#define PEM_read_bio_DSAPublicKey(bp,x,cb,u) (DSA *)PEM_ASN1_read_bio( \
++	(d2i_of_void *)d2i_DSAPublicKey, PEM_STRING_DSA_PUBLIC, (bp), (void **)(x), (cb), (u))
+ 	    dsa = PEM_read_bio_DSAPublicKey(in, NULL, NULL, NULL);
++#undef PEM_read_bio_DSAPublicKey
+ 	}
+ 	BIO_free(in);
+ 	if (!dsa) {
+@@ -267,10 +275,14 @@
+ ossl_dsa_is_public(VALUE self)
+ {
+     EVP_PKEY *pkey;
++    DSA *dsa;
++    BIGNUM *bn;
+ 
+     GetPKeyDSA(self, pkey);
++    dsa = EVP_PKEY_get0_DSA(pkey);
++    DSA_get0_key(dsa, &bn, NULL);
+ 
+-    return (pkey->pkey.dsa->pub_key) ? Qtrue : Qfalse;
++    return bn ? Qtrue : Qfalse;
+ }
+ 
+ /*
+@@ -284,10 +296,12 @@
+ ossl_dsa_is_private(VALUE self)
+ {
+     EVP_PKEY *pkey;
++    DSA *dsa;
+ 
+     GetPKeyDSA(self, pkey);
++    dsa = EVP_PKEY_get0_DSA(pkey);
+ 
+-    return (DSA_PRIVATE(self, pkey->pkey.dsa)) ? Qtrue : Qfalse;
++    return dsa_is_private(self, dsa) ? Qtrue : Qfalse;
+ }
+ 
+ /*
+@@ -311,6 +325,7 @@
+ ossl_dsa_export(int argc, VALUE *argv, VALUE self)
+ {
+     EVP_PKEY *pkey;
++    DSA *dsa;
+     BIO *out;
+     const EVP_CIPHER *ciph = NULL;
+     char *passwd = NULL;
+@@ -330,14 +345,15 @@
+     if (!(out = BIO_new(BIO_s_mem()))) {
+ 	ossl_raise(eDSAError, NULL);
+     }
+-    if (DSA_HAS_PRIVATE(pkey->pkey.dsa)) {
+-	if (!PEM_write_bio_DSAPrivateKey(out, pkey->pkey.dsa, ciph,
+-					 NULL, 0, ossl_pem_passwd_cb, passwd)){
++    dsa = EVP_PKEY_get0_DSA(pkey);
++    if (dsa_has_private(dsa)) {
++	if (!PEM_write_bio_DSAPrivateKey(out, dsa, ciph, NULL, 0,
++					 ossl_pem_passwd_cb, passwd)){
+ 	    BIO_free(out);
+ 	    ossl_raise(eDSAError, NULL);
+ 	}
+     } else {
+-	if (!PEM_write_bio_DSA_PUBKEY(out, pkey->pkey.dsa)) {
++	if (!PEM_write_bio_DSA_PUBKEY(out, dsa)) {
+ 	    BIO_free(out);
+ 	    ossl_raise(eDSAError, NULL);
+ 	}
+@@ -358,27 +374,30 @@
+ ossl_dsa_to_der(VALUE self)
+ {
+     EVP_PKEY *pkey;
++    DSA *dsa;
+     int (*i2d_func)_((DSA*, unsigned char**));
+     unsigned char *p;
+     long len;
+     VALUE str;
+ 
+     GetPKeyDSA(self, pkey);
+-    if(DSA_HAS_PRIVATE(pkey->pkey.dsa))
++    dsa = EVP_PKEY_get0_DSA(pkey);
++    if(dsa_has_private(dsa))
+ 	i2d_func = (int(*)_((DSA*,unsigned char**)))i2d_DSAPrivateKey;
+     else
+ 	i2d_func = i2d_DSA_PUBKEY;
+-    if((len = i2d_func(pkey->pkey.dsa, NULL)) <= 0)
++    if((len = i2d_func(dsa, NULL)) <= 0)
+ 	ossl_raise(eDSAError, NULL);
+     str = rb_str_new(0, len);
+     p = (unsigned char *)RSTRING_PTR(str);
+-    if(i2d_func(pkey->pkey.dsa, &p) < 0)
++    if(i2d_func(dsa, &p) < 0)
+ 	ossl_raise(eDSAError, NULL);
+     ossl_str_adjust(str, p);
+ 
+     return str;
+ }
+ 
++
+ /*
+  *  call-seq:
+  *    dsa.params -> hash
+@@ -390,18 +409,13 @@
+ static VALUE
+ ossl_dsa_get_params(VALUE self)
+ {
+-    EVP_PKEY *pkey;
+-    VALUE hash;
+-
+-    GetPKeyDSA(self, pkey);
++    VALUE hash = rb_hash_new();
+ 
+-    hash = rb_hash_new();
+-
+-    rb_hash_aset(hash, rb_str_new2("p"), ossl_bn_new(pkey->pkey.dsa->p));
+-    rb_hash_aset(hash, rb_str_new2("q"), ossl_bn_new(pkey->pkey.dsa->q));
+-    rb_hash_aset(hash, rb_str_new2("g"), ossl_bn_new(pkey->pkey.dsa->g));
+-    rb_hash_aset(hash, rb_str_new2("pub_key"), ossl_bn_new(pkey->pkey.dsa->pub_key));
+-    rb_hash_aset(hash, rb_str_new2("priv_key"), ossl_bn_new(pkey->pkey.dsa->priv_key));
++    rb_hash_aset(hash, rb_str_new2("p"), ossl_dsa_get_p(self));
++    rb_hash_aset(hash, rb_str_new2("q"), ossl_dsa_get_q(self));
++    rb_hash_aset(hash, rb_str_new2("g"), ossl_dsa_get_g(self));
++    rb_hash_aset(hash, rb_str_new2("pub_key"), ossl_dsa_get_pub_key(self));
++    rb_hash_aset(hash, rb_str_new2("priv_key"), ossl_dsa_get_priv_key(self));
+ 
+     return hash;
+ }
+@@ -425,7 +439,7 @@
+     if (!(out = BIO_new(BIO_s_mem()))) {
+ 	ossl_raise(eDSAError, NULL);
+     }
+-    if (!DSA_print(out, pkey->pkey.dsa, 0)) { /* offset = 0 */
++    if (!DSA_print(out, EVP_PKEY_get0_DSA(pkey), 0)) { /* offset = 0 */
+ 	BIO_free(out);
+ 	ossl_raise(eDSAError, NULL);
+     }
+@@ -460,7 +474,10 @@
+ 
+     GetPKeyDSA(self, pkey);
+     /* err check performed by dsa_instance */
+-    dsa = DSAPublicKey_dup(pkey->pkey.dsa);
++#define DSAPublicKey_dup(dsa) (DSA *)ASN1_dup( \
++	(i2d_of_void *)i2d_DSAPublicKey, (d2i_of_void *)d2i_DSAPublicKey, (char *)(dsa))
++    dsa = DSAPublicKey_dup(EVP_PKEY_get0_DSA(pkey));
++#undef DSAPublicKey_dup
+     obj = dsa_instance(CLASS_OF(self), dsa);
+     if (obj == Qfalse) {
+ 	DSA_free(dsa);
+@@ -469,7 +486,7 @@
+     return obj;
+ }
+ 
+-#define ossl_dsa_buf_size(pkey) (DSA_size((pkey)->pkey.dsa)+16)
++#define ossl_dsa_buf_size(dsa) (DSA_size(dsa) + 16)
+ 
+ /*
+  *  call-seq:
+@@ -494,19 +511,21 @@
+ ossl_dsa_sign(VALUE self, VALUE data)
+ {
+     EVP_PKEY *pkey;
++    DSA *dsa;
+     unsigned int buf_len;
+     VALUE str;
+ 
+     GetPKeyDSA(self, pkey);
+-    if (!pkey->pkey.dsa->q)
+-	ossl_raise(eDSAError, "incomplete DSA");
+-    if (!DSA_PRIVATE(self, pkey->pkey.dsa))
+-	ossl_raise(eDSAError, "Private DSA key needed!");
++    dsa = EVP_PKEY_get0_DSA(pkey);
++
+     StringValue(data);
+-    str = rb_str_new(0, ossl_dsa_buf_size(pkey));
++    if (!dsa_is_private(self, dsa)) {
++	ossl_raise(eDSAError, "Private DSA key needed!");
++    }
++    str = rb_str_new(0, ossl_dsa_buf_size(dsa));
+     if (!DSA_sign(0, (unsigned char *)RSTRING_PTR(data), RSTRING_LENINT(data),
+ 		  (unsigned char *)RSTRING_PTR(str),
+-		  &buf_len, pkey->pkey.dsa)) { /* type is ignored (0) */
++		  &buf_len, dsa)) { /* type is ignored (0) */
+ 	ossl_raise(eDSAError, NULL);
+     }
+     rb_str_set_len(str, buf_len);
+@@ -544,7 +563,7 @@
+     StringValue(sig);
+     /* type is ignored (0) */
+     ret = DSA_verify(0, (unsigned char *)RSTRING_PTR(digest), RSTRING_LENINT(digest),
+-		     (unsigned char *)RSTRING_PTR(sig), RSTRING_LENINT(sig), pkey->pkey.dsa);
++		     (unsigned char *)RSTRING_PTR(sig), RSTRING_LENINT(sig), EVP_PKEY_get0_DSA(pkey));
+     if (ret < 0) {
+ 	ossl_raise(eDSAError, NULL);
+     }
+@@ -555,12 +574,6 @@
+     return Qfalse;
+ }
+ 
+-OSSL_PKEY_BN(dsa, p)
+-OSSL_PKEY_BN(dsa, q)
+-OSSL_PKEY_BN(dsa, g)
+-OSSL_PKEY_BN(dsa, pub_key)
+-OSSL_PKEY_BN(dsa, priv_key)
+-
+ /*
+  * INIT
+  */
+@@ -613,6 +626,8 @@
+     DEF_OSSL_PKEY_BN(cDSA, dsa, g);
+     DEF_OSSL_PKEY_BN(cDSA, dsa, pub_key);
+     DEF_OSSL_PKEY_BN(cDSA, dsa, priv_key);
++    rb_define_method(cDSA, "set_pqg", ossl_dsa_set_pqg, 3);
++    rb_define_method(cDSA, "set_key", ossl_dsa_set_key, 2);
+ 
+     rb_define_method(cDSA, "params", ossl_dsa_get_params, 0);
+ }
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_pkey_ec.c ruby-2.3.8/ext/openssl/ossl_pkey_ec.c
+--- ruby-2.3.8-old/ext/openssl/ossl_pkey_ec.c	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_pkey_ec.c	2019-06-24 17:15:47.610345161 +0300
+@@ -25,7 +25,7 @@
+ 
+ #define GetPKeyEC(obj, pkey) do { \
+     GetPKey((obj), (pkey)); \
+-    if (EVP_PKEY_type((pkey)->type) != EVP_PKEY_EC) { \
++    if (EVP_PKEY_base_id(pkey) != EVP_PKEY_EC) { \
+ 	ossl_raise(rb_eRuntimeError, "THIS IS NOT A EC PKEY!"); \
+     } \
+ } while (0)
+@@ -38,7 +38,7 @@
+ #define Get_EC_KEY(obj, key) do { \
+     EVP_PKEY *pkey; \
+     GetPKeyEC((obj), pkey); \
+-    (key) = pkey->pkey.ec; \
++    (key) = EVP_PKEY_get0_EC_KEY(pkey); \
+ } while(0)
+ 
+ #define Require_EC_KEY(obj, key) do { \
+@@ -137,7 +137,7 @@
+ 	obj = ec_instance(cEC, EC_KEY_new());
+     } else {
+ 	obj = NewPKey(cEC);
+-	if (EVP_PKEY_type(pkey->type) != EVP_PKEY_EC) {
++	if (EVP_PKEY_base_id(pkey) != EVP_PKEY_EC) {
+ 	    ossl_raise(rb_eTypeError, "Not a EC key!");
+ 	}
+ 	SetPKey(obj, pkey);
+@@ -171,7 +171,7 @@
+     char *passwd = NULL;
+ 
+     GetPKey(self, pkey);
+-    if (pkey->pkey.ec)
++    if (EVP_PKEY_base_id(pkey) != EVP_PKEY_NONE)
+         ossl_raise(eECError, "EC_KEY already initialized");
+ 
+     rb_scan_args(argc, argv, "02", &arg, &pass);
+@@ -188,7 +188,7 @@
+         	ec = EC_KEY_new();
+         	group = arg;
+         } else {
+-            BIO *in = ossl_obj2bio(&arg);
++            BIO *in = ossl_obj2bio(arg);
+ 
+             if (!NIL_P(pass)) {
+ 		passwd = StringValuePtr(pass);
+@@ -475,7 +475,6 @@
+     int private = 0;
+     char *password = NULL;
+     VALUE str;
+-    const EVP_CIPHER *cipher = NULL;
+ 
+     Require_EC_KEY(self, ec);
+ 
+@@ -488,22 +487,25 @@
+     if (EC_KEY_get0_private_key(ec))
+         private = 1;
+ 
+-    if (!NIL_P(ciph)) {
+-	cipher = GetCipherPtr(ciph);
+-	if (!NIL_P(pass)) {
+-	    StringValue(pass);
+-	    if (RSTRING_LENINT(pass) < OSSL_MIN_PWD_LEN)
+-		ossl_raise(eOSSLError, "OpenSSL requires passwords to be at least four characters long");
+-	    password = RSTRING_PTR(pass);
+-	}
+-    }
+-
+     if (!(out = BIO_new(BIO_s_mem())))
+         ossl_raise(eECError, "BIO_new(BIO_s_mem())");
+ 
+     switch(format) {
+     case EXPORT_PEM:
+     	if (private) {
++	    const EVP_CIPHER *cipher;
++	    if (!NIL_P(ciph)) {
++		cipher = GetCipherPtr(ciph);
++		if (!NIL_P(pass)) {
++		    StringValue(pass);
++		    if (RSTRING_LENINT(pass) < OSSL_MIN_PWD_LEN)
++			ossl_raise(eOSSLError, "OpenSSL requires passwords to be at least four characters long");
++		    password = RSTRING_PTR(pass);
++		}
++	    }
++	    else {
++		cipher = NULL;
++	    }
+             i = PEM_write_bio_ECPrivateKey(out, ec, cipher, NULL, 0, NULL, password);
+     	} else {
+             i = PEM_write_bio_EC_PUBKEY(out, ec);
+@@ -792,7 +794,7 @@
+             if ((group = EC_GROUP_dup(arg1_group)) == NULL)
+                 ossl_raise(eEC_GROUP, "EC_GROUP_dup");
+         } else {
+-            BIO *in = ossl_obj2bio(&arg1);
++            BIO *in = ossl_obj2bio(arg1);
+ 
+             group = PEM_read_bio_ECPKParameters(in, NULL, NULL, NULL);
+             if (!group) {
+@@ -1307,7 +1309,7 @@
+ 
+             point = EC_POINT_bn2point(group, bn, NULL, ossl_bn_ctx);
+         } else {
+-            BIO *in = ossl_obj2bio(&arg1);
++            BIO *in = ossl_obj2bio(arg1);
+ 
+ /* BUG: finish me */
+ 
+@@ -1602,9 +1604,7 @@
+     ID_compressed = rb_intern("compressed");
+     ID_hybrid = rb_intern("hybrid");
+ 
+-#ifdef OPENSSL_EC_NAMED_CURVE
+     rb_define_const(cEC, "NAMED_CURVE", ULONG2NUM(OPENSSL_EC_NAMED_CURVE));
+-#endif
+ 
+     rb_define_singleton_method(cEC, "builtin_curves", ossl_s_builtin_curves, 0);
+ 
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_pkey.h ruby-2.3.8/ext/openssl/ossl_pkey.h
+--- ruby-2.3.8-old/ext/openssl/ossl_pkey.h	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_pkey.h	2019-06-24 17:15:47.610345161 +0300
+@@ -40,9 +40,6 @@
+     GetPKey((obj), (pkey)); \
+ } while (0)
+ 
+-void ossl_generate_cb(int, int, void *);
+-#define HAVE_BN_GENCB defined(HAVE_RSA_GENERATE_KEY_EX) || defined(HAVE_DH_GENERATE_PARAMETERS_EX) || defined(HAVE_DSA_GENERATE_PARAMETERS_EX)
+-#if HAVE_BN_GENCB
+ struct ossl_generate_cb_arg {
+     int yield;
+     int stop;
+@@ -50,7 +47,6 @@
+ };
+ int ossl_generate_cb_2(int p, int n, BN_GENCB *cb);
+ void ossl_generate_cb_stop(void *ptr);
+-#endif
+ 
+ VALUE ossl_pkey_new(EVP_PKEY *);
+ VALUE ossl_pkey_new_from_file(VALUE);
+@@ -99,32 +95,117 @@
+ VALUE ossl_ec_new(EVP_PKEY *);
+ void Init_ossl_ec(void);
+ 
+-
+-#define OSSL_PKEY_BN(keytype, name)					\
++#define OSSL_PKEY_BN_DEF_GETTER0(_keytype, _type, _name, _get)		\
+ /*									\
+  *  call-seq:								\
+- *     key.##name -> aBN						\
++ *     _keytype##.##_name -> aBN					\
+  */									\
+-static VALUE ossl_##keytype##_get_##name(VALUE self)			\
++static VALUE ossl_##_keytype##_get_##_name(VALUE self)			\
+ {									\
+ 	EVP_PKEY *pkey;							\
+ 	BIGNUM *bn;							\
++	_type *obj;							\
+ 									\
+-	GetPKey(self, pkey);						\
+-	bn = pkey->pkey.keytype->name;					\
+-	if (bn == NULL)							\
++	GetPKey##_type(self, pkey);					\
++	obj = EVP_PKEY_get0_##_type(pkey);				\
++	_get;								\
++	if (bn)								\
++		return ossl_bn_new(bn);					\
++	else								\
+ 		return Qnil;						\
+-	return ossl_bn_new(bn);						\
+-}									\
++}
++
++#define OSSL_PKEY_BN_DEF_GETTER3(_keytype, _type, _group, a1, a2, a3)	\
++	OSSL_PKEY_BN_DEF_GETTER0(_keytype, _type, a1,			\
++		_type##_get0_##_group(obj, &bn, NULL, NULL))		\
++	OSSL_PKEY_BN_DEF_GETTER0(_keytype, _type, a2,			\
++		_type##_get0_##_group(obj, NULL, &bn, NULL))		\
++	OSSL_PKEY_BN_DEF_GETTER0(_keytype, _type, a3,			\
++		_type##_get0_##_group(obj, NULL, NULL, &bn))
++
++#define OSSL_PKEY_BN_DEF_GETTER2(_keytype, _type, _group, a1, a2)	\
++	OSSL_PKEY_BN_DEF_GETTER0(_keytype, _type, a1,			\
++		_type##_get0_##_group(obj, &bn, NULL))			\
++	OSSL_PKEY_BN_DEF_GETTER0(_keytype, _type, a2,			\
++		_type##_get0_##_group(obj, NULL, &bn))
++
++#define OSSL_PKEY_BN_DEF_SETTER3(_keytype, _type, _group, a1, a2, a3)	\
++/*									\
++ *  call-seq:								\
++ *     _keytype##.set_##_group(a1, a2, a3) -> self			\
++ */									\
++static VALUE ossl_##_keytype##_set_##_group(VALUE self, VALUE v1, VALUE v2, VALUE v3) \
++{									\
++	EVP_PKEY *pkey;							\
++	_type *obj;							\
++	BIGNUM *bn1 = BN_dup(GetBNPtr(v1));				\
++	BIGNUM *bn2 = BN_dup(GetBNPtr(v2));				\
++	BIGNUM *bn3 = BN_dup(GetBNPtr(v3));				\
++									\
++	if (!NIL_P(v1) && !bn1 ||					\
++	    !NIL_P(v2) && !bn2 ||					\
++	    !NIL_P(v3) && !bn3) {					\
++		BN_clear_free(bn1);					\
++		BN_clear_free(bn2);					\
++		BN_clear_free(bn3);					\
++		ossl_raise(eBNError, NULL);				\
++	}								\
++									\
++	GetPKey##_type(self, pkey);					\
++	obj = EVP_PKEY_get0_##_type(pkey);				\
++									\
++	if (!_type##_set0_##_group(obj, bn1, bn2, bn3)) {		\
++		BN_clear_free(bn1);					\
++		BN_clear_free(bn2);					\
++		BN_clear_free(bn3);					\
++		ossl_raise(rb_eRuntimeError, #_type"_set0_"#_group"()");\
++	}								\
++	return self;							\
++}
++
++#define OSSL_PKEY_BN_DEF_SETTER2(_keytype, _type, _group, a1, a2)	\
+ /*									\
+  *  call-seq:								\
+- *     key.##name = bn -> bn						\
++ *     _keytype##.set_##_group(a1, a2) -> self			\
++ */									\
++static VALUE ossl_##_keytype##_set_##_group(VALUE self, VALUE v1, VALUE v2) \
++{									\
++	EVP_PKEY *pkey;							\
++	_type *obj;							\
++	BIGNUM *bn1 = BN_dup(GetBNPtr(v1));				\
++	BIGNUM *bn2 = BN_dup(GetBNPtr(v2));				\
++									\
++	if (!NIL_P(v1) && !bn1 ||					\
++	    !NIL_P(v2) && !bn2) {					\
++		BN_clear_free(bn1);					\
++		BN_clear_free(bn2);					\
++		ossl_raise(eBNError, NULL);				\
++	}								\
++									\
++	GetPKey##_type(self, pkey);					\
++	obj = EVP_PKEY_get0_##_type(pkey);				\
++									\
++	if (!_type##_set0_##_group(obj, bn1, bn2)) {			\
++		BN_clear_free(bn1);					\
++		BN_clear_free(bn2);					\
++		ossl_raise(rb_eRuntimeError, #_type"_set0_"#_group"()");\
++	}								\
++	return self;							\
++}
++
++/* below no longer works with OpenSSL 1.1.0 */
++#define OSSL_PKEY_BN_OLD_SETTER(keytype, name)				\
++/*									\
++ *  call-seq:								\
++ *     keytype##.##name = bn -> bn					\
+  */									\
+ static VALUE ossl_##keytype##_set_##name(VALUE self, VALUE bignum)	\
+ {									\
+ 	EVP_PKEY *pkey;							\
+ 	BIGNUM *bn;							\
+ 									\
++	rb_warn("#"#name"= is deprecated; use set_* methods instead");	\
++									\
+ 	GetPKey(self, pkey);						\
+ 	if (NIL_P(bignum)) {						\
+ 		BN_clear_free(pkey->pkey.keytype->name);		\
+@@ -142,10 +223,37 @@
+ 	return bignum;							\
+ }
+ 
++#if defined(HAVE_OPAQUE_OPENSSL) /* OpenSSL 1.1.0 */
++#define OSSL_PKEY_BN_DEF3(_keytype, _type, _group, a1, a2, a3)		\
++	OSSL_PKEY_BN_DEF_GETTER3(_keytype, _type, _group, a1, a2, a3)	\
++	OSSL_PKEY_BN_DEF_SETTER3(_keytype, _type, _group, a1, a2, a3)
++
++#define OSSL_PKEY_BN_DEF2(_keytype, _type, _group, a1, a2)		\
++	OSSL_PKEY_BN_DEF_GETTER2(_keytype, _type, _group, a1, a2)	\
++	OSSL_PKEY_BN_DEF_SETTER2(_keytype, _type, _group, a1, a2)
++
++#define DEF_OSSL_PKEY_BN(class, keytype, name)				\
++	rb_define_method((class), #name, ossl_##keytype##_get_##name, 0)
++
++#else /* not OpenSSL 1.1.0 */
++#define OSSL_PKEY_BN_DEF3(_keytype, _type, _group, a1, a2, a3)		\
++	OSSL_PKEY_BN_DEF_GETTER3(_keytype, _type, _group, a1, a2, a3)	\
++	OSSL_PKEY_BN_DEF_SETTER3(_keytype, _type, _group, a1, a2, a3)	\
++	OSSL_PKEY_BN_OLD_SETTER(_keytype, a1)				\
++	OSSL_PKEY_BN_OLD_SETTER(_keytype, a2)				\
++	OSSL_PKEY_BN_OLD_SETTER(_keytype, a3)
++
++#define OSSL_PKEY_BN_DEF2(_keytype, _type, _group, a1, a2)		\
++	OSSL_PKEY_BN_DEF_GETTER2(_keytype, _type, _group, a1, a2)	\
++	OSSL_PKEY_BN_DEF_SETTER2(_keytype, _type, _group, a1, a2)	\
++	OSSL_PKEY_BN_OLD_SETTER(_keytype, a1)				\
++	OSSL_PKEY_BN_OLD_SETTER(_keytype, a2)
++
+ #define DEF_OSSL_PKEY_BN(class, keytype, name)				\
+ do {									\
+-	rb_define_method((class), #name, ossl_##keytype##_get_##name, 0);	\
++	rb_define_method((class), #name, ossl_##keytype##_get_##name, 0);\
+ 	rb_define_method((class), #name "=", ossl_##keytype##_set_##name, 1);\
+ } while (0)
++#endif /* HAVE_OPAQUE_OPENSSL */
+ 
+ #endif /* _OSSL_PKEY_H_ */
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_pkey_rsa.c ruby-2.3.8/ext/openssl/ossl_pkey_rsa.c
+--- ruby-2.3.8-old/ext/openssl/ossl_pkey_rsa.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_pkey_rsa.c	2019-06-24 17:15:47.610345161 +0300
+@@ -7,20 +7,17 @@
+  * This program is licensed under the same licence as Ruby.
+  * (See the file 'LICENCE'.)
+  */
+-#if !defined(OPENSSL_NO_RSA)
+-
+ #include "ossl.h"
+ 
++#if !defined(OPENSSL_NO_RSA)
++
+ #define GetPKeyRSA(obj, pkey) do { \
+     GetPKey((obj), (pkey)); \
+-    if (EVP_PKEY_type((pkey)->type) != EVP_PKEY_RSA) { /* PARANOIA? */ \
++    if (EVP_PKEY_base_id(pkey) != EVP_PKEY_RSA) { /* PARANOIA? */ \
+ 	ossl_raise(rb_eRuntimeError, "THIS IS NOT A RSA!") ; \
+     } \
+ } while (0)
+ 
+-#define RSA_HAS_PRIVATE(rsa) ((rsa)->p && (rsa)->q)
+-#define RSA_PRIVATE(obj,rsa) (RSA_HAS_PRIVATE(rsa)||OSSL_PKEY_IS_PRIVATE(obj))
+-
+ /*
+  * Classes
+  */
+@@ -62,7 +59,7 @@
+     }
+     else {
+ 	obj = NewPKey(cRSA);
+-	if (EVP_PKEY_type(pkey->type) != EVP_PKEY_RSA) {
++	if (EVP_PKEY_base_id(pkey) != EVP_PKEY_RSA) {
+ 	    ossl_raise(rb_eTypeError, "Not a RSA key!");
+ 	}
+ 	SetPKey(obj, pkey);
+@@ -77,7 +74,26 @@
+ /*
+  * Private
+  */
+-#if defined(HAVE_RSA_GENERATE_KEY_EX) && HAVE_BN_GENCB
++
++OSSL_PKEY_BN_DEF3(rsa, RSA, key, n, e, d);
++OSSL_PKEY_BN_DEF2(rsa, RSA, factors, p, q);
++OSSL_PKEY_BN_DEF3(rsa, RSA, crt_params, dmp1, dmq1, iqmp);
++
++static inline int
++rsa_has_private(RSA *rsa)
++{
++    BIGNUM *bnp, *bnq;
++    RSA_get0_factors(rsa, &bnp, &bnq);
++    return bnp && bnq;
++}
++
++static inline int
++rsa_is_private(VALUE obj, RSA *rsa)
++{
++    return rsa_has_private(rsa) || OSSL_PKEY_IS_PRIVATE(obj);
++}
++
++
+ struct rsa_blocking_gen_arg {
+     RSA *rsa;
+     BIGNUM *e;
+@@ -93,22 +109,21 @@
+     gen->result = RSA_generate_key_ex(gen->rsa, gen->size, gen->e, gen->cb);
+     return 0;
+ }
+-#endif
+ 
+ static RSA *
+ rsa_generate(int size, unsigned long exp)
+ {
+-#if defined(HAVE_RSA_GENERATE_KEY_EX) && HAVE_BN_GENCB
+     int i;
+-    BN_GENCB cb;
+     struct ossl_generate_cb_arg cb_arg;
+     struct rsa_blocking_gen_arg gen_arg;
+     RSA *rsa = RSA_new();
+     BIGNUM *e = BN_new();
++    BN_GENCB *cb = BN_GENCB_new();
+ 
+-    if (!rsa || !e) {
+-	if (e) BN_free(e);
++    if (!rsa || !e || !cb) {
+ 	if (rsa) RSA_free(rsa);
++	if (e) BN_free(e);
++	if (cb) BN_GENCB_free(cb);
+ 	return 0;
+     }
+     for (i = 0; i < (int)sizeof(exp) * 8; ++i) {
+@@ -124,11 +139,11 @@
+     memset(&cb_arg, 0, sizeof(struct ossl_generate_cb_arg));
+     if (rb_block_given_p())
+ 	cb_arg.yield = 1;
+-    BN_GENCB_set(&cb, ossl_generate_cb_2, &cb_arg);
++    BN_GENCB_set(cb, ossl_generate_cb_2, &cb_arg);
+     gen_arg.rsa = rsa;
+     gen_arg.e = e;
+     gen_arg.size = size;
+-    gen_arg.cb = &cb;
++    gen_arg.cb = cb;
+     if (cb_arg.yield == 1) {
+ 	/* we cannot release GVL when callback proc is supplied */
+ 	rsa_blocking_gen(&gen_arg);
+@@ -136,6 +151,8 @@
+ 	/* there's a chance to unblock */
+ 	rb_thread_call_without_gvl(rsa_blocking_gen, &gen_arg, ossl_generate_cb_stop, &cb_arg);
+     }
++
++    BN_GENCB_free(cb);
+     if (!gen_arg.result) {
+ 	BN_free(e);
+ 	RSA_free(rsa);
+@@ -145,9 +162,6 @@
+ 
+     BN_free(e);
+     return rsa;
+-#else
+-    return RSA_generate_key(size, exp, rb_block_given_p() ? ossl_generate_cb : NULL, NULL);
+-#endif
+ }
+ 
+ /*
+@@ -220,7 +234,7 @@
+     else {
+ 	if (!NIL_P(pass)) passwd = StringValuePtr(pass);
+ 	arg = ossl_to_der_if_possible(arg);
+-	in = ossl_obj2bio(&arg);
++	in = ossl_obj2bio(arg);
+ 	rsa = PEM_read_bio_RSAPrivateKey(in, NULL, ossl_pem_passwd_cb, passwd);
+ 	if (!rsa) {
+ 	    OSSL_BIO_reset(in);
+@@ -284,10 +298,12 @@
+ ossl_rsa_is_private(VALUE self)
+ {
+     EVP_PKEY *pkey;
++    RSA *rsa;
+ 
+     GetPKeyRSA(self, pkey);
++    rsa = EVP_PKEY_get0_RSA(pkey);
+ 
+-    return (RSA_PRIVATE(self, pkey->pkey.rsa)) ? Qtrue : Qfalse;
++    return rsa_is_private(self, rsa) ? Qtrue : Qfalse;
+ }
+ 
+ /*
+@@ -304,6 +320,7 @@
+ ossl_rsa_export(int argc, VALUE *argv, VALUE self)
+ {
+     EVP_PKEY *pkey;
++    RSA *rsa;
+     BIO *out;
+     const EVP_CIPHER *ciph = NULL;
+     char *passwd = NULL;
+@@ -325,14 +342,15 @@
+     if (!(out = BIO_new(BIO_s_mem()))) {
+ 	ossl_raise(eRSAError, NULL);
+     }
+-    if (RSA_HAS_PRIVATE(pkey->pkey.rsa)) {
+-	if (!PEM_write_bio_RSAPrivateKey(out, pkey->pkey.rsa, ciph,
+-					 NULL, 0, ossl_pem_passwd_cb, passwd)) {
++    rsa = EVP_PKEY_get0_RSA(pkey);
++    if (rsa_has_private(rsa)) {
++	if (!PEM_write_bio_RSAPrivateKey(out, rsa, ciph, NULL, 0,
++					 ossl_pem_passwd_cb, passwd)) {
+ 	    BIO_free(out);
+ 	    ossl_raise(eRSAError, NULL);
+ 	}
+     } else {
+-	if (!PEM_write_bio_RSA_PUBKEY(out, pkey->pkey.rsa)) {
++	if (!PEM_write_bio_RSA_PUBKEY(out, rsa)) {
+ 	    BIO_free(out);
+ 	    ossl_raise(eRSAError, NULL);
+ 	}
+@@ -352,28 +370,30 @@
+ ossl_rsa_to_der(VALUE self)
+ {
+     EVP_PKEY *pkey;
++    RSA *rsa;
+     int (*i2d_func)_((const RSA*, unsigned char**));
+     unsigned char *p;
+     long len;
+     VALUE str;
+ 
+     GetPKeyRSA(self, pkey);
+-    if(RSA_HAS_PRIVATE(pkey->pkey.rsa))
++    rsa = EVP_PKEY_get0_RSA(pkey);
++    if(rsa_has_private(rsa))
+ 	i2d_func = i2d_RSAPrivateKey;
+     else
+ 	i2d_func = (int (*)(const RSA*, unsigned char**))i2d_RSA_PUBKEY;
+-    if((len = i2d_func(pkey->pkey.rsa, NULL)) <= 0)
++    if((len = i2d_func(rsa, NULL)) <= 0)
+ 	ossl_raise(eRSAError, NULL);
+     str = rb_str_new(0, len);
+     p = (unsigned char *)RSTRING_PTR(str);
+-    if(i2d_func(pkey->pkey.rsa, &p) < 0)
++    if(i2d_func(rsa, &p) < 0)
+ 	ossl_raise(eRSAError, NULL);
+     ossl_str_adjust(str, p);
+ 
+     return str;
+ }
+ 
+-#define ossl_rsa_buf_size(pkey) (RSA_size((pkey)->pkey.rsa)+16)
++#define ossl_rsa_buf_size(rsa) (RSA_size(rsa)+16)
+ 
+ /*
+  * call-seq:
+@@ -387,19 +407,18 @@
+ ossl_rsa_public_encrypt(int argc, VALUE *argv, VALUE self)
+ {
+     EVP_PKEY *pkey;
++    RSA *rsa;
+     int buf_len, pad;
+     VALUE str, buffer, padding;
+ 
+     GetPKeyRSA(self, pkey);
+-    if (!pkey->pkey.rsa->n)
+-	ossl_raise(eRSAError, "incomplete RSA");
++    rsa = EVP_PKEY_get0_RSA(pkey);
+     rb_scan_args(argc, argv, "11", &buffer, &padding);
+     pad = (argc == 1) ? RSA_PKCS1_PADDING : NUM2INT(padding);
+     StringValue(buffer);
+-    str = rb_str_new(0, ossl_rsa_buf_size(pkey));
++    str = rb_str_new(0, ossl_rsa_buf_size(rsa));
+     buf_len = RSA_public_encrypt(RSTRING_LENINT(buffer), (unsigned char *)RSTRING_PTR(buffer),
+-				 (unsigned char *)RSTRING_PTR(str), pkey->pkey.rsa,
+-				 pad);
++				 (unsigned char *)RSTRING_PTR(str), rsa, pad);
+     if (buf_len < 0) ossl_raise(eRSAError, NULL);
+     rb_str_set_len(str, buf_len);
+ 
+@@ -418,19 +437,18 @@
+ ossl_rsa_public_decrypt(int argc, VALUE *argv, VALUE self)
+ {
+     EVP_PKEY *pkey;
++    RSA *rsa;
+     int buf_len, pad;
+     VALUE str, buffer, padding;
+ 
+     GetPKeyRSA(self, pkey);
+-    if (!pkey->pkey.rsa->n)
+-	ossl_raise(eRSAError, "incomplete RSA");
++    rsa = EVP_PKEY_get0_RSA(pkey);
+     rb_scan_args(argc, argv, "11", &buffer, &padding);
+     pad = (argc == 1) ? RSA_PKCS1_PADDING : NUM2INT(padding);
+     StringValue(buffer);
+-    str = rb_str_new(0, ossl_rsa_buf_size(pkey));
++    str = rb_str_new(0, ossl_rsa_buf_size(rsa));
+     buf_len = RSA_public_decrypt(RSTRING_LENINT(buffer), (unsigned char *)RSTRING_PTR(buffer),
+-				 (unsigned char *)RSTRING_PTR(str), pkey->pkey.rsa,
+-				 pad);
++				 (unsigned char *)RSTRING_PTR(str), rsa, pad);
+     if (buf_len < 0) ossl_raise(eRSAError, NULL);
+     rb_str_set_len(str, buf_len);
+ 
+@@ -449,21 +467,21 @@
+ ossl_rsa_private_encrypt(int argc, VALUE *argv, VALUE self)
+ {
+     EVP_PKEY *pkey;
++    RSA *rsa;
+     int buf_len, pad;
+     VALUE str, buffer, padding;
+ 
+     GetPKeyRSA(self, pkey);
+-    if (!pkey->pkey.rsa->n)
+-	ossl_raise(eRSAError, "incomplete RSA");
+-    if (!RSA_PRIVATE(self, pkey->pkey.rsa))
+-	ossl_raise(eRSAError, "private key needed");
++    rsa = EVP_PKEY_get0_RSA(pkey);
++    if (!rsa_is_private(self, EVP_PKEY_get0_RSA(pkey))) {
++	ossl_raise(eRSAError, "private key needed.");
++    }
+     rb_scan_args(argc, argv, "11", &buffer, &padding);
+     pad = (argc == 1) ? RSA_PKCS1_PADDING : NUM2INT(padding);
+     StringValue(buffer);
+-    str = rb_str_new(0, ossl_rsa_buf_size(pkey));
++    str = rb_str_new(0, ossl_rsa_buf_size(rsa));
+     buf_len = RSA_private_encrypt(RSTRING_LENINT(buffer), (unsigned char *)RSTRING_PTR(buffer),
+-				  (unsigned char *)RSTRING_PTR(str), pkey->pkey.rsa,
+-				  pad);
++				  (unsigned char *)RSTRING_PTR(str), rsa, pad);
+     if (buf_len < 0) ossl_raise(eRSAError, NULL);
+     rb_str_set_len(str, buf_len);
+ 
+@@ -482,21 +500,21 @@
+ ossl_rsa_private_decrypt(int argc, VALUE *argv, VALUE self)
+ {
+     EVP_PKEY *pkey;
++    RSA *rsa;
+     int buf_len, pad;
+     VALUE str, buffer, padding;
+ 
+     GetPKeyRSA(self, pkey);
+-    if (!pkey->pkey.rsa->n)
+-	ossl_raise(eRSAError, "incomplete RSA");
+-    if (!RSA_PRIVATE(self, pkey->pkey.rsa))
+-	ossl_raise(eRSAError, "private key needed");
++    rsa = EVP_PKEY_get0_RSA(pkey);
++    if (!rsa_is_private(self, rsa)) {
++	ossl_raise(eRSAError, "private key needed.");
++    }
+     rb_scan_args(argc, argv, "11", &buffer, &padding);
+     pad = (argc == 1) ? RSA_PKCS1_PADDING : NUM2INT(padding);
+     StringValue(buffer);
+-    str = rb_str_new(0, ossl_rsa_buf_size(pkey));
++    str = rb_str_new(0, ossl_rsa_buf_size(rsa));
+     buf_len = RSA_private_decrypt(RSTRING_LENINT(buffer), (unsigned char *)RSTRING_PTR(buffer),
+-				  (unsigned char *)RSTRING_PTR(str), pkey->pkey.rsa,
+-				  pad);
++				  (unsigned char *)RSTRING_PTR(str), rsa, pad);
+     if (buf_len < 0) ossl_raise(eRSAError, NULL);
+     rb_str_set_len(str, buf_len);
+ 
+@@ -517,21 +535,16 @@
+ static VALUE
+ ossl_rsa_get_params(VALUE self)
+ {
+-    EVP_PKEY *pkey;
+-    VALUE hash;
++    VALUE hash = rb_hash_new();
+ 
+-    GetPKeyRSA(self, pkey);
+-
+-    hash = rb_hash_new();
+-
+-    rb_hash_aset(hash, rb_str_new2("n"), ossl_bn_new(pkey->pkey.rsa->n));
+-    rb_hash_aset(hash, rb_str_new2("e"), ossl_bn_new(pkey->pkey.rsa->e));
+-    rb_hash_aset(hash, rb_str_new2("d"), ossl_bn_new(pkey->pkey.rsa->d));
+-    rb_hash_aset(hash, rb_str_new2("p"), ossl_bn_new(pkey->pkey.rsa->p));
+-    rb_hash_aset(hash, rb_str_new2("q"), ossl_bn_new(pkey->pkey.rsa->q));
+-    rb_hash_aset(hash, rb_str_new2("dmp1"), ossl_bn_new(pkey->pkey.rsa->dmp1));
+-    rb_hash_aset(hash, rb_str_new2("dmq1"), ossl_bn_new(pkey->pkey.rsa->dmq1));
+-    rb_hash_aset(hash, rb_str_new2("iqmp"), ossl_bn_new(pkey->pkey.rsa->iqmp));
++    rb_hash_aset(hash, rb_str_new2("n"), ossl_rsa_get_n(self));
++    rb_hash_aset(hash, rb_str_new2("e"), ossl_rsa_get_e(self));
++    rb_hash_aset(hash, rb_str_new2("d"), ossl_rsa_get_d(self));
++    rb_hash_aset(hash, rb_str_new2("p"), ossl_rsa_get_p(self));
++    rb_hash_aset(hash, rb_str_new2("q"), ossl_rsa_get_q(self));
++    rb_hash_aset(hash, rb_str_new2("dmp1"), ossl_rsa_get_dmp1(self));
++    rb_hash_aset(hash, rb_str_new2("dmq1"), ossl_rsa_get_dmq1(self));
++    rb_hash_aset(hash, rb_str_new2("iqmp"), ossl_rsa_get_iqmp(self));
+ 
+     return hash;
+ }
+@@ -557,7 +570,7 @@
+     if (!(out = BIO_new(BIO_s_mem()))) {
+ 	ossl_raise(eRSAError, NULL);
+     }
+-    if (!RSA_print(out, pkey->pkey.rsa, 0)) { /* offset = 0 */
++    if (!RSA_print(out, EVP_PKEY_get0_RSA(pkey), 0)) { /* offset = 0 */
+ 	BIO_free(out);
+ 	ossl_raise(eRSAError, NULL);
+     }
+@@ -581,7 +594,7 @@
+ 
+     GetPKeyRSA(self, pkey);
+     /* err check performed by rsa_instance */
+-    rsa = RSAPublicKey_dup(pkey->pkey.rsa);
++    rsa = RSAPublicKey_dup(EVP_PKEY_get0_RSA(pkey));
+     obj = rsa_instance(CLASS_OF(self), rsa);
+     if (obj == Qfalse) {
+ 	RSA_free(rsa);
+@@ -600,7 +613,7 @@
+ 
+     GetPKeyRSA(self, pkey);
+ 
+-    if (RSA_blinding_on(pkey->pkey.rsa, ossl_bn_ctx) != 1) {
++    if (RSA_blinding_on(EVP_PKEY_get0_RSA(pkey), ossl_bn_ctx) != 1) {
+ 	ossl_raise(eRSAError, NULL);
+     }
+     return self;
+@@ -612,21 +625,12 @@
+     EVP_PKEY *pkey;
+ 
+     GetPKeyRSA(self, pkey);
+-    RSA_blinding_off(pkey->pkey.rsa);
++    RSA_blinding_off(EVP_PKEY_get0_RSA(pkey));
+ 
+     return self;
+ }
+  */
+ 
+-OSSL_PKEY_BN(rsa, n)
+-OSSL_PKEY_BN(rsa, e)
+-OSSL_PKEY_BN(rsa, d)
+-OSSL_PKEY_BN(rsa, p)
+-OSSL_PKEY_BN(rsa, q)
+-OSSL_PKEY_BN(rsa, dmp1)
+-OSSL_PKEY_BN(rsa, dmq1)
+-OSSL_PKEY_BN(rsa, iqmp)
+-
+ /*
+  * INIT
+  */
+@@ -684,6 +688,9 @@
+     DEF_OSSL_PKEY_BN(cRSA, rsa, dmp1);
+     DEF_OSSL_PKEY_BN(cRSA, rsa, dmq1);
+     DEF_OSSL_PKEY_BN(cRSA, rsa, iqmp);
++    rb_define_method(cRSA, "set_key", ossl_rsa_set_key, 3);
++    rb_define_method(cRSA, "set_factors", ossl_rsa_set_factors, 2);
++    rb_define_method(cRSA, "set_crt_params", ossl_rsa_set_crt_params, 3);
+ 
+     rb_define_method(cRSA, "params", ossl_rsa_get_params, 0);
+ 
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_rand.c ruby-2.3.8/ext/openssl/ossl_rand.c
+--- ruby-2.3.8-old/ext/openssl/ossl_rand.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_rand.c	2019-06-24 17:15:47.610345161 +0300
+@@ -125,6 +125,7 @@
+     return str;
+ }
+ 
++#if defined(HAVE_RAND_PSEUDO_BYTES)
+ /*
+  *  call-seq:
+  *	pseudo_bytes(length) -> string
+@@ -152,6 +153,7 @@
+ 
+     return str;
+ }
++#endif
+ 
+ #ifdef HAVE_RAND_EGD
+ /*
+@@ -225,7 +227,9 @@
+     rb_define_module_function(mRandom, "load_random_file", ossl_rand_load_file, 1);
+     rb_define_module_function(mRandom, "write_random_file", ossl_rand_write_file, 1);
+     rb_define_module_function(mRandom, "random_bytes", ossl_rand_bytes, 1);
++#if defined(HAVE_RAND_PSEUDO_BYTES)
+     rb_define_module_function(mRandom, "pseudo_bytes", ossl_rand_pseudo_bytes, 1);
++#endif
+ #ifdef HAVE_RAND_EGD
+     rb_define_module_function(mRandom, "egd", ossl_rand_egd, 1);
+     rb_define_module_function(mRandom, "egd_bytes", ossl_rand_egd_bytes, 2);
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_ssl.c ruby-2.3.8/ext/openssl/ossl_ssl.c
+--- ruby-2.3.8-old/ext/openssl/ossl_ssl.c	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_ssl.c	2019-06-24 17:15:47.610345161 +0300
+@@ -84,39 +84,35 @@
+  */
+ static const struct {
+     const char *name;
+-    SSL_METHOD *(*func)(void);
++    SSL_METHOD *(*func)(void); /* FIXME: constify when dropping 0.9.8 */
++    int version;
+ } ossl_ssl_method_tab[] = {
+-#define OSSL_SSL_METHOD_ENTRY(name) { #name, (SSL_METHOD *(*)(void))name##_method }
+-    OSSL_SSL_METHOD_ENTRY(TLSv1),
+-    OSSL_SSL_METHOD_ENTRY(TLSv1_server),
+-    OSSL_SSL_METHOD_ENTRY(TLSv1_client),
+-#if defined(HAVE_TLSV1_2_METHOD) && defined(HAVE_TLSV1_2_SERVER_METHOD) && \
+-        defined(HAVE_TLSV1_2_CLIENT_METHOD)
+-    OSSL_SSL_METHOD_ENTRY(TLSv1_2),
+-    OSSL_SSL_METHOD_ENTRY(TLSv1_2_server),
+-    OSSL_SSL_METHOD_ENTRY(TLSv1_2_client),
+-#endif
+-#if defined(HAVE_TLSV1_1_METHOD) && defined(HAVE_TLSV1_1_SERVER_METHOD) && \
+-        defined(HAVE_TLSV1_1_CLIENT_METHOD)
+-    OSSL_SSL_METHOD_ENTRY(TLSv1_1),
+-    OSSL_SSL_METHOD_ENTRY(TLSv1_1_server),
+-    OSSL_SSL_METHOD_ENTRY(TLSv1_1_client),
+-#endif
+-#if defined(HAVE_SSLV2_METHOD) && defined(HAVE_SSLV2_SERVER_METHOD) && \
+-        defined(HAVE_SSLV2_CLIENT_METHOD)
+-    OSSL_SSL_METHOD_ENTRY(SSLv2),
+-    OSSL_SSL_METHOD_ENTRY(SSLv2_server),
+-    OSSL_SSL_METHOD_ENTRY(SSLv2_client),
+-#endif
+-#if defined(HAVE_SSLV3_METHOD) && defined(HAVE_SSLV3_SERVER_METHOD) && \
+-        defined(HAVE_SSLV3_CLIENT_METHOD)
+-    OSSL_SSL_METHOD_ENTRY(SSLv3),
+-    OSSL_SSL_METHOD_ENTRY(SSLv3_server),
+-    OSSL_SSL_METHOD_ENTRY(SSLv3_client),
+-#endif
+-    OSSL_SSL_METHOD_ENTRY(SSLv23),
+-    OSSL_SSL_METHOD_ENTRY(SSLv23_server),
+-    OSSL_SSL_METHOD_ENTRY(SSLv23_client),
++#if defined(HAVE_SSL_CTX_SET_MIN_PROTO_VERSION)
++/* OpenSSL 1.1.0; version specific method is deprecated */
++#define OSSL_SSL_METHOD_ENTRY(name, version) \
++    { #name,          (SSL_METHOD *(*)(void))TLS_method, version }, \
++    { #name"_server", (SSL_METHOD *(*)(void))TLS_server_method, version }, \
++    { #name"_client", (SSL_METHOD *(*)(void))TLS_client_method, version }
++#else
++#define OSSL_SSL_METHOD_ENTRY(name, version) \
++    { #name,          (SSL_METHOD *(*)(void))name##_method, version }, \
++    { #name"_server", (SSL_METHOD *(*)(void))name##_server_method, version }, \
++    { #name"_client", (SSL_METHOD *(*)(void))name##_client_method, version }
++#endif
++#if defined(HAVE_SSLV2_METHOD)
++    OSSL_SSL_METHOD_ENTRY(SSLv2, SSL2_VERSION),
++#endif
++#if defined(HAVE_SSLV3_METHOD)
++    OSSL_SSL_METHOD_ENTRY(SSLv3, SSL3_VERSION),
++#endif
++    OSSL_SSL_METHOD_ENTRY(TLSv1, TLS1_VERSION),
++#if defined(HAVE_TLSV1_1_METHOD)
++    OSSL_SSL_METHOD_ENTRY(TLSv1_1, TLS1_1_VERSION),
++#endif
++#if defined(HAVE_TLSV1_2_METHOD)
++    OSSL_SSL_METHOD_ENTRY(TLSv1_2, TLS1_2_VERSION),
++#endif
++    OSSL_SSL_METHOD_ENTRY(SSLv23, 0),
+ #undef OSSL_SSL_METHOD_ENTRY
+ };
+ 
+@@ -128,8 +124,10 @@
+ ossl_sslctx_free(void *ptr)
+ {
+     SSL_CTX *ctx = ptr;
++#if !defined(HAVE_X509_STORE_UP_REF)
+     if(ctx && SSL_CTX_get_ex_data(ctx, ossl_ssl_ex_store_p)== (void*)1)
+ 	ctx->cert_store = NULL;
++#endif
+     SSL_CTX_free(ctx);
+ }
+ 
+@@ -145,7 +143,8 @@
+ ossl_sslctx_s_alloc(VALUE klass)
+ {
+     SSL_CTX *ctx;
+-    long mode = SSL_MODE_ENABLE_PARTIAL_WRITE;
++    long mode = SSL_MODE_ENABLE_PARTIAL_WRITE |
++	SSL_MODE_ACCEPT_MOVING_WRITE_BUFFER;
+     VALUE obj;
+ 
+ #ifdef SSL_MODE_RELEASE_BUFFERS
+@@ -174,30 +173,37 @@
+ static VALUE
+ ossl_sslctx_set_ssl_version(VALUE self, VALUE ssl_method)
+ {
+-    SSL_METHOD *method = NULL;
++    SSL_CTX *ctx;
+     const char *s;
+     VALUE m = ssl_method;
+     int i;
+ 
+-    SSL_CTX *ctx;
++    GetSSLCTX(self, ctx);
+     if (RB_TYPE_P(ssl_method, T_SYMBOL))
+ 	m = rb_sym2str(ssl_method);
+     s = StringValueCStr(m);
+     for (i = 0; i < numberof(ossl_ssl_method_tab); i++) {
+         if (strcmp(ossl_ssl_method_tab[i].name, s) == 0) {
+-            method = ossl_ssl_method_tab[i].func();
+-            break;
++            SSL_METHOD *method = ossl_ssl_method_tab[i].func();
++#if defined(HAVE_SSL_CTX_SET_MIN_PROTO_VERSION)
++	    int version = ossl_ssl_method_tab[i].version;
++#endif
++
++	    if (SSL_CTX_set_ssl_version(ctx, method) != 1) {
++		ossl_raise(eSSLError, "SSL_CTX_set_ssl_version");
++	    }
++#if defined(HAVE_SSL_CTX_SET_MIN_PROTO_VERSION)
++	    /* having SSL_CTX_set_min_proto_version() means versions specific methods is deprecated */
++	    if (!SSL_CTX_set_min_proto_version(ctx, version) ||
++		!SSL_CTX_set_max_proto_version(ctx, version)) {
++		ossl_raise(eSSLError, "SSL_CTX_set_{min,max}_proto_version");
++	    }
++#endif
++	    return ssl_method;
+         }
+     }
+-    if (!method) {
+-        ossl_raise(rb_eArgError, "unknown SSL method `%"PRIsVALUE"'.", m);
+-    }
+-    GetSSLCTX(self, ctx);
+-    if (SSL_CTX_set_ssl_version(ctx, method) != 1) {
+-        ossl_raise(eSSLError, "SSL_CTX_set_ssl_version");
+-    }
+ 
+-    return ssl_method;
++    ossl_raise(rb_eArgError, "unknown SSL method `%"PRIsVALUE"'.", m);
+ }
+ 
+ static VALUE
+@@ -243,7 +249,7 @@
+     if (NIL_P(cb)) return Qfalse;
+     dh = rb_apply(cb, rb_intern("call"), args);
+     pkey = GetPKeyPtr(dh);
+-    if (EVP_PKEY_type(pkey->type) != EVP_PKEY_DH) return Qfalse;
++    if (EVP_PKEY_base_id(pkey) != EVP_PKEY_DH) return Qfalse;
+ 
+     return dh;
+ }
+@@ -261,11 +267,15 @@
+     if (!RTEST(dh)) return NULL;
+     ossl_ssl_set_tmp_dh(rb_ssl, dh);
+ 
+-    return GetPKeyPtr(dh)->pkey.dh;
++    return EVP_PKEY_get0_DH(GetPKeyPtr(dh));
+ }
+ #endif /* OPENSSL_NO_DH */
+ 
+-#if !defined(OPENSSL_NO_EC)
++#if !defined(OPENSSL_NO_EC) && defined(HAVE_SSL_CTX_SET_TMP_ECDH_CALLBACK)
++/*
++ * SSL_CTX_set_tmp_ecdh_callback() is removed in OpenSSL 1.1.0. User should use
++ * SSLContext#set_ecdh_curves instead.
++ */
+ static VALUE
+ ossl_call_tmp_ecdh_callback(VALUE args)
+ {
+@@ -277,7 +287,7 @@
+     if (NIL_P(cb)) return Qfalse;
+     ecdh = rb_apply(cb, rb_intern("call"), args);
+     pkey = GetPKeyPtr(ecdh);
+-    if (EVP_PKEY_type(pkey->type) != EVP_PKEY_EC) return Qfalse;
++    if (EVP_PKEY_base_id(pkey) != EVP_PKEY_EC) return Qfalse;
+ 
+     return ecdh;
+ }
+@@ -295,7 +305,7 @@
+     if (!RTEST(ecdh)) return NULL;
+     ossl_ssl_set_tmp_ecdh(rb_ssl, ecdh);
+ 
+-    return GetPKeyPtr(ecdh)->pkey.ec;
++    return EVP_PKEY_get0_EC_KEY(GetPKeyPtr(ecdh));
+ }
+ #endif
+ 
+@@ -307,7 +317,7 @@
+ 
+     ssl = X509_STORE_CTX_get_ex_data(ctx, SSL_get_ex_data_X509_STORE_CTX_idx());
+     cb = (VALUE)SSL_get_ex_data(ssl, ossl_ssl_ex_vcb_idx);
+-    X509_STORE_CTX_set_ex_data(ctx, ossl_store_ctx_ex_verify_cb_idx, (void *)cb);
++    X509_STORE_CTX_set_ex_data(ctx, ossl_store_ctx_ex_verify_cb_idx, (void*)cb);
+     return ossl_verify_cb(preverify_ok, ctx);
+ }
+ 
+@@ -327,7 +337,11 @@
+ 
+ /* this method is currently only called for servers (in OpenSSL <= 0.9.8e) */
+ static SSL_SESSION *
++#if OPENSSL_VERSION_NUMBER >= 0x10100000L && !defined(LIBRESSL_VERSION_NUMBER)
++ossl_sslctx_session_get_cb(SSL *ssl, const unsigned char *buf, int len, int *copy)
++#else
+ ossl_sslctx_session_get_cb(SSL *ssl, unsigned char *buf, int len, int *copy)
++#endif
+ {
+     VALUE ary, ssl_obj, ret_obj;
+     SSL_SESSION *sess;
+@@ -384,7 +398,7 @@
+     	return 1;
+     ssl_obj = (VALUE)ptr;
+     sess_obj = rb_obj_alloc(cSSLSession);
+-    CRYPTO_add(&sess->references, 1, CRYPTO_LOCK_SSL_SESSION);
++    SSL_SESSION_up_ref(sess);
+     DATA_PTR(sess_obj) = sess;
+ 
+     ary = rb_ary_new2(2);
+@@ -427,20 +441,13 @@
+     void *ptr;
+     int state = 0;
+ 
+-    /*
+-     * This callback is also called for all sessions in the internal store
+-     * when SSL_CTX_free() is called.
+-     */
+-    if (rb_during_gc())
+-	return;
+-
+     OSSL_Debug("SSL SESSION remove callback entered");
+ 
+     if ((ptr = SSL_CTX_get_ex_data(ctx, ossl_ssl_ex_ptr_idx)) == NULL)
+     	return;
+     sslctx_obj = (VALUE)ptr;
+     sess_obj = rb_obj_alloc(cSSLSession);
+-    CRYPTO_add(&sess->references, 1, CRYPTO_LOCK_SSL_SESSION);
++    SSL_SESSION_up_ref(sess);
+     DATA_PTR(sess_obj) = sess;
+ 
+     ary = rb_ary_new2(2);
+@@ -643,15 +650,13 @@
+ #endif
+ #endif /* HAVE_SSL_CTX_SET_NEXT_PROTO_SELECT_CB || HAVE_SSL_CTX_SET_ALPN_SELECT_CB */
+ 
+-/* This function may serve as the entry point to support further
+- * callbacks. */
++/* This function may serve as the entry point to support further callbacks. */
+ static void
+ ssl_info_cb(const SSL *ssl, int where, int val)
+ {
+-    int state = SSL_state(ssl);
++    int is_server = SSL_is_server((SSL *)ssl);
+ 
+-    if ((where & SSL_CB_HANDSHAKE_START) &&
+-	(state & SSL_ST_ACCEPT)) {
++    if (is_server && (where & SSL_CB_HANDSHAKE_START)) {
+ 	ssl_renegotiation_cb(ssl);
+     }
+ }
+@@ -703,7 +708,6 @@
+ {
+     SSL_CTX *ctx;
+     X509 *cert = NULL, *client_ca = NULL;
+-    X509_STORE *store;
+     EVP_PKEY *key = NULL;
+     char *ca_path = NULL, *ca_file = NULL;
+     int verify_mode;
+@@ -718,22 +722,45 @@
+ #endif
+ 
+ #if !defined(OPENSSL_NO_EC)
++    /*
++     * OpenSSL will use ECDH:
++     * 0.9.8-1.0.1: if a curve (or tmp_ecdh callback) is explicitly set
++     * 1.0.2:       if SSL_CTX_set_ecdh_auto() is called
++     * 1.1.0:       always
++     */
++#if defined(HAVE_SSL_CTX_SET_ECDH_AUTO)
++    /* 1.0.2 / LibreSSL 2.3 case: enable it */
++    if (!SSL_CTX_set_ecdh_auto(ctx, 1))
++	ossl_raise(eSSLError, "SSL_CTX_set_ecdh_auto");
++#else
++    /* -1.0.1 case: enable if SSLContext#set_ecdh_curves is called */
++    /* 1.1.0 case: enable always; nothing to do */
++#endif
++    /* for compatibility */
+     if (RTEST(ossl_sslctx_get_tmp_ecdh_cb(self))){
++	rb_warn("tmp_ecdh_callback is deprecated and will not work with recent "
++		"OpenSSL; use SSLContext#set_ecdh_curves() instead.");
++#if defined(HAVE_SSL_CTX_SET_TMP_ECDH_CALLBACK)
+ 	SSL_CTX_set_tmp_ecdh_callback(ctx, ossl_tmp_ecdh_callback);
+-    }
+ #endif
++    }
++#endif /* OPENSSL_NO_EC */
+ 
+     val = ossl_sslctx_get_cert_store(self);
+     if(!NIL_P(val)){
++	X509_STORE *store = GetX509StorePtr(val); /* NO NEED TO DUP */
++	SSL_CTX_set_cert_store(ctx, store);
++#if !defined(HAVE_X509_STORE_UP_REF)
+ 	/*
+          * WORKAROUND:
+ 	 *   X509_STORE can count references, but
+ 	 *   X509_STORE_free() doesn't care it.
+ 	 *   So we won't increment it but mark it by ex_data.
+ 	 */
+-        store = GetX509StorePtr(val); /* NO NEED TO DUP */
+-        SSL_CTX_set_cert_store(ctx, store);
+         SSL_CTX_set_ex_data(ctx, ossl_ssl_ex_store_p, (void*)1);
++#else /* Fixed in OpenSSL 1.1.0 */
++	X509_STORE_up_ref(store);
++#endif
+     }
+ 
+     val = ossl_sslctx_get_extra_cert(self);
+@@ -863,7 +890,7 @@
+ }
+ 
+ static VALUE
+-ossl_ssl_cipher_to_ary(SSL_CIPHER *cipher)
++ossl_ssl_cipher_to_ary(const SSL_CIPHER *cipher)
+ {
+     VALUE ary;
+     int bits, alg_bits;
+@@ -889,7 +916,7 @@
+ {
+     SSL_CTX *ctx;
+     STACK_OF(SSL_CIPHER) *ciphers;
+-    SSL_CIPHER *cipher;
++    const SSL_CIPHER *cipher;
+     VALUE ary;
+     int i, num;
+ 
+@@ -898,7 +925,7 @@
+         rb_warning("SSL_CTX is not initialized.");
+         return Qnil;
+     }
+-    ciphers = ctx->cipher_list;
++    ciphers = SSL_CTX_get_ciphers(ctx);
+ 
+     if (!ciphers)
+         return rb_ary_new();
+@@ -961,6 +988,124 @@
+ }
+ 
+ /*
++ * call-seq:
++ *    ctx.security_level => 0, .., 5
++ *
++ * The security level for this context. This is new in OpenSSL 1.1.0 and
++ * always returns 0 if using older OpenSSL.
++ */
++static VALUE
++ossl_sslctx_get_security_level(VALUE self)
++{
++    SSL_CTX *ctx;
++    int i;
++
++    GetSSLCTX(self, ctx);
++    if (!ctx) {
++	rb_warning("SSL_CTX is not initialized.");
++	return Qnil;
++    }
++
++#if defined(HAVE_SSL_CTX_GET_SECURITY_LEVEL)
++    i = SSL_CTX_get_security_level(ctx);
++#else
++    i = 0;
++#endif
++    return INT2FIX(i);
++}
++
++/*
++ * call-seq:
++ *    ctx.security_level = 0
++ *    ctx.security_level = 5
++ *
++ * Sets the security level for this context. This is new in OpenSSL 1.1.0.
++ * If using older OpenSSL, setting a value other than 0 raises
++ * NotImplementedError.
++ *
++ * See the manpage of SSL_CTX_set_security_level(3) for details.
++ */
++static VALUE
++ossl_sslctx_set_security_level(VALUE self, VALUE v)
++{
++    SSL_CTX *ctx;
++
++    rb_check_frozen(self);
++
++    GetSSLCTX(self, ctx);
++    if (!ctx)
++	ossl_raise(eSSLError, "SSL_CTX is not initialized.");
++
++#if defined(HAVE_SSL_CTX_GET_SECURITY_LEVEL)
++    SSL_CTX_set_security_level(ctx, NUM2INT(v));
++#else
++    if (NUM2INT(v) != 0)
++	ossl_raise(rb_eNotImpError, "setting security level != 0 is not "
++		   "supported in this version of OpenSSL");
++#endif
++
++    return v;
++}
++
++#if !defined(OPENSSL_NO_EC)
++/*
++ * call-seq:
++ *    ctx.set_ecdh_curves("curve1:curve2:curve3") -> self
++ *
++ * Sets the list of supported elliptic curves for this context. The curves are
++ * passed as a string, colon separated list of named curves in preference order.
++ * For example "P-521:P-384:P-256".
++ *
++ * If you are using an newer OpenSSL (1.0.2-):
++ *   For a TLS client the curves are used in the supported elliptic curves
++ *   extension. For a TLS server the curves are used to determine the set of
++ *   shared curves.
++ * If you are using an older OpenSSL (-1.0.1):
++ *   You can set only one curve. For a TLS client this does nothing. The
++ *   supported curves list can't be changed. For a TLS server the specified
++ *   curve is directly used.
++ */
++static VALUE
++ossl_sslctx_set_ecdh_curves(VALUE self, VALUE value)
++{
++    SSL_CTX *ctx;
++    const char *cstr = StringValueCStr(value);
++
++    rb_check_frozen(self);
++    GetSSLCTX(self, ctx);
++    if (!ctx)
++	ossl_raise(eSSLError, "SSL_CTX is not initialized");
++
++#if defined(HAVE_SSL_CTX_SET1_CURVES_LIST)
++    /* OpenSSL 1.0.2 or newer */
++    if (!SSL_CTX_set1_curves_list(ctx, cstr))
++	ossl_raise(eSSLError, NULL);
++#else
++    /* OpenSSL 1.0.1 or older, LibreSSL */
++    if (strstr(cstr, ":")) {
++	ossl_raise(rb_eArgError, "only one curve can be specified");
++    }
++    else {
++	EC_KEY *ecdh;
++	int nid = EC_curve_nist2nid(cstr);
++	if (nid == NID_undef)
++	    nid = OBJ_sn2nid(cstr);
++	if (nid == NID_undef)
++	    nid = OBJ_ln2nid(cstr);
++	if (nid == NID_undef)
++	    ossl_raise(eSSLError, "unknown curve name");
++	ecdh = EC_KEY_new_by_curve_name(nid);
++	if (!ecdh)
++	    ossl_raise(eSSLError, NULL);
++	SSL_CTX_set_tmp_ecdh(ctx, ecdh);
++    }
++#endif
++
++    return self;
++}
++#endif
++
++/*
+  *  call-seq:
+  *     ctx.session_add(session) -> true | false
+  *
+@@ -1434,25 +1579,21 @@
+     }
+ 
+     ilen = NUM2INT(len);
+-    if (NIL_P(str))
+-	str = rb_str_new(0, ilen);
+-    else {
+-	StringValue(str);
+-	if (RSTRING_LEN(str) >= ilen)
+-	    rb_str_modify(str);
+-	else
+-	    rb_str_modify_expand(str, ilen - RSTRING_LEN(str));
++    if(NIL_P(str)) str = rb_str_new(0, ilen);
++    else{
++        StringValue(str);
++        rb_str_modify(str);
++        rb_str_resize(str, ilen);
+     }
+-    OBJ_TAINT(str);
+-    rb_str_set_len(str, 0);
+-    if (ilen == 0)
+-	return str;
++    if(ilen == 0) return str;
+ 
+     GetSSL(self, ssl);
+     GetOpenFile(ossl_ssl_get_io(self), fptr);
+     if (ssl) {
++	if(!nonblock && SSL_pending(ssl) <= 0)
++	    rb_thread_wait_fd(FPTR_TO_FD(fptr));
+ 	for (;;){
+-	    nread = SSL_read(ssl, RSTRING_PTR(str), ilen);
++	    nread = SSL_read(ssl, RSTRING_PTR(str), RSTRING_LENINT(str));
+ 	    switch(ssl_get_error(ssl, nread)){
+ 	    case SSL_ERROR_NONE:
+ 		goto end;
+@@ -1492,6 +1633,8 @@
+ 
+   end:
+     rb_str_set_len(str, nread);
++    OBJ_TAINT(str);
++
+     return str;
+ }
+ 
+@@ -1542,13 +1685,7 @@
+ 
+     if (ssl) {
+ 	for (;;){
+-	    int num = RSTRING_LENINT(str);
+-
+-	    /* SSL_write(3ssl) manpage states num == 0 is undefined */
+-	    if (num == 0)
+-		goto end;
+-
+-	    nwrite = SSL_write(ssl, RSTRING_PTR(str), num);
++	    nwrite = SSL_write(ssl, RSTRING_PTR(str), RSTRING_LENINT(str));
+ 	    switch(ssl_get_error(ssl, nwrite)){
+ 	    case SSL_ERROR_NONE:
+ 		goto end;
+@@ -1612,17 +1749,23 @@
+  * call-seq:
+  *    ssl.stop => nil
+  *
+- * Sends "close notify" to the peer and tries to shut down the SSL connection
+- * gracefully.
++ * Stops the SSL connection and prepares it for another connection.
+  */
+ static VALUE
+ ossl_ssl_stop(VALUE self)
+ {
+     SSL *ssl;
+ 
+-    ossl_ssl_data_get_struct(self, ssl);
++    /* ossl_ssl_data_get_struct() is not usable here because it may return
++     * from this function; */
+ 
+-    ossl_ssl_shutdown(ssl);
++    GetSSL(self, ssl);
++
++    if (ssl) {
++	ossl_ssl_shutdown(ssl);
++	SSL_free(ssl);
++    }
++    DATA_PTR(self) = NULL;
+ 
+     return Qnil;
+ }
+@@ -1920,6 +2063,25 @@
+ 	return rb_str_new((const char *) out, outlen);
+ }
+ # endif
++
++# ifdef HAVE_SSL_GET_SERVER_TMP_KEY
++/*
++ * call-seq:
++ *    ssl.tmp_key => PKey or nil
++ *
++ * Returns the ephemeral key used in case of forward secrecy cipher
++ */
++static VALUE
++ossl_ssl_tmp_key(VALUE self)
++{
++   SSL *ssl;
++   EVP_PKEY *key;
++   ossl_ssl_data_get_struct(self, ssl);
++   if (!SSL_get_server_tmp_key(ssl, &key))
++       return Qnil;
++   return ossl_pkey_new(key);
++}
++# endif /* defined(HAVE_SSL_GET_SERVER_TMP_KEY) */
+ #endif /* !defined(OPENSSL_NO_SOCK) */
+ 
+ void
+@@ -2065,6 +2227,7 @@
+      */
+     rb_attr(cSSLContext, rb_intern("client_cert_cb"), 1, 1, Qfalse);
+ 
++#if defined(HAVE_SSL_CTX_SET_TMP_ECDH_CALLBACK)
+     /*
+      * A callback invoked when ECDH parameters are required.
+      *
+@@ -2074,8 +2237,12 @@
+      *
+      * The callback must return an OpenSSL::PKey::EC instance of the correct
+      * key length.
++     *
++     * This callback is deprecated and won't work with newer OpenSSL (>= 1.1.0).
++     * Use OpenSSL::SSL::SSLContext#set_ecdh_curves instead.
+      */
+     rb_attr(cSSLContext, rb_intern("tmp_ecdh_callback"), 1, 1, Qfalse);
++#endif
+ 
+     /*
+      * Sets the context in which a session can be reused.  This allows
+@@ -2211,6 +2378,11 @@
+     rb_define_method(cSSLContext, "ssl_version=", ossl_sslctx_set_ssl_version, 1);
+     rb_define_method(cSSLContext, "ciphers",     ossl_sslctx_get_ciphers, 0);
+     rb_define_method(cSSLContext, "ciphers=",    ossl_sslctx_set_ciphers, 1);
++    rb_define_method(cSSLContext, "security_level", ossl_sslctx_get_security_level, 0);
++    rb_define_method(cSSLContext, "security_level=", ossl_sslctx_set_security_level, 1);
++#if !defined(OPENSSL_NO_EC)
++    rb_define_method(cSSLContext, "set_ecdh_curves", ossl_sslctx_set_ecdh_curves, 1);
++#endif
+ 
+     rb_define_method(cSSLContext, "setup", ossl_sslctx_setup, 0);
+ 
+@@ -2314,6 +2486,9 @@
+     rb_define_method(cSSLSocket, "session=",    ossl_ssl_set_session, 1);
+     rb_define_method(cSSLSocket, "verify_result", ossl_ssl_get_verify_result, 0);
+     rb_define_method(cSSLSocket, "client_ca", ossl_ssl_get_client_ca_list, 0);
++# ifdef HAVE_SSL_GET_SERVER_TMP_KEY
++    rb_define_method(cSSLSocket, "tmp_key", ossl_ssl_tmp_key, 0);
++# endif
+ # ifdef HAVE_SSL_CTX_SET_ALPN_SELECT_CB
+     rb_define_method(cSSLSocket, "alpn_protocol", ossl_ssl_alpn_protocol, 0);
+ # endif
+@@ -2337,25 +2512,17 @@
+     ossl_ssl_def_const(OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG);
+     ossl_ssl_def_const(OP_SSLREF2_REUSE_CERT_TYPE_BUG);
+     ossl_ssl_def_const(OP_MICROSOFT_BIG_SSLV3_BUFFER);
+-#if defined(SSL_OP_MSIE_SSLV2_RSA_PADDING)
+     ossl_ssl_def_const(OP_MSIE_SSLV2_RSA_PADDING);
+-#endif
+     ossl_ssl_def_const(OP_SSLEAY_080_CLIENT_DH_BUG);
+     ossl_ssl_def_const(OP_TLS_D5_BUG);
+     ossl_ssl_def_const(OP_TLS_BLOCK_PADDING_BUG);
+     ossl_ssl_def_const(OP_DONT_INSERT_EMPTY_FRAGMENTS);
+     ossl_ssl_def_const(OP_ALL);
+-#if defined(SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION)
+     ossl_ssl_def_const(OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION);
+-#endif
+-#if defined(SSL_OP_SINGLE_ECDH_USE)
+     ossl_ssl_def_const(OP_SINGLE_ECDH_USE);
+-#endif
+     ossl_ssl_def_const(OP_SINGLE_DH_USE);
+     ossl_ssl_def_const(OP_EPHEMERAL_RSA);
+-#if defined(SSL_OP_CIPHER_SERVER_PREFERENCE)
+     ossl_ssl_def_const(OP_CIPHER_SERVER_PREFERENCE);
+-#endif
+     ossl_ssl_def_const(OP_TLS_ROLLBACK_BUG);
+     ossl_ssl_def_const(OP_NO_SSLv2);
+     ossl_ssl_def_const(OP_NO_SSLv3);
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_ssl_session.c ruby-2.3.8/ext/openssl/ossl_ssl_session.c
+--- ruby-2.3.8-old/ext/openssl/ossl_ssl_session.c	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_ssl_session.c	2019-06-24 17:15:47.610345161 +0300
+@@ -49,7 +49,7 @@
+ 		if (!ssl || (ctx = SSL_get1_session(ssl)) == NULL)
+ 			ossl_raise(eSSLSession, "no session available");
+ 	} else {
+-		BIO *in = ossl_obj2bio(&arg1);
++		BIO *in = ossl_obj2bio(arg1);
+ 
+ 		ctx = PEM_read_bio_SSL_SESSION(in, NULL, NULL, NULL);
+ 
+@@ -73,19 +73,27 @@
+ 	return self;
+ }
+ 
+-#if HAVE_SSL_SESSION_CMP == 0
+-int SSL_SESSION_cmp(const SSL_SESSION *a,const SSL_SESSION *b)
++/* SSL_SESSION_cmp() was removed without a replacement in 1.0.0 */
++static int ossl_SSL_SESSION_cmp(const SSL_SESSION *a, const SSL_SESSION *b)
+ {
+-    if (a->ssl_version != b->ssl_version ||
+-	a->session_id_length != b->session_id_length)
++    unsigned int a_len;
++    const unsigned char *a_sid = SSL_SESSION_get_id(a, &a_len);
++    unsigned int b_len;
++    const unsigned char *b_sid = SSL_SESSION_get_id(b, &b_len);
++
++#if !defined(HAVE_OPAQUE_OPENSSL) /* missing SSL_SESSION_get_ssl_version() ? */
++    if (a->ssl_version != b->ssl_version)
++	return 1;
++#endif
++    if (a_len != b_len)
+ 	return 1;
++
+ #if defined(_WIN32)
+-    return memcmp(a->session_id, b->session_id, a->session_id_length);
++    return memcmp(a_sid, b_sid, a_len);
+ #else
+-    return CRYPTO_memcmp(a->session_id, b->session_id, a->session_id_length);
++    return CRYPTO_memcmp(a_sid, b_sid, a_len);
+ #endif
+ }
+-#endif
+ 
+ /*
+  * call-seq:
+@@ -99,7 +107,7 @@
+ 	GetSSLSession(val1, ctx1);
+ 	SafeGetSSLSession(val2, ctx2);
+ 
+-	switch (SSL_SESSION_cmp(ctx1, ctx2)) {
++	switch (ossl_SSL_SESSION_cmp(ctx1, ctx2)) {
+ 	case 0:		return Qtrue;
+ 	default:	return Qfalse;
+ 	}
+@@ -186,7 +194,6 @@
+ 	return ossl_ssl_session_get_timeout(self);
+ }
+ 
+-#ifdef HAVE_SSL_SESSION_GET_ID
+ /*
+  * call-seq:
+  *    session.id -> aString
+@@ -205,7 +212,6 @@
+ 
+ 	return rb_str_new((const char *) p, i);
+ }
+-#endif
+ 
+ /*
+  * call-seq:
+@@ -316,12 +322,7 @@
+ 	rb_define_method(cSSLSession, "time=", ossl_ssl_session_set_time, 1);
+ 	rb_define_method(cSSLSession, "timeout", ossl_ssl_session_get_timeout, 0);
+ 	rb_define_method(cSSLSession, "timeout=", ossl_ssl_session_set_timeout, 1);
+-
+-#ifdef HAVE_SSL_SESSION_GET_ID
+ 	rb_define_method(cSSLSession, "id", ossl_ssl_session_get_id, 0);
+-#else
+-	rb_undef_method(cSSLSession, "id");
+-#endif
+ 	rb_define_method(cSSLSession, "to_der", ossl_ssl_session_to_der, 0);
+ 	rb_define_method(cSSLSession, "to_pem", ossl_ssl_session_to_pem, 0);
+ 	rb_define_method(cSSLSession, "to_text", ossl_ssl_session_to_text, 0);
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_version.h ruby-2.3.8/ext/openssl/ossl_version.h
+--- ruby-2.3.8-old/ext/openssl/ossl_version.h	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_version.h	2019-06-24 17:15:47.610345161 +0300
+@@ -10,6 +10,6 @@
+ #if !defined(_OSSL_VERSION_H_)
+ #define _OSSL_VERSION_H_
+ 
+-#define OSSL_VERSION "1.1.1"
++#define OSSL_VERSION "1.1.0"
+ 
+ #endif /* _OSSL_VERSION_H_ */
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_x509attr.c ruby-2.3.8/ext/openssl/ossl_x509attr.c
+--- ruby-2.3.8-old/ext/openssl/ossl_x509attr.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_x509attr.c	2019-06-24 17:15:47.610345161 +0300
+@@ -72,13 +72,16 @@
+ }
+ 
+ X509_ATTRIBUTE *
+-GetX509AttrPtr(VALUE obj)
++DupX509AttrPtr(VALUE obj)
+ {
+-    X509_ATTRIBUTE *attr;
++    X509_ATTRIBUTE *attr, *new;
+ 
+     SafeGetX509Attr(obj, attr);
++    if (!(new = X509_ATTRIBUTE_dup(attr))) {
++	ossl_raise(eX509AttrError, NULL);
++    }
+ 
+-    return attr;
++    return new;
+ }
+ 
+ /*
+@@ -138,15 +141,12 @@
+     ASN1_OBJECT *obj;
+     char *s;
+ 
+-    GetX509Attr(self, attr);
+-    s = StringValueCStr(oid);
++    s = StringValuePtr(oid);
+     obj = OBJ_txt2obj(s, 0);
++    if(!obj) obj = OBJ_txt2obj(s, 1);
+     if(!obj) ossl_raise(eX509AttrError, NULL);
+-    if (!X509_ATTRIBUTE_set1_object(attr, obj)) {
+-	ASN1_OBJECT_free(obj);
+-	ossl_raise(eX509AttrError, "X509_ATTRIBUTE_set1_object");
+-    }
+-    ASN1_OBJECT_free(obj);
++    GetX509Attr(self, attr);
++    X509_ATTRIBUTE_set1_object(attr, obj);
+ 
+     return oid;
+ }
+@@ -178,14 +178,6 @@
+     return ret;
+ }
+ 
+-#if defined(HAVE_ST_X509_ATTRIBUTE_SINGLE) || defined(HAVE_ST_SINGLE)
+-#  define OSSL_X509ATTR_IS_SINGLE(attr)  ((attr)->single)
+-#  define OSSL_X509ATTR_SET_SINGLE(attr) ((attr)->single = 1)
+-#else
+-#  define OSSL_X509ATTR_IS_SINGLE(attr)  (!(attr)->value.set)
+-#  define OSSL_X509ATTR_SET_SINGLE(attr) ((attr)->value.set = 0)
+-#endif
+-
+ /*
+  * call-seq:
+  *    attr.value = asn1 => asn1
+@@ -194,21 +186,38 @@
+ ossl_x509attr_set_value(VALUE self, VALUE value)
+ {
+     X509_ATTRIBUTE *attr;
+-    ASN1_TYPE *a1type;
++    VALUE asn1_value;
++    int i, asn1_tag;
+ 
+-    if(!(a1type = ossl_asn1_get_asn1type(value)))
+-	ossl_raise(eASN1Error, "could not get ASN1_TYPE");
+-    if(ASN1_TYPE_get(a1type) == V_ASN1_SEQUENCE){
+-	ASN1_TYPE_free(a1type);
+-	ossl_raise(eASN1Error, "couldn't set SEQUENCE for attribute value.");
++    OSSL_Check_Kind(value, cASN1Data);
++    asn1_value = rb_attr_get(value, rb_intern("@value"));
++    asn1_tag = NUM2INT(rb_attr_get(value, rb_intern("@tag")));
++    if (asn1_tag != V_ASN1_SET)
++	ossl_raise(eASN1Error, "argument must be a SET");
++    if (!rb_obj_is_kind_of(asn1_value, rb_cArray))
++	ossl_raise(eASN1Error, "ASN1::Set has non-array value (bug)");
++
++    GetX509Attr(self, attr);
++    if (X509_ATTRIBUTE_count(attr)) {
++	/* populated, reset first */
++	ASN1_OBJECT *obj = X509_ATTRIBUTE_get0_object(attr);
++	X509_ATTRIBUTE *new_attr = X509_ATTRIBUTE_new();
++	if (!new_attr)
++	    ossl_raise(eX509AttrError, NULL);
++	SetX509Attr(self, new_attr);
++	X509_ATTRIBUTE_set1_object(new_attr, obj);
++	X509_ATTRIBUTE_free(attr);
++	attr = new_attr;
+     }
+-    GetX509Attr(self, attr);
+-    if(attr->value.set){
+-	if(OSSL_X509ATTR_IS_SINGLE(attr)) ASN1_TYPE_free(attr->value.single);
+-	else sk_ASN1_TYPE_free(attr->value.set);
++
++    for (i = 0; i < RARRAY_LEN(asn1_value); i++) {
++	int ret;
++	ASN1_TYPE *a1type = ossl_asn1_get_asn1type(RARRAY_AREF(asn1_value, i));
++	ret = X509_ATTRIBUTE_set1_data(attr, ASN1_TYPE_get(a1type), a1type->value.ptr, -1);
++	ASN1_TYPE_free(a1type);
++	if (!ret)
++	    ossl_raise(eX509AttrError, NULL);
+     }
+-    OSSL_X509ATTR_SET_SINGLE(attr);
+-    attr->value.single = a1type;
+ 
+     return value;
+ }
+@@ -221,32 +230,29 @@
+ ossl_x509attr_get_value(VALUE self)
+ {
+     X509_ATTRIBUTE *attr;
+-    VALUE str, asn1;
+-    long length;
++    VALUE str;
+     unsigned char *p;
++    STACK_OF(ASN1_TYPE) *sk;
++    int i, count;
++
++    /* there is no X509_ATTRIBUTE_get0_set() function.. */
++    sk = sk_ASN1_TYPE_new_null();
++    if (!sk)
++	ossl_raise(eX509AttrError, "sk_new() failed");
+ 
+     GetX509Attr(self, attr);
+-    if(attr->value.ptr == NULL) return Qnil;
+-    if(OSSL_X509ATTR_IS_SINGLE(attr)){
+-	length = i2d_ASN1_TYPE(attr->value.single, NULL);
+-	str = rb_str_new(0, length);
+-	p = (unsigned char *)RSTRING_PTR(str);
+-	i2d_ASN1_TYPE(attr->value.single, &p);
+-	ossl_str_adjust(str, p);
+-    }
+-    else{
+-	length = i2d_ASN1_SET_OF_ASN1_TYPE(attr->value.set,
+-			(unsigned char **) NULL, i2d_ASN1_TYPE,
+-			V_ASN1_SET, V_ASN1_UNIVERSAL, 0);
+-	str = rb_str_new(0, length);
+-	p = (unsigned char *)RSTRING_PTR(str);
+-	i2d_ASN1_SET_OF_ASN1_TYPE(attr->value.set, &p,
+-			i2d_ASN1_TYPE, V_ASN1_SET, V_ASN1_UNIVERSAL, 0);
+-	ossl_str_adjust(str, p);
+-    }
+-    asn1 = rb_funcall(mASN1, rb_intern("decode"), 1, str);
++    count = X509_ATTRIBUTE_count(attr);
++    for (i = 0; i < count; i++)
++	sk_ASN1_TYPE_push(sk, X509_ATTRIBUTE_get0_type(attr, i));
++
++    str = rb_str_new(0, i2d_ASN1_SET_ANY(sk, NULL));
++    p = (unsigned char *)RSTRING_PTR(str);
++    i2d_ASN1_SET_ANY(sk, &p);
++    ossl_str_adjust(str, p);
++
++    sk_ASN1_TYPE_free(sk);
+ 
+-    return asn1;
++    return rb_funcall(mASN1, rb_intern("decode"), 1, str);
+ }
+ 
+ /*
+@@ -268,7 +274,7 @@
+     p = (unsigned char *)RSTRING_PTR(str);
+     if(i2d_X509_ATTRIBUTE(attr, &p) <= 0)
+ 	ossl_raise(eX509AttrError, NULL);
+-    rb_str_set_len(str, p - (unsigned char*)RSTRING_PTR(str));
++    ossl_str_adjust(str, p);
+ 
+     return str;
+ }
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_x509.c ruby-2.3.8/ext/openssl/ossl_x509.c
+--- ruby-2.3.8-old/ext/openssl/ossl_x509.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_x509.c	2019-06-24 17:15:47.610345161 +0300
+@@ -63,12 +63,8 @@
+     DefX509Const(V_ERR_KEYUSAGE_NO_CERTSIGN);
+     DefX509Const(V_ERR_APPLICATION_VERIFICATION);
+ 
+-#if defined(X509_V_FLAG_CRL_CHECK)
+     DefX509Const(V_FLAG_CRL_CHECK);
+-#endif
+-#if defined(X509_V_FLAG_CRL_CHECK_ALL)
+     DefX509Const(V_FLAG_CRL_CHECK_ALL);
+-#endif
+ 
+     DefX509Const(PURPOSE_SSL_CLIENT);
+     DefX509Const(PURPOSE_SSL_SERVER);
+@@ -77,21 +73,15 @@
+     DefX509Const(PURPOSE_SMIME_ENCRYPT);
+     DefX509Const(PURPOSE_CRL_SIGN);
+     DefX509Const(PURPOSE_ANY);
+-#if defined(X509_PURPOSE_OCSP_HELPER)
+     DefX509Const(PURPOSE_OCSP_HELPER);
+-#endif
+ 
+     DefX509Const(TRUST_COMPAT);
+     DefX509Const(TRUST_SSL_CLIENT);
+     DefX509Const(TRUST_SSL_SERVER);
+     DefX509Const(TRUST_EMAIL);
+     DefX509Const(TRUST_OBJECT_SIGN);
+-#if defined(X509_TRUST_OCSP_SIGN)
+     DefX509Const(TRUST_OCSP_SIGN);
+-#endif
+-#if defined(X509_TRUST_OCSP_REQUEST)
+     DefX509Const(TRUST_OCSP_REQUEST);
+-#endif
+ 
+     DefX509Default(CERT_AREA, cert_area);
+     DefX509Default(CERT_DIR, cert_dir);
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_x509cert.c ruby-2.3.8/ext/openssl/ossl_x509cert.c
+--- ruby-2.3.8-old/ext/openssl/ossl_x509cert.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_x509cert.c	2019-06-24 17:15:47.610345161 +0300
+@@ -122,7 +122,7 @@
+ 
+     SafeGetX509(obj, x509);
+ 
+-    CRYPTO_add(&x509->references, 1, CRYPTO_LOCK_X509);
++    X509_up_ref(x509);
+ 
+     return x509;
+ }
+@@ -161,7 +161,7 @@
+ 	return self;
+     }
+     arg = ossl_to_der_if_possible(arg);
+-    in = ossl_obj2bio(&arg);
++    in = ossl_obj2bio(arg);
+     x509 = PEM_read_bio_X509(in, &x, NULL, NULL);
+     DATA_PTR(self) = x;
+     if (!x509) {
+@@ -349,9 +349,7 @@
+     X509 *x509;
+ 
+     GetX509(self, x509);
+-
+-    x509->cert_info->serialNumber =
+-	num_to_asn1integer(num, X509_get_serialNumber(x509));
++    X509_set_serialNumber(x509, num_to_asn1integer(num, X509_get_serialNumber(x509)));
+ 
+     return num;
+ }
+@@ -371,7 +369,7 @@
+     out = BIO_new(BIO_s_mem());
+     if (!out) ossl_raise(eX509CertError, NULL);
+ 
+-    if (!i2a_ASN1_OBJECT(out, x509->cert_info->signature->algorithm)) {
++    if (!i2a_ASN1_OBJECT(out, X509_get0_tbs_sigalg(x509)->algorithm)) {
+ 	BIO_free(out);
+ 	ossl_raise(eX509CertError, NULL);
+     }
+@@ -671,8 +669,8 @@
+ 	OSSL_Check_Kind(RARRAY_AREF(ary, i), cX509Ext);
+     }
+     GetX509(self, x509);
+-    sk_X509_EXTENSION_pop_free(x509->cert_info->extensions, X509_EXTENSION_free);
+-    x509->cert_info->extensions = NULL;
++    while ((ext = X509_delete_ext(x509, 0)))
++	X509_EXTENSION_free(ext);
+     for (i=0; i<RARRAY_LEN(ary); i++) {
+ 	ext = DupX509ExtPtr(RARRAY_AREF(ary, i));
+ 
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_x509crl.c ruby-2.3.8/ext/openssl/ossl_x509crl.c
+--- ruby-2.3.8-old/ext/openssl/ossl_x509crl.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_x509crl.c	2019-06-24 17:15:47.610345161 +0300
+@@ -67,7 +67,7 @@
+     X509_CRL *crl;
+ 
+     SafeGetX509CRL(obj, crl);
+-    CRYPTO_add(&crl->references, 1, CRYPTO_LOCK_X509_CRL);
++    X509_CRL_up_ref(crl);
+ 
+     return crl;
+ }
+@@ -115,7 +115,7 @@
+ 	return self;
+     }
+     arg = ossl_to_der_if_possible(arg);
+-    in = ossl_obj2bio(&arg);
++    in = ossl_obj2bio(arg);
+     crl = PEM_read_bio_X509_CRL(in, &x, NULL, NULL);
+     DATA_PTR(self) = x;
+     if (!crl) {
+@@ -180,6 +180,7 @@
+ ossl_x509crl_get_signature_algorithm(VALUE self)
+ {
+     X509_CRL *crl;
++    X509_ALGOR *alg;
+     BIO *out;
+     BUF_MEM *buf;
+     VALUE str;
+@@ -188,7 +189,8 @@
+     if (!(out = BIO_new(BIO_s_mem()))) {
+ 	ossl_raise(eX509CRLError, NULL);
+     }
+-    if (!i2a_ASN1_OBJECT(out, crl->sig_alg->algorithm)) {
++    X509_CRL_get0_signature(NULL, &alg, crl);
++    if (!i2a_ASN1_OBJECT(out, alg->algorithm)) {
+ 	BIO_free(out);
+ 	ossl_raise(eX509CRLError, NULL);
+     }
+@@ -239,7 +241,7 @@
+ 
+     sec = time_to_time_t(time);
+     GetX509CRL(self, crl);
+-    if (!X509_time_adj(crl->crl->lastUpdate, 0, &sec)) {
++    if (!X509_time_adj(X509_CRL_get_lastUpdate(crl), 0, &sec)) {
+ 	ossl_raise(eX509CRLError, NULL);
+     }
+ 
+@@ -260,14 +262,18 @@
+ ossl_x509crl_set_next_update(VALUE self, VALUE time)
+ {
+     X509_CRL *crl;
++    ASN1_TIME *tm;
+     time_t sec;
+ 
+     sec = time_to_time_t(time);
+     GetX509CRL(self, crl);
+     /* This must be some thinko in OpenSSL */
+-    if (!(crl->crl->nextUpdate = X509_time_adj(crl->crl->nextUpdate, 0, &sec))){
++    tm = X509_time_adj(X509_CRL_get_nextUpdate(crl), 0, &sec);
++    if (!X509_CRL_set_nextUpdate(crl, tm)) {
++	ASN1_TIME_free(tm);
+ 	ossl_raise(eX509CRLError, NULL);
+     }
++    ASN1_TIME_free(tm);
+ 
+     return time;
+ }
+@@ -302,6 +308,7 @@
+ {
+     X509_CRL *crl;
+     X509_REVOKED *rev;
++    STACK_OF(X509_REVOKED) *rev_stack;
+     long i;
+ 
+     Check_Type(ary, T_ARRAY);
+@@ -310,13 +317,13 @@
+ 	OSSL_Check_Kind(RARRAY_AREF(ary, i), cX509Rev);
+     }
+     GetX509CRL(self, crl);
+-    sk_X509_REVOKED_pop_free(crl->crl->revoked, X509_REVOKED_free);
+-    crl->crl->revoked = NULL;
++    rev_stack = X509_CRL_get_REVOKED(crl);
++    while ((rev = sk_X509_REVOKED_delete(rev_stack, 0)))
++	X509_REVOKED_free(rev);
+     for (i=0; i<RARRAY_LEN(ary); i++) {
+ 	rev = DupX509RevokedPtr(RARRAY_AREF(ary, i));
+ 	if (!X509_CRL_add0_revoked(crl, rev)) { /* NO DUP - don't free! */
+-	    X509_REVOKED_free(rev);
+-	    ossl_raise(eX509CRLError, "X509_CRL_add0_revoked");
++	    ossl_raise(eX509CRLError, NULL);
+ 	}
+     }
+     X509_CRL_sort(crl);
+@@ -333,8 +340,7 @@
+     GetX509CRL(self, crl);
+     rev = DupX509RevokedPtr(revoked);
+     if (!X509_CRL_add0_revoked(crl, rev)) { /* NO DUP - don't free! */
+-	X509_REVOKED_free(rev);
+-	ossl_raise(eX509CRLError, "X509_CRL_add0_revoked");
++	ossl_raise(eX509CRLError, NULL);
+     }
+     X509_CRL_sort(crl);
+ 
+@@ -486,8 +492,8 @@
+ 	OSSL_Check_Kind(RARRAY_AREF(ary, i), cX509Ext);
+     }
+     GetX509CRL(self, crl);
+-    sk_X509_EXTENSION_pop_free(crl->crl->extensions, X509_EXTENSION_free);
+-    crl->crl->extensions = NULL;
++    while ((ext = X509_CRL_delete_ext(crl, 0)))
++	X509_EXTENSION_free(ext);
+     for (i=0; i<RARRAY_LEN(ary); i++) {
+ 	ext = DupX509ExtPtr(RARRAY_AREF(ary, i));
+ 	if(!X509_CRL_add_ext(crl, ext, -1)) { /* DUPs ext - FREE it */
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_x509ext.c ruby-2.3.8/ext/openssl/ossl_x509ext.c
+--- ruby-2.3.8-old/ext/openssl/ossl_x509ext.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_x509ext.c	2019-06-24 17:15:47.610345161 +0300
+@@ -189,6 +189,20 @@
+ }
+ 
+ static VALUE
++ossl_x509extfactory_set_config(VALUE self, VALUE config)
++{
++    X509V3_CTX *ctx;
++    CONF *conf;
++
++    GetX509ExtFactory(self, ctx);
++    rb_iv_set(self, "@config", config);
++    conf = GetConfigPtr(config);  /* NO DUP NEEDED */
++    X509V3_set_nconf(ctx, conf);
++
++    return config;
++}
++
++static VALUE
+ ossl_x509extfactory_initialize(int argc, VALUE *argv, VALUE self)
+ {
+     /*X509V3_CTX *ctx;*/
+@@ -225,12 +239,8 @@
+     X509_EXTENSION *ext;
+     VALUE oid, value, critical, valstr, obj;
+     int nid;
+-#ifdef HAVE_X509V3_EXT_NCONF_NID
+     VALUE rconf;
+     CONF *conf;
+-#else
+-    static LHASH *empty_lhash;
+-#endif
+ 
+     rb_scan_args(argc, argv, "21", &oid, &value, &critical);
+     StringValue(oid);
+@@ -244,17 +254,9 @@
+     rb_str_append(valstr, value);
+     GetX509ExtFactory(self, ctx);
+     obj = NewX509Ext(cX509Ext);
+-#ifdef HAVE_X509V3_EXT_NCONF_NID
+     rconf = rb_iv_get(self, "@config");
+-    conf = NIL_P(rconf) ? NULL : DupConfigPtr(rconf);
+-    X509V3_set_nconf(ctx, conf);
++    conf = NIL_P(rconf) ? NULL : GetConfigPtr(rconf);
+     ext = X509V3_EXT_nconf_nid(conf, ctx, nid, RSTRING_PTR(valstr));
+-    X509V3_set_ctx_nodb(ctx);
+-    NCONF_free(conf);
+-#else
+-    if (!empty_lhash) empty_lhash = lh_new(NULL, NULL);
+-    ext = X509V3_EXT_conf_nid(empty_lhash, ctx, nid, RSTRING_PTR(valstr));
+-#endif
+     if (!ext){
+ 	ossl_raise(eX509ExtError, "%s = %s",
+ 		   RSTRING_PTR(oid), RSTRING_PTR(value));
+@@ -324,16 +326,14 @@
+ {
+     X509_EXTENSION *ext;
+     ASN1_OBJECT *obj;
++    char *s;
+ 
++    s = StringValuePtr(oid);
++    obj = OBJ_txt2obj(s, 0);
++    if(!obj) obj = OBJ_txt2obj(s, 1);
++    if(!obj) ossl_raise(eX509ExtError, NULL);
+     GetX509Ext(self, ext);
+-    obj = OBJ_txt2obj(StringValueCStr(oid), 0);
+-    if (!obj)
+-	ossl_raise(eX509ExtError, "OBJ_txt2obj");
+-    if (!X509_EXTENSION_set_object(ext, obj)) {
+-	ASN1_OBJECT_free(obj);
+-	ossl_raise(eX509ExtError, "X509_EXTENSION_set_object");
+-    }
+-    ASN1_OBJECT_free(obj);
++    X509_EXTENSION_set_object(ext, obj);
+ 
+     return oid;
+ }
+@@ -343,16 +343,25 @@
+ {
+     X509_EXTENSION *ext;
+     ASN1_OCTET_STRING *asn1s;
++    char *s;
+ 
+-    GetX509Ext(self, ext);
+     data = ossl_to_der_if_possible(data);
+     StringValue(data);
+-    asn1s = X509_EXTENSION_get_data(ext);
+-
+-    if (!ASN1_OCTET_STRING_set(asn1s, (unsigned char *)RSTRING_PTR(data),
+-			       RSTRING_LENINT(data))) {
+-	ossl_raise(eX509ExtError, "ASN1_OCTET_STRING_set");
++    if(!(s = OPENSSL_malloc(RSTRING_LEN(data))))
++	ossl_raise(eX509ExtError, "malloc error");
++    memcpy(s, RSTRING_PTR(data), RSTRING_LEN(data));
++    if(!(asn1s = ASN1_OCTET_STRING_new())){
++	OPENSSL_free(s);
++	ossl_raise(eX509ExtError, NULL);
++    }
++    if(!ASN1_OCTET_STRING_set(asn1s, (unsigned char *)s, RSTRING_LENINT(data))){
++	OPENSSL_free(s);
++	ASN1_OCTET_STRING_free(asn1s);
++	ossl_raise(eX509ExtError, NULL);
+     }
++    OPENSSL_free(s);
++    GetX509Ext(self, ext);
++    X509_EXTENSION_set_data(ext, asn1s);
+ 
+     return data;
+ }
+@@ -402,7 +411,7 @@
+     if (!(out = BIO_new(BIO_s_mem())))
+ 	ossl_raise(eX509ExtError, NULL);
+     if (!X509V3_EXT_print(out, ext, 0, 0))
+-	M_ASN1_OCTET_STRING_print(out, ext->value);
++	ASN1_STRING_print(out, (ASN1_STRING *)X509_EXTENSION_get_data(ext));
+     ret = ossl_membio2str(out);
+ 
+     return ret;
+@@ -454,12 +463,13 @@
+     rb_attr(cX509ExtFactory, rb_intern("subject_certificate"), 1, 0, Qfalse);
+     rb_attr(cX509ExtFactory, rb_intern("subject_request"), 1, 0, Qfalse);
+     rb_attr(cX509ExtFactory, rb_intern("crl"), 1, 0, Qfalse);
+-    rb_attr(cX509ExtFactory, rb_intern("config"), 1, 1, Qfalse);
++    rb_attr(cX509ExtFactory, rb_intern("config"), 1, 0, Qfalse);
+ 
+     rb_define_method(cX509ExtFactory, "issuer_certificate=", ossl_x509extfactory_set_issuer_cert, 1);
+     rb_define_method(cX509ExtFactory, "subject_certificate=", ossl_x509extfactory_set_subject_cert, 1);
+     rb_define_method(cX509ExtFactory, "subject_request=", ossl_x509extfactory_set_subject_req, 1);
+     rb_define_method(cX509ExtFactory, "crl=", ossl_x509extfactory_set_crl, 1);
++    rb_define_method(cX509ExtFactory, "config=", ossl_x509extfactory_set_config, 1);
+     rb_define_method(cX509ExtFactory, "create_ext", ossl_x509extfactory_create_ext, -1);
+ 
+     cX509Ext = rb_define_class_under(mX509, "Extension", rb_cObject);
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_x509.h ruby-2.3.8/ext/openssl/ossl_x509.h
+--- ruby-2.3.8-old/ext/openssl/ossl_x509.h	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_x509.h	2019-06-24 17:15:47.610345161 +0300
+@@ -24,7 +24,7 @@
+ extern VALUE eX509AttrError;
+ 
+ VALUE ossl_x509attr_new(X509_ATTRIBUTE *);
+-X509_ATTRIBUTE *GetX509AttrPtr(VALUE);
++X509_ATTRIBUTE *DupX509AttrPtr(VALUE);
+ void Init_ossl_x509attr(void);
+ 
+ /*
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_x509name.c ruby-2.3.8/ext/openssl/ossl_x509name.c
+--- ruby-2.3.8-old/ext/openssl/ossl_x509name.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_x509name.c	2019-06-24 17:15:47.610345161 +0300
+@@ -282,6 +282,7 @@
+     char long_name[512];
+     const char *short_name;
+     VALUE ary, vname, ret;
++    ASN1_STRING *value;
+ 
+     GetX509Name(self, name);
+     entries = X509_NAME_entry_count(name);
+@@ -294,7 +295,8 @@
+ 	if (!(entry = X509_NAME_get_entry(name, i))) {
+ 	    ossl_raise(eX509NameError, NULL);
+ 	}
+-	if (!i2t_ASN1_OBJECT(long_name, sizeof(long_name), entry->object)) {
++	if (!i2t_ASN1_OBJECT(long_name, sizeof(long_name),
++			     X509_NAME_ENTRY_get_object(entry))) {
+ 	    ossl_raise(eX509NameError, NULL);
+ 	}
+ 	nid = OBJ_ln2nid(long_name);
+@@ -304,10 +306,11 @@
+ 	    short_name = OBJ_nid2sn(nid);
+ 	    vname = rb_str_new2(short_name); /*do not free*/
+ 	}
++	value = X509_NAME_ENTRY_get_data(entry);
+ 	ary = rb_ary_new3(3,
+ 			  vname,
+-        		  rb_str_new((const char *)entry->value->data, entry->value->length),
+-        		  INT2FIX(entry->value->type));
++			  rb_str_new((const char *)value->data, value->length),
++			  INT2FIX(value->type));
+ 	rb_ary_push(ret, ary);
+     }
+     return ret;
+@@ -339,7 +342,7 @@
+ 
+     result = ossl_x509name_cmp0(self, other);
+     if (result < 0) return INT2FIX(-1);
+-    if (result > 0) return INT2FIX(1);
++    if (result > 1) return INT2FIX(1);
+ 
+     return INT2FIX(0);
+ }
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_x509req.c ruby-2.3.8/ext/openssl/ossl_x509req.c
+--- ruby-2.3.8-old/ext/openssl/ossl_x509req.c	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_x509req.c	2019-06-24 17:15:47.610345161 +0300
+@@ -123,7 +123,7 @@
+ 	return self;
+     }
+     arg = ossl_to_der_if_possible(arg);
+-    in = ossl_obj2bio(&arg);
++    in = ossl_obj2bio(arg);
+     req = PEM_read_bio_X509_REQ(in, &x, NULL, NULL);
+     DATA_PTR(self) = x;
+     if (!req) {
+@@ -302,6 +302,7 @@
+ ossl_x509req_get_signature_algorithm(VALUE self)
+ {
+     X509_REQ *req;
++    X509_ALGOR *alg;
+     BIO *out;
+     BUF_MEM *buf;
+     VALUE str;
+@@ -311,7 +312,8 @@
+     if (!(out = BIO_new(BIO_s_mem()))) {
+ 	ossl_raise(eX509ReqError, NULL);
+     }
+-    if (!i2a_ASN1_OBJECT(out, req->sig_alg->algorithm)) {
++    X509_REQ_get0_signature(NULL, &alg, req);
++    if (!i2a_ASN1_OBJECT(out, alg->algorithm)) {
+ 	BIO_free(out);
+ 	ossl_raise(eX509ReqError, NULL);
+     }
+@@ -426,11 +428,11 @@
+ 	OSSL_Check_Kind(RARRAY_AREF(ary, i), cX509Attr);
+     }
+     GetX509Req(self, req);
+-    sk_X509_ATTRIBUTE_pop_free(req->req_info->attributes, X509_ATTRIBUTE_free);
+-    req->req_info->attributes = NULL;
++    while ((attr = X509_REQ_delete_attr(req, 0)))
++	X509_ATTRIBUTE_free(attr);
+     for (i=0;i<RARRAY_LEN(ary); i++) {
+ 	item = RARRAY_AREF(ary, i);
+-	attr = GetX509AttrPtr(item);
++	attr = DupX509AttrPtr(item);
+ 	if (!X509_REQ_add1_attr(req, attr)) {
+ 	    ossl_raise(eX509ReqError, NULL);
+ 	}
+@@ -444,7 +446,7 @@
+     X509_REQ *req;
+ 
+     GetX509Req(self, req);
+-    if (!X509_REQ_add1_attr(req, GetX509AttrPtr(attr))) {
++    if (!X509_REQ_add1_attr(req, DupX509AttrPtr(attr))) {
+ 	ossl_raise(eX509ReqError, NULL);
+     }
+ 
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_x509revoked.c ruby-2.3.8/ext/openssl/ossl_x509revoked.c
+--- ruby-2.3.8-old/ext/openssl/ossl_x509revoked.c	2019-06-24 17:15:35.934741852 +0300
++++ ruby-2.3.8/ext/openssl/ossl_x509revoked.c	2019-06-24 17:15:47.610345161 +0300
+@@ -116,16 +116,18 @@
+ 
+     GetX509Rev(self, rev);
+ 
+-    return asn1integer_to_num(rev->serialNumber);
++    return asn1integer_to_num(X509_REVOKED_get0_serialNumber(rev));
+ }
+ 
+ static VALUE
+ ossl_x509revoked_set_serial(VALUE self, VALUE num)
+ {
+     X509_REVOKED *rev;
++    ASN1_INTEGER *ai;
+ 
+     GetX509Rev(self, rev);
+-    rev->serialNumber = num_to_asn1integer(num, rev->serialNumber);
++    ai = X509_REVOKED_get0_serialNumber(rev);
++    X509_REVOKED_set_serialNumber(rev, num_to_asn1integer(num, ai));
+ 
+     return num;
+ }
+@@ -137,7 +139,7 @@
+ 
+     GetX509Rev(self, rev);
+ 
+-    return asn1time_to_time(rev->revocationDate);
++    return asn1time_to_time(X509_REVOKED_get0_revocationDate(rev));
+ }
+ 
+ static VALUE
+@@ -148,7 +150,7 @@
+ 
+     sec = time_to_time_t(time);
+     GetX509Rev(self, rev);
+-    if (!X509_time_adj(rev->revocationDate, 0, &sec)) {
++    if (!X509_time_adj(X509_REVOKED_get0_revocationDate(rev), 0, &sec)) {
+ 	ossl_raise(eX509RevError, NULL);
+     }
+ 
+@@ -196,11 +198,11 @@
+ 	OSSL_Check_Kind(RARRAY_AREF(ary, i), cX509Ext);
+     }
+     GetX509Rev(self, rev);
+-    sk_X509_EXTENSION_pop_free(rev->extensions, X509_EXTENSION_free);
+-    rev->extensions = NULL;
++    while ((ext = X509_REVOKED_delete_ext(rev, 0)))
++	X509_EXTENSION_free(ext);
+     for (i=0; i<RARRAY_LEN(ary); i++) {
+ 	item = RARRAY_AREF(ary, i);
+-	ext = GetX509ExtPtr(item);
++	ext = DupX509ExtPtr(item);
+ 	if(!X509_REVOKED_add_ext(rev, ext, -1)) {
+ 	    ossl_raise(eX509RevError, NULL);
+ 	}
+@@ -215,7 +217,7 @@
+     X509_REVOKED *rev;
+ 
+     GetX509Rev(self, rev);
+-    if (!X509_REVOKED_add_ext(rev, GetX509ExtPtr(ext), -1)) {
++    if(!X509_REVOKED_add_ext(rev, DupX509ExtPtr(ext), -1)) {
+ 	ossl_raise(eX509RevError, NULL);
+     }
+ 
+diff -Nur ruby-2.3.8-old/ext/openssl/ossl_x509store.c ruby-2.3.8/ext/openssl/ossl_x509store.c
+--- ruby-2.3.8-old/ext/openssl/ossl_x509store.c	2019-06-24 17:15:35.938741716 +0300
++++ ruby-2.3.8/ext/openssl/ossl_x509store.c	2019-06-24 17:15:47.610345161 +0300
+@@ -98,7 +98,7 @@
+     X509_STORE *store;
+ 
+     SafeGetX509Store(obj, store);
+-    CRYPTO_add(&store->references, 1, CRYPTO_LOCK_X509_STORE);
++    X509_STORE_up_ref(store);
+ 
+     return store;
+ }
+@@ -130,7 +130,7 @@
+     X509_STORE *store;
+ 
+     GetX509Store(self, store);
+-    X509_STORE_set_ex_data(store, ossl_store_ex_verify_cb_idx, (void *)cb);
++    X509_STORE_set_ex_data(store, ossl_store_ex_verify_cb_idx, (void*)cb);
+     rb_iv_set(self, "@verify_callback", cb);
+ 
+     return cb;
+@@ -149,15 +149,12 @@
+ 
+ /* BUG: This method takes any number of arguments but appears to ignore them. */
+     GetX509Store(self, store);
++#if !defined(HAVE_OPAQUE_OPENSSL)
++    /* TODO: what's this? */
+     store->ex_data.sk = NULL;
+-    X509_STORE_set_verify_cb_func(store, ossl_verify_cb);
+-    ossl_x509store_set_vfy_cb(self, Qnil);
+-
+-#if (OPENSSL_VERSION_NUMBER < 0x00907000L)
+-    rb_iv_set(self, "@flags", INT2FIX(0));
+-    rb_iv_set(self, "@purpose", INT2FIX(0));
+-    rb_iv_set(self, "@trust", INT2FIX(0));
+ #endif
++    X509_STORE_set_verify_cb(store, ossl_verify_cb);
++    ossl_x509store_set_vfy_cb(self, Qnil);
+ 
+     /* last verification status */
+     rb_iv_set(self, "@error", Qnil);
+@@ -171,15 +168,11 @@
+ static VALUE
+ ossl_x509store_set_flags(VALUE self, VALUE flags)
+ {
+-#if (OPENSSL_VERSION_NUMBER >= 0x00907000L)
+     X509_STORE *store;
+     long f = NUM2LONG(flags);
+ 
+     GetX509Store(self, store);
+     X509_STORE_set_flags(store, f);
+-#else
+-    rb_iv_set(self, "@flags", flags);
+-#endif
+ 
+     return flags;
+ }
+@@ -187,15 +180,11 @@
+ static VALUE
+ ossl_x509store_set_purpose(VALUE self, VALUE purpose)
+ {
+-#if (OPENSSL_VERSION_NUMBER >= 0x00907000L)
+     X509_STORE *store;
+     int p = NUM2INT(purpose);
+ 
+     GetX509Store(self, store);
+     X509_STORE_set_purpose(store, p);
+-#else
+-    rb_iv_set(self, "@purpose", purpose);
+-#endif
+ 
+     return purpose;
+ }
+@@ -203,15 +192,11 @@
+ static VALUE
+ ossl_x509store_set_trust(VALUE self, VALUE trust)
+ {
+-#if (OPENSSL_VERSION_NUMBER >= 0x00907000L)
+     X509_STORE *store;
+     int t = NUM2INT(trust);
+ 
+     GetX509Store(self, store);
+     X509_STORE_set_trust(store, t);
+-#else
+-    rb_iv_set(self, "@trust", trust);
+-#endif
+ 
+     return trust;
+ }
+@@ -249,13 +234,6 @@
+     if(X509_LOOKUP_load_file(lookup, path, X509_FILETYPE_PEM) != 1){
+         ossl_raise(eX509StoreError, NULL);
+     }
+-    /*
+-     * X509_load_cert_crl_file() which is called from X509_LOOKUP_load_file()
+-     * did not check the return value of X509_STORE_add_{cert,crl}(), leaking
+-     * "cert already in hash table" errors on the error queue, if duplicate
+-     * certificates are found. This will be fixed by OpenSSL 1.1.1.
+-     */
+-    ERR_clear_error();
+ 
+     return self;
+ }
+@@ -407,10 +385,10 @@
+ ossl_x509stctx_free(void *ptr)
+ {
+     X509_STORE_CTX *ctx = ptr;
+-    if(ctx->untrusted)
+-	sk_X509_pop_free(ctx->untrusted, X509_free);
+-    if(ctx->cert)
+-	X509_free(ctx->cert);
++    if (X509_STORE_CTX_get0_untrusted(ctx))
++	sk_X509_pop_free(X509_STORE_CTX_get0_untrusted(ctx), X509_free);
++    if (X509_STORE_CTX_get0_cert(ctx))
++	X509_free(X509_STORE_CTX_get0_cert(ctx));
+     X509_STORE_CTX_free(ctx);
+ }
+ 
+@@ -448,17 +426,10 @@
+     SafeGetX509Store(store, x509st);
+     if(!NIL_P(cert)) x509 = DupX509CertPtr(cert); /* NEED TO DUP */
+     if(!NIL_P(chain)) x509s = ossl_x509_ary2sk(chain);
+-#if (OPENSSL_VERSION_NUMBER >= 0x00907000L)
+     if(X509_STORE_CTX_init(ctx, x509st, x509, x509s) != 1){
+         sk_X509_pop_free(x509s, X509_free);
+         ossl_raise(eX509StoreError, NULL);
+     }
+-#else
+-    X509_STORE_CTX_init(ctx, x509st, x509, x509s);
+-    ossl_x509stctx_set_flags(self, rb_iv_get(store, "@flags"));
+-    ossl_x509stctx_set_purpose(self, rb_iv_get(store, "@purpose"));
+-    ossl_x509stctx_set_trust(self, rb_iv_get(store, "@trust"));
+-#endif
+     if (!NIL_P(t = rb_iv_get(store, "@time")))
+ 	ossl_x509stctx_set_time(self, t);
+     rb_iv_set(self, "@verify_callback", rb_iv_get(store, "@verify_callback"));
+@@ -491,7 +462,7 @@
+     VALUE ary;
+ 
+     GetX509StCtx(self, ctx);
+-    if((chain = X509_STORE_CTX_get_chain(ctx)) == NULL){
++    if((chain = X509_STORE_CTX_get0_chain(ctx)) == NULL){
+         return Qnil;
+     }
+     if((num = sk_X509_num(chain)) < 0){
+@@ -563,16 +534,15 @@
+ static VALUE
+ ossl_x509stctx_get_curr_crl(VALUE self)
+ {
+-#if (OPENSSL_VERSION_NUMBER >= 0x00907000L)
+     X509_STORE_CTX *ctx;
++    X509_CRL *crl;
+ 
+     GetX509StCtx(self, ctx);
+-    if(!ctx->current_crl) return Qnil;
++    crl = X509_STORE_CTX_get0_current_crl(ctx);
++    if (!crl)
++	return Qnil;
+ 
+-    return ossl_x509crl_new(ctx->current_crl);
+-#else
+-    return Qnil;
+-#endif
++    return ossl_x509crl_new(crl);
+ }
+ 
+ static VALUE
+diff -Nur ruby-2.3.8-old/include/ruby/backward.h ruby-2.3.8/include/ruby/backward.h
+--- ruby-2.3.8-old/include/ruby/backward.h	1970-01-01 02:00:00.000000000 +0200
++++ ruby-2.3.8/include/ruby/backward.h	2019-06-24 17:59:57.788435335 +0300
+@@ -0,0 +1,20 @@
++#ifndef RUBY_RUBY_BACKWARD_H
++#define RUBY_RUBY_BACKWARD_H 1
++
++#ifndef RUBY_SHOW_COPYRIGHT_TO_DIE
++# define RUBY_SHOW_COPYRIGHT_TO_DIE 1
++#endif
++#if RUBY_SHOW_COPYRIGHT_TO_DIE
++/* for source code backward compatibility */
++DEPRECATED(static inline int ruby_show_copyright_to_die(int));
++static inline int
++ruby_show_copyright_to_die(int exitcode)
++{
++    ruby_show_copyright();
++    return exitcode;
++}
++#define ruby_show_copyright() /* defer EXIT_SUCCESS */ \
++    (exit(ruby_show_copyright_to_die(EXIT_SUCCESS)))
++#endif
++
++#endif /* RUBY_RUBY_BACKWARD_H */
