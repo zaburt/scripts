@@ -237,8 +237,10 @@ def printResult(data, lang, data_key):
 
 def findWord(word):
   resp = loadUrl(basekey % word)
+  # open('response', 'w').write(resp)
   # resp = open('response', 'r').read()
-  rawData = resp.decode('utf-8')
+  rawData = resp.decode('utf-8', errors='ignore')
+  # rawData = resp.decode('ISO-8859-9')
   # rawData = resp
 
   p = MyHTMLParser()
