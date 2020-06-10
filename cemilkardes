@@ -202,16 +202,18 @@ class MyHTMLParser(HTMLParser):
       if data.strip() == 'Bunu mu demek istediniz?':
         self.in_suggestion = True
 
-def loadUrl(_url):
+def loadUrl(raw_url):
   try:
     # handler = urllib2.HTTPSHandler(debuglevel=1)
     handler = urllib2.HTTPSHandler()
     opener = urllib2.build_opener(handler)
     opener.addheaders = [('User-agent', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2624.3 Safari/537.36')]
     urllib2.install_opener(opener)
-    return urllib2.urlopen(_url).read()
+    escaped_url = urllib2.quote(raw_url, ':/')
+
+    return urllib2.urlopen(escaped_url).read()
   except urllib2.URLError, e:
-    print "\x1b[1;31m Adrese erişilemedi:\x1b[0m %s" % _url
+    print "\x1b[1;31m Adrese erişilemedi:\x1b[0m %s" % escaped_url
     print e
     sys.exit(1)
 
