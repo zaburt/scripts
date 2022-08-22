@@ -1,0 +1,400 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
+#
+# Simple script to get details for words in English and Turkish, or translate from
+# one to another
+#
+# Copyright (C) 2012, Onur Küçük <onur at delipenguen.net>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+
+require 'optparse'
+require 'nokogiri'
+require 'net/http'
+require 'rexml/document'
+
+class Cemilkardes
+
+  attr_accessor :asked_for, :result_count, :not_found, :doc, :raw_source, :results
+
+  def initialize(args = {})
+    @asked_for = args[:asked_for]
+
+    @language_tr = args[:language_tr] || true
+    @language_en = args[:language_en] || true
+    @result_count = args[:result_count] || 10
+
+    @raw_source = nil
+    @doc = nil
+
+    @results = {
+      :tr => {
+        :name => 'Türkçe',
+        :results => [],
+        :similar => []
+      },
+      :en => {
+        :name => 'İngilizce',
+        :results => [],
+        :similar => []
+      },
+      :images => {
+        :name => 'Görseller',
+        :results => [],
+        :similar => []
+      },
+      :did_you_mean=> {
+        :name => 'Sonuç bulunamadı, aradığınız kelime şunlardan biri mi ?',
+        :results => [],
+        :similar => []
+      }
+    }
+  end
+
+  def parse_options
+    option_parser = OptionParser.new do |opts|
+      opts.banner = "Usage: #{$PROGRAM_NAME} [options] [search string]"
+
+      opts.on('-t', '--tr-only', FalseClass, 'Turkish only') do |v|
+        @language_en = v
+      end
+
+      opts.on('-e', '--en-only', FalseClass, 'English only') do |v|
+        @language_tr = v
+      end
+
+      opts.on('-l', '--limit NUM', OptionParser::DecimalInteger, 'Output limit as integer') do |v|
+        @result_count = v
+      end
+    end
+
+    option_parser.parse!
+
+    if ARGV.empty?
+      puts option_parser
+      exit -1
+    end
+
+    @asked_for = ARGV.pop.gsub(/  */, '-')
+  end
+
+  def process
+    @raw_source = Fetcher.new(@asked_for).process
+    parser = Parser.new(@raw_source, @result_count)
+    @results = parser.process
+    @not_found = parser.not_found
+  end
+
+  def pretty_print
+    printer = Printer.new(@results, @result_count, not_found)
+    printer.process
+  end
+
+  class Fetcher
+    MASTERKEY = '68747470733a2f2f7777772e7365736c69736f7a6c756b2e6e65742f25732d6e656469722d6e652d64656d656b2f'.freeze
+    HEADER_KEY = '4d6f7a696c6c612f352e30202857696e646f7773204e5420352e3129204170706c655765624b69742f3533372e' \
+                 '333620284b48544d4c2c206c696b65204765636b6f29204368726f6d652f34352e302e323632342e3320536166' \
+                 '6172692f3533372e3336'.freeze
+    PACK_REFERENCE = 'H*'.freeze
+    URI_SCHEME_HTTPS = 'https'.freeze
+
+    HTTP_HEADERS = {
+      'User-agent' => [HEADER_KEY].pack(PACK_REFERENCE)
+    }
+
+    def initialize(asked_for)
+      @asked_for = asked_for
+    end
+
+    def url
+      # basekey = MASTERKEY.chars.each_slice(2).map{|k, v| format('0x%s%s', k, v).hex.chr}.join
+      format([MASTERKEY].pack(PACK_REFERENCE), @asked_for)
+    end
+
+    def process
+      uri_parser = URI::Parser.new
+      uri = URI.parse(uri_parser.escape(url))
+      request = Net::HTTP::Get.new(uri)
+
+      HTTP_HEADERS.each do |key, value|
+        request[key] = value
+      end
+
+      req_options = {
+        :use_ssl => uri.scheme == URI_SCHEME_HTTPS
+      }
+
+      response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+        http.request(request)
+      end
+
+      response.body
+    end
+  end
+
+  class Parser
+
+    DEFAULT_RESULT_COUNT = 10
+
+    CSS_CLASS = 'class'.freeze
+    CSS_DD = 'dd'.freeze
+    CSS_DT = 'dt'.freeze
+    CSS_DID_YOU_MEAN_TEXT = 'Bunu mu demek istediniz?'.freeze
+    CSS_LANGUAGE_START = '.panel-body.sozluk dl'.freeze
+    CSS_LI_A = 'li a'.freeze
+    CSS_ORDERED_LIST = 'ordered-list'.freeze
+    CSS_PANEL_HEADERS = '.panel.panel-default .panel-heading.sesli-red-bg'.freeze
+    CSS_SIMILAR = 'similar'.freeze
+    CSS_WORD_LINK = 'word-link'.freeze
+
+    ELEM_A = 'a'.freeze
+    ELEM_CODE = 'code'.freeze
+    ELEM_I = 'i'.freeze
+    ELEM_P = 'p'.freeze
+    ELEM_Q = 'q'.freeze
+    ELEM_VAR = 'var'.freeze
+
+    HEADER_TURKISH = 'Türkçe'.freeze
+    HEADER_ENGLISH = 'İngilizce'.freeze
+    HEADER_IMAGES = 'Görseller'.freeze
+    HEADER_DID_YOU_MEAN = 'Sonuç bulunamadı, aradığınız kelime şunlardan biri mi ?'.freeze
+
+    SPACE = ' '.freeze
+
+    attr_accessor :results, :doc, :not_found
+
+
+    def initialize(source, result_count)
+      @doc = Nokogiri::HTML(source)
+      @result_count = result_count || DEFAULT_RESULT_COUNT
+      @not_found = false
+
+      @results = {
+        :tr => {
+          :name => HEADER_TURKISH,
+          :results => [],
+          :similar => []
+        },
+        :en => {
+          :name => HEADER_ENGLISH,
+          :results => [],
+          :similar => []
+        },
+        :images => {
+          :name => HEADER_IMAGES,
+          :results => [],
+          :similar => []
+        },
+        :did_you_mean => {
+          :name => HEADER_DID_YOU_MEAN,
+          :results => [],
+          :similar => []
+        }
+      }
+    end
+
+    def parse_header_did_you_mean
+      did_you_mean_header = @panel_headers.first
+      return unless did_you_mean_header.text == CSS_DID_YOU_MEAN_TEXT
+
+      @not_found = true
+
+      suggestions = did_you_mean_header.parent.parent.css(CSS_LI_A).map(&:text)
+      @results[:did_you_mean][:results] = suggestions.map{|k| [Cemilkardes::Entry.new(:normal, k)]}
+    end
+
+    def parse_entry(lang, current_target, child)
+      return nil if child.content.to_s.strip.empty?
+
+      case child.name
+      when ELEM_CODE, ELEM_I, ELEM_VAR
+        [Cemilkardes::Entry.new(:highlighted, child.content)]
+      when ELEM_A
+        is_similar_highlighted = current_target == :similar && child[CSS_CLASS].to_s.split.include?(CSS_WORD_LINK)
+        entry_type = is_similar_highlighted ? :similar_highlighted : :normal
+        [Cemilkardes::Entry.new(entry_type, child.content)]
+      when ELEM_Q
+        to_add = [Cemilkardes::Entry.new(:italic, child.content)]
+      when ELEM_P
+        to_add = []
+
+        child.children.each do |p_child|
+          to_add += parse_entry(lang, current_target, p_child)
+        end
+
+        to_add
+      else
+        [Cemilkardes::Entry.new(:normal, child.content)]
+      end
+    end
+
+    def parse_header_language_target(elem_name, elem_classes)
+      if elem_name == CSS_DD
+        elem_classes.include?(CSS_ORDERED_LIST) ? :results : :similar
+      elsif elem_name == CSS_DT && elem_classes.include?(CSS_SIMILAR)
+        :similar
+      else
+        nil
+      end
+    end
+
+    def parse_header_language(lang, elements)
+      elements.each do |elem|
+        elem_classes = elem[CSS_CLASS].to_s.split
+        current_target = parse_header_language_target(elem.name, elem_classes)
+        next unless current_target
+
+        @results[lang][current_target] << [] if elem_classes.include?(CSS_ORDERED_LIST)
+
+        elem.children.each do |child|
+          parsed_entry = parse_entry(lang, current_target, child)
+          next unless parsed_entry
+
+          @results[lang][current_target][-1] += parsed_entry
+        end
+      end
+    end
+
+    def parse_header_languages
+      @panel_headers.each do |header|
+        lang = header.text.strip.end_with?(HEADER_TURKISH) ? :tr : :en
+        child_elements = header.parent.parent.at_css(CSS_LANGUAGE_START).children
+        parse_header_language(lang, child_elements)
+      end
+    end
+
+
+    def process
+      @panel_headers = @doc.css(CSS_PANEL_HEADERS)
+
+      if @panel_headers.count == 1
+        parse_header_did_you_mean
+      else
+        parse_header_languages
+      end
+
+      @results
+    end
+  end
+
+  class Entry
+
+    TEMPLATE_COLORIZE = " \x1b[%sm* \x1b[1;37m\x1b[0m%s".freeze
+    TEMPLATE_HIGHLIGHTED = "\x1b[1;37m%s\x1b[0m".freeze
+    TEMPLATE_ITALIC = "\x1b[0;33m\"%s\"\x1b[0m".freeze
+    TEMPLATE_LANGUAGE_HEADER = "\x1b[0;36m\n\t~~~ %s ~~~\n\x1b[0m".freeze
+    TEMPLATE_NONE = '%s'.freeze
+    TEMPLATE_SIMILAR_HIGHLIGHT = "\x1b[1;36m%s\x1b[0m".freeze
+
+    BULLET_COLOR_RESULTS = '1;32'.freeze
+    BULLET_COLOR_SIMILAR = '0;32'.freeze
+
+    attr_accessor :type, :value
+
+    def initialize(type, value)
+      @type = type
+      @value = value.to_s.strip
+    end
+
+    def self.colorize(data, bullet_color = BULLET_COLOR_RESULTS)
+      format(TEMPLATE_COLORIZE, bullet_color, data)
+    end
+
+    def self.language_header(language_string)
+      format(TEMPLATE_LANGUAGE_HEADER, language_string)
+    end
+
+    def template_for_type
+      case @type
+      when :highlighted
+        TEMPLATE_HIGHLIGHTED
+      when :italic
+        TEMPLATE_ITALIC
+      when :language_header
+        TEMPLATE_LANGUAGE_HEADER
+      when :similar_highlighted
+        TEMPLATE_SIMILAR_HIGHLIGHT
+      else
+        TEMPLATE_NONE
+      end
+    end
+
+    def to_s
+      format(template_for_type, @value)
+    end
+
+  end
+
+  class Printer
+
+    def initialize(results, result_count, not_found)
+      @results = results
+      @result_count = result_count
+      @not_found = not_found
+    end
+
+    def print_formatted(lang, target)
+      if target == :results
+        puts Entry.language_header(@results[lang][:name])
+        bullet_color = Entry::BULLET_COLOR_RESULTS
+      else
+        bullet_color = Entry::BULLET_COLOR_SIMILAR
+      end
+
+      range_end = @result_count - 1
+      contents = @results[lang][target][0..range_end]
+
+      contents.each do |data|
+        content = data.map{|k| k.to_s}.join(Parser::SPACE)
+        puts Entry.colorize(content, bullet_color)
+      end
+
+      puts
+    end
+
+    def print_results_did_you_mean
+      print_formatted(:did_you_mean, :results)
+    end
+
+    def print_results_language
+      [:tr, :en].each do |lang|
+        [:results, :similar].each do |target|
+          print_formatted(lang, target)
+        end
+      end
+    end
+
+    def process
+      if @not_found
+        print_results_did_you_mean
+      else
+        print_results_language
+      end
+
+      puts
+    end
+  end
+
+end
+
+
+if __FILE__ == $PROGRAM_NAME
+  ck = Cemilkardes.new
+  ck.parse_options
+  ck.process
+  ck.pretty_print
+end
+
